@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01e63025-a4b3-4219-bb72-c8d93cc09ff6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/pom_tracker/add_menu_functionality.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom_tracker/people.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom_tracker/people_window.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom_tracker/person.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom_tracker/person_window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/app.py" afterDir="false" />
-    </list>
+    <list default="true" id="01e63025-a4b3-4219-bb72-c8d93cc09ff6" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -289,11 +281,18 @@
       <option name="presentableId" value="Default" />
       <updated>1529692542444</updated>
     </task>
+    <task id="LOCAL-00001" summary="Derpy">
+      <created>1530187636560</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1530187636560</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1239" height="1047" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -348,6 +347,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Derpy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Derpy" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom_tracker/__init__.py">
