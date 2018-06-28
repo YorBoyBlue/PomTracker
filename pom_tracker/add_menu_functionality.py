@@ -1,13 +1,19 @@
 import pyforms
+from PyQt5 import QtGui
 from pyforms import BaseWidget
 from pyforms.controls import ControlText
 from pyforms.controls import ControlButton
 
 
-class PomTracker(BaseWidget):
+class AddMenuFuntionality(BaseWidget):
+    """
+    This class is a module of the application PeopleWindow.py
+    It is a simple a example of how applications can be devided in modules with pyforms.
+    It adds the Open and Save functionality
+    """
 
     def __init__(self):
-        super(PomTracker, self).__init__('Pomodoro Tracker')
+        super(AddMenuFuntionality, self).__init__('Pomodoro Tracker')
 
         # Definition of the forms fields
         self._firstname = ControlText('First name', 'Default value')
@@ -70,5 +76,25 @@ class PomTracker(BaseWidget):
     def past_event(self):
         pass
 
-# Execute the application
-if __name__ == "__main__":   pyforms.start_app(PomTracker)
+    def __savePeople(self):
+        filename, _ = QtGui.QFileOpenEvent.getSaveFileName(parent=self,
+                                                           caption="Save file",
+                                                           directory=".",
+                                                           filter="*.dat")
+
+        if filename != None and filename != '': self.save(filename)
+
+    def __loadPeople(self):
+        filename, _ = QtGui.QFileOpenEvent.getOpenFileName(parent=self,
+                                                           caption="Import file",
+                                                           directory=".",
+                                                           filter="*.dat")
+
+        if filename != None and filename != '':
+            self.load(filename)
+            for person in self._people:
+                self._peopleList += [person._firstName, person._middleName,
+                                     person._lastName]
+
+    def __exit(self):
+        exit()
