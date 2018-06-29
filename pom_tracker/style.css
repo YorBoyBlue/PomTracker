@@ -1,0 +1,46 @@
+QMainWindow{
+	background-color: white;
+}
+
+QLabel{
+	min-width: 110px;
+}
+
+/*QWidget {*/
+	/*margin-left: 5px;*/
+	/*margin-right: 10px;*/
+	/*background-color: white;*/
+/*}*/
+
+QLineEdit{
+	min-width: 200px;
+	border: 1px solid #CCC;
+	height: 30px;
+	padding-left: 10px;
+}
+
+QPushButton{
+	background: #3498db;
+	color: #ffffff;
+	padding: 10px 20px 10px 20px;
+    border-radius: 6px;
+}
+
+QPushButton:hover {
+  background: #3cb0fd;
+}
+
+#review_field QLabel,
+#current_task_field QLabel,
+#label_field QLabel
+{
+    margin-left: 10px;
+	/*color: red;*/
+}
+
+
+
+/*Use the # and the name of the variable to access to a specific Control*/
+#current_task_field QPlainTextEdit{
+	/*color:red;*/
+}
