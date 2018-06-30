@@ -4,8 +4,7 @@ from pomodora_window import PomodoraWindow
 from add_menu import AddMenu
 from pyforms.controls import ControlDockWidget
 import csv
-# from AnyQt import QtCore
-from datetime import datetime
+import datetime
 
 
 class PomSheetWindow(AddMenu, Pomodoras, BaseWidget):
@@ -19,9 +18,6 @@ class PomSheetWindow(AddMenu, Pomodoras, BaseWidget):
         BaseWidget.__init__(self, 'Pomodora Tracker')
         AddMenu.__init__(self)
         self.panel = ControlDockWidget()
-        # self.panel.setWindowFlags(
-        #     self.panel.windowFlags() | QtCore.Qt.WindowCloseButtonHint)
-        # WindowCloseButtonHint
 
         # Definition of the forms fields
         self.pom_list = ControlList('Pom Sheet', default="",
@@ -36,10 +32,13 @@ class PomSheetWindow(AddMenu, Pomodoras, BaseWidget):
         print('Closed!')
         "called on close"
 
+    def open_pom_window(self):
+        self.panel.show()
+
     def save_pom_sheet(self):
 
         todays_date = datetime.date.today()
-        file_name = 'Pom - ' + str(todays_date)
+        file_name = 'Pom - ' + str(todays_date) + '.csv'
 
         with open(file_name, 'w') as new_file:
             # Create fieldnames for the Dictionary Writer
@@ -59,6 +58,18 @@ class PomSheetWindow(AddMenu, Pomodoras, BaseWidget):
             # Write the Pomodoras to an external csv file
             for pom in poms:
                 csv_writer.writerow(pom)
+
+    def load_pom_sheet(self):
+
+        todays_date = datetime.date.today()
+        file_name = 'Pom - ' + str(todays_date) + '.csv'
+
+        with open(file_name, 'r') as existing_file:
+            # Read existing file
+            csv_reader = csv.DictReader(existing_file)
+
+            for pom_row in csv_reader:
+                self.pom_list += pom_row.values()
 
     def add_pom(self, pomodora):
         """

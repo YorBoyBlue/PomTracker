@@ -8,7 +8,9 @@ class AddMenu():
         self.mainmenu = [
             {'File': [
                 {'Save': self.save_pom_sheet},
-                {'Open': self.load_pom_sheet},
+                '-',
+                {'Open Pom Window': self.open_pom_window},
+                {'Open Current Pom Sheet': self.load_pom_sheet},
                 '-',
                 {'Exit': self.exit},
             ]
@@ -19,6 +21,9 @@ class AddMenu():
         pass
 
     def load_pom_sheet(self):
+        pass
+
+    def open_pom_window(self):
         pass
 
     @staticmethod
