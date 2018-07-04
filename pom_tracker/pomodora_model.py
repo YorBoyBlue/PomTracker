@@ -2,32 +2,36 @@ import sqlite3
 import datetime
 
 
+# Tables created for the Pom Tracker
+# conn = sqlite3.connect('pomodora.db')
+# c = conn.cursor()
+# c.execute("CREATE TABLE pomodoras ( "
+#           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+#           "task BLOB,"
+#           "review BLOB,"
+#           "pom_date DATE,"
+#           "start_time TIME,"
+#           "end_time TIME, "
+#           "UNIQUE(pom_date, start_time) ON CONFLICT REPLACE"
+#           ")"
+#           )
+#
+# # c.execute("CREATE TABLE flags ( "
+# #           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+# #           "flag_type VARCHAR(20)"
+# #           ")"
+# #           )
+#
+# c.execute("CREATE TABLE pomodoras_flags ( "
+#           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+#           "pomodora_id INTEGER,"
+#           "flag_type VARCHAR(20)"
+#           ")"
+#           )
+# conn.commit()
+
+
 class PomodoraModel:
-
-    # Tables created for the Pom Tracker
-    # c.execute("CREATE TABLE pomodoras ( "
-    #           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-    #           "task BLOB,"
-    #           "review BLOB,"
-    #           "pom_date DATE,"
-    #           "start_time TIME,"
-    #           "end_time TIME"
-    #           ")"
-    #           )
-
-    # c.execute("CREATE TABLE flags ( "
-    #           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-    #           "flag_type VARCHAR(20)"
-    #           ")"
-    #           )
-    #
-    # c.execute("CREATE TABLE pomodoras_flags ( "
-    #           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-    #           "pomodora_id INTEGER,"
-    #           "flag_type VARCHAR(20)"
-    #           ")"
-    #           )
-    # conn.commit()
 
     @staticmethod
     def db_connect():
@@ -75,8 +79,35 @@ class PomodoraModel:
 
     def get_flag_types(self):
         conn = self.db_connect()
+        conn.row_factory = sqlite3.Row
         c = conn.cursor()
 
         with conn:
             c.execute("SELECT flag_type FROM flags")
+            return c.fetchall()
+
+    def get_todays_poms(self):
+        conn = self.db_connect()
+        conn.row_factory = sqlite3.Row
+        c = conn.cursor()
+        today = datetime.date.today()
+
+        with conn:
+            c.execute(
+                "SELECT *"
+                "FROM pomodoras "
+                "WHERE pom_date=:today "
+                "ORDER BY start_time",
+                {'today': today})
+            return c.fetchall()
+
+    def get_flags_by_pom_id(self, pom_id):
+        conn = self.db_connect()
+        conn.row_factory = sqlite3.Row
+        c = conn.cursor()
+
+        with conn:
+            c.execute("SELECT flag_type FROM pomodoras_flags "
+                      "WHERE pomodora_id=:pom_id",
+                      {'pom_id': pom_id})
             return c.fetchall()

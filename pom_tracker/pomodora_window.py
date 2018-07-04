@@ -33,7 +33,7 @@ class PomodoraWindow(Pomodora, BaseWidget):
         # Define the button action
         self.submit_button_field.value = self.submit_button_action
 
-        self.formset = ['current_task_field', ' ', '=', 'time_blocks_fields',
+        self.formset = ['current_task_field', '', '=', 'time_blocks_fields',
                         '=', 'flags_fields', 'review_field',
                         (' ', 'submit_button_field', ' '), ' ']
 
@@ -59,7 +59,7 @@ class PomodoraWindow(Pomodora, BaseWidget):
         pom_model = PomodoraModel()
         flag_types = pom_model.get_flag_types()
         for flag_type in flag_types:
-            self.flags_fields += (flag_type[0], False)
+            self.flags_fields += (flag_type['flag_type'], False)
 
 
 # Execute the application
