@@ -8,6 +8,7 @@ from pyforms.controls import ControlCheckBoxList
 from pyforms.controls import ControlCombo
 from pyforms.controls import ControlButton
 from pomodora import Pomodora
+from pomodora_model import PomodoraModel
 
 conf += settings
 
@@ -26,10 +27,7 @@ class PomodoraWindow(Pomodora, BaseWidget):
         self.review_field = ControlTextArea('Review')
         self.submit_button_field = ControlButton('Submit Pom')
 
-        self.flags_fields += ('Code', False)
-        self.flags_fields += ('Training', False)
-        self.flags_fields += ('Dev Ops', False)
-
+        self.init_flag_fields()
         self.init_times()
 
         # Define the button action
@@ -56,6 +54,12 @@ class PomodoraWindow(Pomodora, BaseWidget):
         time_blocks = data.get('time_blocks')
         for val, time_block in time_blocks.items():
             self.time_blocks_fields.add_item(time_block)
+
+    def init_flag_fields(self):
+        pom_model = PomodoraModel()
+        flag_types = pom_model.get_flag_types()
+        for flag_type in flag_types:
+            self.flags_fields += (flag_type[0], False)
 
 
 # Execute the application

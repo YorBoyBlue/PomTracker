@@ -33,13 +33,6 @@ class PomodoraModel:
     def db_connect():
         return sqlite3.connect('pomodora.db')
 
-    @staticmethod
-    def dict_factory(cursor, row):
-        d = {}
-        for idx, col in enumerate(cursor.description):
-            d[col[0]] = row[idx]
-        return d
-
     def insert_pom_and_pom_flags(self, pom):
         self.insert_pom(pom)
         self.insert_pom_flags(pom)
@@ -63,7 +56,6 @@ class PomodoraModel:
     def insert_pom_flags(self, pom):
         conn = self.db_connect()
         c = conn.cursor()
-        conn.row_factory = self.dict_factory
         today = datetime.date.today()
         times = pom.time_block.split('-')
         start_time = times[0]
