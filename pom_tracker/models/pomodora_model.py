@@ -1,6 +1,35 @@
 import sqlite3
 import datetime
 
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, Date, Time
+from sqlalchemy.orm import sessionmaker
+
+engine = create_engine('sqlite:///pom_tracker.db')
+Base = declarative_base()
+Session = sessionmaker(bind=engine)
+session = Session()
+
+
+# class PomodoraModel(Base):
+#     __tablename__ = 'pomodora'
+#
+#     id = Column(Integer, primary_key=True)
+#     task = Column(String, nullable=False)
+#     review = Column(String, nullable=False)
+#     pom_date = Column(Date, nullable=False)
+#     start_time = Column(Time, nullable=False)
+#     end_time = Column(Time, nullable=False)
+#
+#     def __repr__(self):
+#         return "<Pomodora(task='%s', review='%s', pom_date='%s', " \
+#                "start_time='%s', end_time='%s')>" % (
+#                    self.task, self.review, self.pom_date, self.start_time,
+#                    self.end_time)
+#
+#
+# Base.metadata.create_all(engine)
 
 # Tables created for the Pom Tracker
 # conn = sqlite3.connect('pomodora.db')
@@ -35,7 +64,7 @@ class PomodoraModel:
 
     @staticmethod
     def db_connect():
-        return sqlite3.connect('pomodora.db')
+        return sqlite3.connect('databases/pomodora.db')
 
     def insert_pom_and_pom_flags(self, pom):
         self.insert_pom(pom)

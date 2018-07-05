@@ -1,8 +1,8 @@
 from __init__ import *
 from pomodora_window import PomodoraWindow
-from add_menu import AddMenu
+from helpers.add_menu import AddMenu
 from pyforms.controls import ControlDockWidget
-from pomodora_model import PomodoraModel
+from models.pomodora_model import PomodoraModel
 
 
 class PomSheetWindow(AddMenu, BaseWidget):
@@ -57,7 +57,6 @@ class PomSheetWindow(AddMenu, BaseWidget):
         pom_model.insert_pom_and_pom_flags(pomodora)
         pomodora.close()
         self.load_pom_window()
-        self.pom_list.clear()
         self.populate_pom_list()
 
     def remove_pom(self, index):

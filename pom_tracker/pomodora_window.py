@@ -1,14 +1,14 @@
 from pyforms.utils.settings_manager import conf
-import settings
+from config import settings
 import pyforms
-import yaml_helper
+from helpers import yaml_helper
 from pyforms import BaseWidget
 from pyforms.controls import ControlTextArea
 from pyforms.controls import ControlCheckBoxList
 from pyforms.controls import ControlCombo
 from pyforms.controls import ControlButton
 from pomodora import Pomodora
-from pomodora_model import PomodoraModel
+from models.pomodora_model import PomodoraModel
 
 conf += settings
 
@@ -49,7 +49,7 @@ class PomodoraWindow(Pomodora, BaseWidget):
             self.parent.add_pom(self)
 
     def init_times(self):
-        filepath = 'pom_template.yaml'
+        filepath = 'templates/pom_template.yaml'
         data = yaml_helper.loader(filepath)
         time_blocks = data.get('time_blocks')
         for val, time_block in time_blocks.items():
