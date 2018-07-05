@@ -1,13 +1,12 @@
 from pyforms.utils.settings_manager import conf
 from config import settings
-import pyforms
 from helpers import yaml_helper
 from pyforms import BaseWidget
 from pyforms.controls import ControlTextArea
 from pyforms.controls import ControlCheckBoxList
 from pyforms.controls import ControlCombo
 from pyforms.controls import ControlButton
-from pomodora import Pomodora
+from objects.pomodora import Pomodora
 from models.pomodora_model import PomodoraModel
 
 conf += settings
@@ -60,8 +59,3 @@ class PomodoraWindow(Pomodora, BaseWidget):
         flag_types = pom_model.get_flag_types()
         for flag_type in flag_types:
             self.flags_fields += (flag_type['flag_type'], False)
-
-
-# Execute the application
-if __name__ == "__main__":
-    pyforms.start_app(PomodoraWindow)

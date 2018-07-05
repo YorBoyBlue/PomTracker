@@ -1,5 +1,5 @@
 from __init__ import *
-from pomodora_window import PomodoraWindow
+from views_controllers.pomodora_window import PomodoraWindow
 from helpers.add_menu import AddMenu
 from pyforms.controls import ControlDockWidget
 from models.pomodora_model import PomodoraModel
@@ -70,7 +70,3 @@ class PomSheetWindow(AddMenu, BaseWidget):
         win = PomodoraWindow()
         win.parent = self
         self.panel.value = win
-
-
-if __name__ == "__main__":
-    pyforms.start_app(PomSheetWindow, geometry=(800, 800, 1000, 1000))
