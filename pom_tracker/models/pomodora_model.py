@@ -34,8 +34,7 @@ class PomodoraModel(Base):
         self.insert_pom(pom)
         self.insert_pom_flags(pom)
 
-    @staticmethod
-    def insert_pom(pom):
+    def insert_pom(self, pom):
         # conn = self.db_connect()
         # c = conn.cursor()
         # times = pom.time_block.split('-')

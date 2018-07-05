@@ -55,7 +55,7 @@ class PomSheetWindow(AddMenu, BaseWidget):
 
     def add_pom(self, pomodora):
         pom_model = PomodoraModel()
-        pom_model.insert_pom_and_pom_flags(pomodora)
+        pom_model.insert_pom(pomodora)
         pomodora.close()
         self.load_pom_window()
         self.populate_pom_list()
