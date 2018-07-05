@@ -3,6 +3,7 @@ from views_controllers.pomodora_window import PomodoraWindow
 from helpers.add_menu import AddMenu
 from pyforms.controls import ControlDockWidget
 from models.pomodora_model import PomodoraModel
+from models.pom_flags_model import PomFlagsModel
 
 
 class PomSheetWindow(AddMenu, BaseWidget):

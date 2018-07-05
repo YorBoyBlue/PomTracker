@@ -7,7 +7,7 @@ from pyforms.controls import ControlCheckBoxList
 from pyforms.controls import ControlCombo
 from pyforms.controls import ControlButton
 from objects.pomodora import Pomodora
-from models.pomodora_model import PomodoraModel
+from models.flag_type_model import FlagTypeModel
 
 conf += settings
 
@@ -55,7 +55,7 @@ class PomodoraWindow(Pomodora, BaseWidget):
             self.time_blocks_fields.add_item(time_block)
 
     def init_flag_fields(self):
-        pom_model = PomodoraModel()
-        flag_types = pom_model.get_flag_types()
-        for flag_type in flag_types:
-            self.flags_fields += (flag_type['flag_type'], False)
+        flag_type_model = FlagTypeModel()
+        flag_types = flag_type_model.get_flag_types()
+        for row in flag_types:
+            self.flags_fields += (row.flag_type, False)

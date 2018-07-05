@@ -1,14 +1,7 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
+from helpers.base import Base, engine, session
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
-
-engine = create_engine('sqlite:///pom_tracker.db')
-Base = declarative_base()
-Session = sessionmaker(bind=engine)
-session = Session()
 
 
 class PomFlagsModel(Base):
@@ -18,7 +11,7 @@ class PomFlagsModel(Base):
     flag_type = Column(String, nullable=False)
     pom_id = Column(Integer, ForeignKey('pomodora.id'))
 
-    pom = relationship("Pomodora", back_populates="pomodora_flags")
+    pom = relationship('PomodoraModel', back_populates="flags")
 
     def __repr__(self):
         return "<Flags(flag_type='%s')>" % self.flag_type
