@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01e63025-a4b3-4219-bb72-c8d93cc09ff6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/pom_tracker/views/pomodora_template.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom_tracker/views/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom_tracker/resources/pomodora.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/resources/pomodora.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/views/pomodora_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/views/pomodora_view.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,7 +44,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pom_tracker/app.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="396">
@@ -60,14 +56,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="pomodora.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="pomodora.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pom_tracker/resources/pomodora.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="41" column="39" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
-                  <folding>
-                    <element signature="e#0#13#0" expanded="true" />
-                  </folding>
+                <state>
+                  <caret column="13" selection-start-column="13" selection-end-column="13" />
                 </state>
               </provider>
             </entry>
@@ -224,8 +217,8 @@
         <option value="$PROJECT_DIR$/pom_tracker/views/test.txt" />
         <option value="$PROJECT_DIR$/pom_tracker/views/pomodora_template.py" />
         <option value="$PROJECT_DIR$/pom_tracker/views/pomodora_view.html" />
-        <option value="$PROJECT_DIR$/pom_tracker/resources/pomodora.py" />
         <option value="$PROJECT_DIR$/pom_tracker/app.py" />
+        <option value="$PROJECT_DIR$/pom_tracker/resources/pomodora.py" />
       </list>
     </option>
   </component>
@@ -581,7 +574,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530899290695</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Got Mako working with my yaml template. Sorta lol">
+      <created>1530907089367</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1530907089367</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -653,7 +653,8 @@
     <MESSAGE value="Stable state with SQLAlchemy" />
     <MESSAGE value="Insert will not work for me with SQLAlchemy" />
     <MESSAGE value="Falcon framework is set up with SQLAlchemy and inserting data to DB." />
-    <option name="LAST_COMMIT_MESSAGE" value="Falcon framework is set up with SQLAlchemy and inserting data to DB." />
+    <MESSAGE value="Got Mako working with my yaml template. Sorta lol" />
+    <option name="LAST_COMMIT_MESSAGE" value="Got Mako working with my yaml template. Sorta lol" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1028,16 +1029,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/resources/pomodora.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="41" column="39" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom_tracker/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -1045,6 +1036,13 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/resources/pomodora.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>

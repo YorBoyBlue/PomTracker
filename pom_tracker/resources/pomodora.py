@@ -1,5 +1,4 @@
 import falcon
-from helpers.yaml_helper import YamlHelper
 from models.pomodora_model import PomodoraModel
 import datetime
 from mako.template import Template
@@ -18,7 +17,8 @@ class PomodoraResource:
         resp.content_type = 'text/html'
 
         mytemplate = Template(
-            filename='C:/Work/Python/PomTracker/pom_tracker/views/pomodora_view.html')
+            filename=
+            'C:/Work/Python/PomTracker/pom_tracker/views/pomodora_view.html')
         resp.body = mytemplate.render(time_blocks=self.init_times())
 
     def on_post(self, req, resp):
@@ -41,7 +41,8 @@ class PomodoraResource:
         resp.status = falcon.HTTP_200  # This is the default status
         resp.content_type = 'text/html'
         mytemplate = Template(
-            filename='C:/Work/Python/PomTracker/pom_tracker/views/pomodora_view.html')
+            filename=
+            'C:/Work/Python/PomTracker/pom_tracker/views/pomodora_view.html')
         resp.body = mytemplate.render(time_blocks=self.init_times())
 
     def init_times(self):
@@ -51,5 +52,5 @@ class PomodoraResource:
         time_blocks = data.get('time_blocks')
         for val, time_block in time_blocks.items():
             times = times + (
-            '<option value="volvo">' + time_block + '</option>',)
+                '<option value="volvo">' + time_block + '</option>',)
         return times
