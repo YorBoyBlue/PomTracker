@@ -24,11 +24,12 @@ class PomodoraResource:
 
     def on_post(self, req, resp):
         """Handles POST requests"""
+        d = req.media
 
         # Add pom to the DB
-        # times = pom.time_block.split('-')
-        start_time = '9:00am'
-        end_time = '9:25am'
+        times = req.media['time_block'].split('-')
+        start_time = times[0]
+        end_time = times[1]
         today = datetime.date.today()
         pom_to_add = PomodoraModel(task=req.media['task'],
                                    review=req.media['review'], date=today,
@@ -45,6 +46,7 @@ class PomodoraResource:
             'C:/Work/Python/PomTracker/pom_tracker/views/pomodora_view.html')
         resp.body = pomodora_template.render(time_blocks=self.init_times())
 
+
     @staticmethod
     def init_times():
         times = tuple()
@@ -53,5 +55,5 @@ class PomodoraResource:
         time_blocks = data.get('time_blocks')
         for val, time_block in time_blocks.items():
             times = times + (
-                '<option value="volvo">' + time_block + '</option>',)
+                '<option>' + time_block + '</option>',)
         return times

@@ -10,7 +10,7 @@
         <legend>Submit Pomodora:</legend>
 
         Pomodora Time Block:<br>
-        <select name="cars">
+        <select name="time_block">
             % for time in {time_blocks}:
             ${time}
             % endfor
@@ -22,7 +22,7 @@
         <br>
         Review:<br>
         <textarea rows="4" cols="50" type='text' name='review' value='Blue'></textarea><br><br>
-        <input type='submit' value='Submit'>
+        <input type='submit' value='Submit Pomodora'>
     </fieldset>
 </form>
 </body>
