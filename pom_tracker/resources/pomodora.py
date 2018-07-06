@@ -7,10 +7,6 @@ from helpers.yaml_helper import YamlHelper
 
 class PomodoraResource:
 
-    def __init__(self):
-        pass
-        # self.time_blocks = []
-
     def on_get(self, req, resp):
         """Handles GET requests"""
 
@@ -38,14 +34,12 @@ class PomodoraResource:
         req.context['session'].commit()
 
         # Send user to pomodora page again
-        resp.context['time_blocks'] = self.init_times()
         resp.status = falcon.HTTP_200  # This is the default status
         resp.content_type = 'text/html'
         pomodora_template = Template(
             filename=
             'C:/Work/Python/PomTracker/pom_tracker/views/pomodora_view.html')
         resp.body = pomodora_template.render(time_blocks=self.init_times())
-
 
     @staticmethod
     def init_times():
@@ -57,3 +51,10 @@ class PomodoraResource:
             times = times + (
                 '<option>' + time_block + '</option>',)
         return times
+
+    def get_todays_poms(self, req):
+        today = datetime.date.today()
+        req.context['session'].query(PomodoraModel).filter_by(date=today).all()
+
+
+# {time_blocks: {'1': '', ...}}

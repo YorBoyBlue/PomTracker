@@ -12,7 +12,7 @@
         Pomodora Time Block:<br>
         <select name="time_block">
             % for time in {time_blocks}:
-            ${time}
+                <option></option>
             % endfor
         </select>
         <br><br>
@@ -24,6 +24,17 @@
         <textarea rows="4" cols="50" type='text' name='review' value='Blue'></textarea><br><br>
         <input type='submit' value='Submit Pomodora'>
     </fieldset>
+
+    <table>
+        % for time in {time_blocks}:
+            ${time}
+        % endfor
+        <tr>
+            <td>
+
+            </td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>
