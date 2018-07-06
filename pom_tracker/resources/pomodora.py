@@ -2,20 +2,24 @@ import falcon
 from helpers.yaml_helper import YamlHelper
 from models.pomodora_model import PomodoraModel
 import datetime
+from mako.template import Template
+from helpers.yaml_helper import YamlHelper
 
 
 class PomodoraResource:
 
     def __init__(self):
-        self.time_blocks = []
-        self.init_times()
+        pass
+        # self.time_blocks = []
 
     def on_get(self, req, resp):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
         resp.content_type = 'text/html'
-        with open('views/pomodora_view.html', 'r') as f:
-            resp.body = f.read()
+
+        mytemplate = Template(
+            filename='C:/Work/Python/PomTracker/pom_tracker/views/pomodora_view.html')
+        resp.body = mytemplate.render(time_blocks=self.init_times())
 
     def on_post(self, req, resp):
         """Handles POST requests"""
@@ -32,15 +36,20 @@ class PomodoraResource:
         req.context['session'].add(pom_to_add)
         req.context['session'].commit()
 
-        # Redirect to pomodora page again
+        # Send user to pomodora page again
+        resp.context['time_blocks'] = self.init_times()
         resp.status = falcon.HTTP_200  # This is the default status
         resp.content_type = 'text/html'
-        with open('views/pomodora_view.html', 'r') as f:
-            resp.body = f.read()
+        mytemplate = Template(
+            filename='C:/Work/Python/PomTracker/pom_tracker/views/pomodora_view.html')
+        resp.body = mytemplate.render(time_blocks=self.init_times())
 
     def init_times(self):
+        times = tuple()
         filepath = 'templates/pom_sheet_times_template.yaml'
         data = YamlHelper().loader(filepath)
         time_blocks = data.get('time_blocks')
         for val, time_block in time_blocks.items():
-            self.time_blocks.append(time_block)
+            times = times + (
+            '<option value="volvo">' + time_block + '</option>',)
+        return times
