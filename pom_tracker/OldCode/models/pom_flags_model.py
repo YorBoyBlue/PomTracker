@@ -1,4 +1,4 @@
-from helpers.base import Base, engine, session
+from OldCode.helpers.base import Base, engine
 from sqlalchemy import Column, Integer, String
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship

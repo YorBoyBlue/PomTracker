@@ -1,4 +1,5 @@
-from helpers.base import Base, engine, session
+from OldCode.helpers.base import Base, engine
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, Integer, VARCHAR
 
 
@@ -13,6 +14,8 @@ class FlagTypeModel(Base):
 
     @staticmethod
     def get_flag_types():
+        Session = sessionmaker(bind=engine)
+        session = Session()
         flags = session.query(FlagTypeModel.flag_type).all()
         return flags
 

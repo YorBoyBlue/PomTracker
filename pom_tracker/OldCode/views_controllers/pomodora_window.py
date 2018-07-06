@@ -1,13 +1,13 @@
 from pyforms.utils.settings_manager import conf
-from config import settings
-from helpers import yaml_helper
+from OldCode.config import settings
+from OldCode.helpers import yaml_helper
 from pyforms import BaseWidget
 from pyforms.controls import ControlTextArea
 from pyforms.controls import ControlCheckBoxList
 from pyforms.controls import ControlCombo
 from pyforms.controls import ControlButton
-from objects.pomodora import Pomodora
-from models.flag_type_model import FlagTypeModel
+from OldCode.objects.pomodora import Pomodora
+from OldCode.models.flag_type_model import FlagTypeModel
 
 conf += settings
 

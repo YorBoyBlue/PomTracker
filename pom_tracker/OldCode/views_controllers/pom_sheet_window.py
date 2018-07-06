@@ -1,9 +1,8 @@
 from __init__ import *
-from views_controllers.pomodora_window import PomodoraWindow
-from helpers.add_menu import AddMenu
+from OldCode.views_controllers.pomodora_window import PomodoraWindow
+from OldCode.helpers.add_menu import AddMenu
 from pyforms.controls import ControlDockWidget
-from models.pomodora_model import PomodoraModel
-from models.pom_flags_model import PomFlagsModel
+from OldCode.models.pomodora_model import PomodoraModel
 
 
 class PomSheetWindow(AddMenu, BaseWidget):
