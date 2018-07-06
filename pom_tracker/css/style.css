@@ -1,0 +1,12 @@
+#pom-table {
+    border: 1px solid black;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}

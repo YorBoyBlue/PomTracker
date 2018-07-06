@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01e63025-a4b3-4219-bb72-c8d93cc09ff6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/pom_tracker/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom_tracker/views/pomodora_collection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/resources/pomodora.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/resources/pomodora.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/templates/pom_sheet_times_template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/templates/pom_sheet_times_template.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom_tracker/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/css/style.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -118,8 +113,8 @@
           <file leaf-file-name="pomodora_view.mako" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="407">
-                  <caret line="55" column="31" lean-forward="true" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+                <state relative-caret-position="154">
+                  <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="19" selection-end-column="9" />
                 </state>
               </provider>
             </entry>
@@ -230,8 +225,8 @@
         <option value="$PROJECT_DIR$/pom_tracker/app.py" />
         <option value="$PROJECT_DIR$/pom_tracker/views/pomodora_collection.py" />
         <option value="$PROJECT_DIR$/pom_tracker/resources/pomodora.py" />
-        <option value="$PROJECT_DIR$/pom_tracker/css/style.css" />
         <option value="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" />
+        <option value="$PROJECT_DIR$/pom_tracker/css/style.css" />
       </list>
     </option>
   </component>
@@ -614,7 +609,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530909331083</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Got the design setup nicely and now querying all poms for the day and outputting them to a table in browser">
+      <created>1530917716578</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1530917716578</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -692,7 +694,8 @@
     <MESSAGE value="One more derp" />
     <MESSAGE value="parsing out times from form and submitting to DB" />
     <MESSAGE value="testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing" />
+    <MESSAGE value="Got the design setup nicely and now querying all poms for the day and outputting them to a table in browser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Got the design setup nicely and now querying all poms for the day and outputting them to a table in browser" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1081,15 +1084,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/css/style.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="55" column="31" lean-forward="true" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+        <state relative-caret-position="154">
+          <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="19" selection-end-column="9" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/css/style.css">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
