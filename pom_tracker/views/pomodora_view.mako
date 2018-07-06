@@ -3,16 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Pomodora Tracker</title>
+    ##     <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <style>
+        #pom-table {
+            border: 1px solid black;
+        }
+
+        td, th {
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 <body>
-<form action='http://localhost:8000/pomodora' method='post'>
+<form action='http://localhost:8000/submitPom' method='post'>
     <fieldset>
         <legend>Submit Pomodora:</legend>
 
         Pomodora Time Block:<br>
         <select name="time_block">
-            % for time in {time_blocks}:
-                <option></option>
+            % for time in time_blocks:
+                <option>${time}</option>
             % endfor
         </select>
         <br><br>
@@ -25,15 +41,34 @@
         <input type='submit' value='Submit Pomodora'>
     </fieldset>
 
-    <table>
-        % for time in {time_blocks}:
-            ${time}
-        % endfor
+    <h1>Pomodora Sheet</h1>
+    <table id="pom-table">
         <tr>
-            <td>
-
-            </td>
+            <th>Date</th>
+            <th>Task</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Review</th>
         </tr>
+        % for row in pom_rows:
+            <tr>
+                <td>
+                    ${row.date}
+                </td>
+                <td>
+                    ${row.task}
+                </td>
+                <td>
+                    ${row.start_time}
+                </td>
+                <td>
+                    ${row.end_time}
+                </td>
+                <td>
+                    ${row.review}
+                </td>
+            </tr>
+        % endfor
     </table>
 </form>
 </body>

@@ -6,6 +6,7 @@ from handlers.handler_urlencoded import URLEncodedHandler
 from middlewares.negotiation_middleware import NegotiationMiddleware
 from middlewares.db_middleware import DatabaseMiddleware
 from resources.pomodora import PomodoraResource
+from views.pomodora_collection import PomodoraCollectionResource
 from models.base_model import BaseModel
 
 
@@ -26,6 +27,7 @@ class Application:
 
         # routes
         self.api.add_route('/pomodora', PomodoraResource())
+        self.api.add_route('/submitPom', PomodoraCollectionResource())
 
     def start_app(self, forever=False):
         httpd = make_server('localhost', 8000, self.api)
