@@ -13,6 +13,7 @@ class PomodoraResource:
 
     def on_get(self, req, resp):
         """Handles GET requests"""
+
         resp.status = falcon.HTTP_200  # This is the default status
         resp.content_type = 'text/html'
 
@@ -23,7 +24,6 @@ class PomodoraResource:
 
     def on_post(self, req, resp):
         """Handles POST requests"""
-        my_media = req.media
 
         # Add pom to the DB
         # times = pom.time_block.split('-')
@@ -45,7 +45,8 @@ class PomodoraResource:
             'C:/Work/Python/PomTracker/pom_tracker/views/pomodora_view.html')
         resp.body = mytemplate.render(time_blocks=self.init_times())
 
-    def init_times(self):
+    @staticmethod
+    def init_times():
         times = tuple()
         filepath = 'templates/pom_sheet_times_template.yaml'
         data = YamlHelper().loader(filepath)
