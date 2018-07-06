@@ -17,10 +17,10 @@ class PomodoraResource:
         resp.status = falcon.HTTP_200  # This is the default status
         resp.content_type = 'text/html'
 
-        mytemplate = Template(
+        pomodora_template = Template(
             filename=
             'C:/Work/Python/PomTracker/pom_tracker/views/pomodora_view.html')
-        resp.body = mytemplate.render(time_blocks=self.init_times())
+        resp.body = pomodora_template.render(time_blocks=self.init_times())
 
     def on_post(self, req, resp):
         """Handles POST requests"""
@@ -40,10 +40,10 @@ class PomodoraResource:
         resp.context['time_blocks'] = self.init_times()
         resp.status = falcon.HTTP_200  # This is the default status
         resp.content_type = 'text/html'
-        mytemplate = Template(
+        pomodora_template = Template(
             filename=
             'C:/Work/Python/PomTracker/pom_tracker/views/pomodora_view.html')
-        resp.body = mytemplate.render(time_blocks=self.init_times())
+        resp.body = pomodora_template.render(time_blocks=self.init_times())
 
     @staticmethod
     def init_times():
