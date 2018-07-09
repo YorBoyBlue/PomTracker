@@ -1,5 +1,4 @@
-from sqlalchemy import Column, Integer, Text, String, Date, Time, \
-    UniqueConstraint
+from sqlalchemy import Column, Integer, Text, Time, Date, UniqueConstraint
 from sqlalchemy.orm import relationship
 from models.base_model import BaseModel
 
@@ -10,9 +9,9 @@ class PomodoraModel(BaseModel):
     id = Column(Integer, primary_key=True)
     task = Column(Text, nullable=False)
     review = Column(Text, nullable=False)
-    date = Column(Date, nullable=False)
-    start_time = Column(String, nullable=False)
-    end_time = Column(String, nullable=False)
+    add_date = Column(Date, nullable=False)
+    start_time = Column(Time, nullable=False)
+    end_time = Column(Time, nullable=False)
 
     # flags = relationship('PomFlagsModel', back_populates="pom")
 

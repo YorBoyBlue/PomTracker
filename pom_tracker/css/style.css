@@ -10,3 +10,18 @@ td, th {
 table {
     border-collapse: collapse;
 }
+
+.center-text {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.keep-format {
+    white-space: pre-line;
+    padding-top: 2px;
+}
+
+td {
+    vertical-align: top;
+    padding-bottom: 20px;
+}

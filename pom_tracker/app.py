@@ -1,12 +1,13 @@
 import falcon
+import os
 from falcon import media
 from wsgiref.simple_server import make_server
 from helpers.error_handler import error_handler
 from handlers.handler_urlencoded import URLEncodedHandler
 from middlewares.negotiation_middleware import NegotiationMiddleware
 from middlewares.db_middleware import DatabaseMiddleware
-from resources.pomodora import PomodoraResource
-from views.pomodora_collection import PomodoraCollectionResource
+from views.pomodora import PomodoraResource
+from resources.pomodora_collection import PomodoraCollectionResource
 from models.base_model import BaseModel
 
 
@@ -26,8 +27,11 @@ class Application:
         self.api.add_error_handler(Exception, error_handler)
 
         # routes
-        self.api.add_route('/pomodora', PomodoraResource())
-        self.api.add_route('/submitPom', PomodoraCollectionResource())
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        self.api.add_route('/app/pomodora', PomodoraResource())
+        self.api.add_route('/app/reports?type=code', PomodoraResource())
+        self.api.add_route('/api/poms', PomodoraCollectionResource())
+        self.api.add_static_route('/css', dir_path + '/css')
 
     def start_app(self, forever=False):
         httpd = make_server('localhost', 8000, self.api)
