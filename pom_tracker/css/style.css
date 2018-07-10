@@ -25,3 +25,17 @@ td {
     vertical-align: top;
     padding-bottom: 20px;
 }
+
+body {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+div.container {
+    margin-left: 0;
+}
+
+.footer {
+    margin-top: 20px;
+    text-align: right;
+}
