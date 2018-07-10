@@ -18,8 +18,8 @@ class PomodoraCollectionResource:
 
         # Add pom to the DB
         times = req.media['time_block'].split('-')
-        start_time = datetime.strptime(times[0], '%I:%M%p')
-        end_time = datetime.strptime(times[1], '%I:%M%p')
+        start_time = datetime.strptime(times[0].strip(), '%I:%M%p')
+        end_time = datetime.strptime(times[1].strip(), '%I:%M%p')
         today = date.today()
         pom_to_add = PomodoraModel(task=req.media['task'],
                                    review=req.media['review'], add_date=today,

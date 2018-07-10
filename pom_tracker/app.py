@@ -39,6 +39,7 @@ class Application:
         self.api.add_route('/api/pom_flags', PomFlagsResource())
         self.api.add_route('/api/pom_sheet_export', PomSheetExport())
         self.api.add_static_route('/css', dir_path + '/css')
+        self.api.add_static_route('/js', dir_path + '/js')
 
     def start_app(self, forever=False):
         httpd = make_server('localhost', 8000, self.api)

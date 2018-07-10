@@ -5,48 +5,57 @@
     <title>Pomodora Tracker</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </head>
-<body>
-<div class="container">
-    <div class="row">
+<body class="my-body">
+<div class="container pom-app">
+    <h1 class="center-text">Pomodora Time Tracker</h1>
+    <br>
+    <div class="row pom-form">
         <div class="col-md-12">
             <form action='http://localhost:8000/api/poms' method='post'>
                 <fieldset style="width:1570px">
-                    <legend>Pomodora:</legend>
-
-                    Time Block:<br>
-                    <select name="time_block">
+                    <h2>Pomodora:</h2>
+                    <br>
+                    <h5>Time Block:</h5>
+                    <select class="custom-select" name="time_block">
                         % for time in time_blocks:
                             <option>${time}</option>
                         % endfor
                     </select>
                     <br><br>
-                    Flags: <br>
+                    <h5>Flags:</h5>
                     % for flag in flag_types:
                         <input type="checkbox" name="flags" value="${flag[0]}"> ${flag[0]} </input><br>
                     % endfor
                     <br>
-                    Title:<br>
+                    <h5>Title:</h5>
                     <textarea rows="4" cols="50" type='text' name='task'></textarea>
                     <br>
-                    Review:<br>
+                    <h5>Review:</h5>
                     <textarea rows="8" cols="50" type='text' name='review'></textarea><br><br>
-                    <input type='submit' value='Submit Pomodora'>
+                    <input class="btn btn-primary" type='submit' value='Submit Pomodora'>
                 </fieldset>
             </form>
         </div>
     </div>
-    <div class="row">
+</div>
+<br>
+<div></div>
+
+<div class="container pom-app">
+    <div class="row pom-sheet">
         <div class="col-md-12">
             <br>
             <h1>Todays Pom Sheet</h1>
             <table id="pom-table">
                 <tr>
-                    <th width="10%">Date</th>
+                    <th class="center-text" width="10%">Date</th>
                     <th width="30%">Title</th>
-                    <th width="10%">Flags</th>
-                    <th width="10%">Start Time</th>
-                    <th width="10%">End Time</th>
+                    <th class="center-text" width="10%">Flags</th>
+                    <th class="center-text" width="10%">Start Time</th>
+                    <th class="center-text" width="10%">End Time</th>
                     <th>Review</th>
                 </tr>
                 % for row in pom_rows:
@@ -63,10 +72,10 @@
                             % endfor
                         </td>
                         <td class="center-text">
-                            ${row.start_time.strftime('%I:%M%p')}
+                            ${row.start_time.strftime('%I:%M%p').strip('0')}
                         </td>
                         <td class="center-text">
-                            ${row.end_time.strftime('%I:%M%p')}
+                            ${row.end_time.strftime('%I:%M%p').strip('0')}
                         </td>
                         <td class="keep-format">
                             ${row.review}
