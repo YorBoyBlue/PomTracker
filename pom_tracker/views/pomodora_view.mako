@@ -17,22 +17,11 @@
             % endfor
         </select>
         <br><br>
-
         Flags: <br>
         % for flag in flag_types:
             <input type="checkbox" name="flags" value="${flag[0]}"> ${flag[0]} </input><br>
         % endfor
-        ##             <option value="volvo">Volvo</option>
-            ##             <option value="saab">Saab</option>
-            ##             <option value="opel">Opel</option>
-            ##             <option value="audi">Audi</option>
-##         <select name="flags" multiple>
-##             % for flag in flag_types:
-##                 <input type="checkbox" name="flags" value="${flag[0]}"> ${flag[0]}<br>
-##             % endfor
-##         </select>
-##         <br><br>
-
+        <br>
         Title:<br>
         <textarea rows="4" cols="50" type='text' name='task'></textarea>
         <br>
