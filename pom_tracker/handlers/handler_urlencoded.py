@@ -9,15 +9,22 @@ class URLEncodedHandler(BaseHandler):
             if not raw:
                 return {}
             else:
+                data = {}
                 qs = parse_qs(raw)
-                # qs = {k: [v, v, ...], k: [v]}
                 # I don't care what is in the dict just that I return a dict
-                return {k.decode('utf-8'): v.pop().decode('utf-8')
-                        for k, v in qs.items()}
+                for k, v in qs.items():
+                    # Create list element in the dict if necessary
+                    if len(v) > 1:
+                        data[k.decode('utf-8')] = []
+                        for item in v:
+                            data[k.decode('utf-8')].append(
+                                item.decode('utf-8'))
+                    # Just add the element to the dict
+                    else:
+                        data[k.decode('utf-8')] = v.pop().decode('utf-8')
 
-                # qsl = parse_qsl(raw)
-                # # qsl = [(k, v), (k, v), ...]
-                # return {t[0]: t[1] for t in qsl}
+                return data
+
         except ValueError as err:
             raise errors.HTTPBadRequest(
                 'Invalid urlencoded',

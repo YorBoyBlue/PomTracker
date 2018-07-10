@@ -1,8 +1,8 @@
 import falcon
 from models.pomodora_model import PomodoraModel
+from models.pom_flags_model import PomFlagsModel
 from datetime import datetime, date
-
-from helpers.yaml_helper import YamlHelper
+from sqlalchemy.exc import IntegrityError
 
 
 class PomodoraCollectionResource:
@@ -25,13 +25,19 @@ class PomodoraCollectionResource:
                                    review=req.media['review'], add_date=today,
                                    start_time=start_time.time(),
                                    end_time=end_time.time())
-        req.context['session'].add(pom_to_add)
-        req.context['session'].commit()
+        for flag in req.media['flags']:
+            pom_to_add.flags.append(PomFlagsModel(flag_type=flag))
+        try:
+            req.context['session'].add(pom_to_add)
+            req.context['session'].commit()
+        except IntegrityError as e:
+            # Insert failed due to a unique constraint
+            # TODO: create a pop up to let the user know there is a pom with
+            # TODO: that time block already and ask if they want to replace it.
+            req.context['session'].rollback()
+            message = 'You already have a pom for that time block. Delete ' \
+                      'it if you want to add a new one.'
+            e.statement = message
 
         # Send user to pomodora page again
         raise falcon.HTTPFound('/app/pomodora')
-
-    def get_todays_poms(self, req):
-        today = date.today()
-        return req.context['session'].query(
-            PomodoraModel).filter_by(add_date=today).all()

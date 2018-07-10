@@ -13,13 +13,16 @@ class PomodoraModel(BaseModel):
     start_time = Column(Time, nullable=False)
     end_time = Column(Time, nullable=False)
 
-    # flags = relationship('PomFlagsModel', back_populates="pom")
+    flags = relationship('PomFlagsModel', back_populates="pom")
 
-    # __table_args__ = (UniqueConstraint('pom_date', 'start_time',
-    #                                    name='date_start_time_uc'),)
+    __table_args__ = (UniqueConstraint('add_date', 'start_time',
+                                       name='date_start_time_uc',
+                                       ),
+                      # (),
+                      )
 
     def __repr__(self):
-        return "<Pomodora(task='%s', review='%s', pom_date='%s', " \
+        return "<Pomodora(task='%s', review='%s', flags=%s, pom_date='%s', " \
                "start_time='%s', end_time='%s')>" % (
-                   self.task, self.review, self.date, self.start_time,
-                   self.end_time)
+                   self.task, self.review, self.flags, self.date,
+                   self.start_time, self.end_time)
