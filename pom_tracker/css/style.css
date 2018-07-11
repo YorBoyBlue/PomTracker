@@ -19,7 +19,7 @@
 
 /*Tables =================================================================*/
 #pom-table {
-    border: 1px solid black;
+    /*border-top: 1px solid black;*/
 }
 
 table {
@@ -27,13 +27,19 @@ table {
     width: 100%;
 }
 
-td, th {
+td {
     padding: 10px;
-    border: 1px solid black;
+    border-bottom: 1px solid #c6bcb6;
 }
 
 th {
-    background-color: #ebebeb;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+th {
+    background-color: #625750;
+    color: #ffffff;
 }
 
 td {
@@ -42,11 +48,83 @@ td {
     line-height: 20px;
 }
 
-tr:nth-child(even) {
-    background-color: #ffffff;
+tr:nth-child(odd) {
+    background-color: #e0e2e4;
 }
 
-/*Text Formatting =========================================================*/
+/*Header ====================================================================*/
+header {
+    padding: 20px;
+    margin-bottom: 50px;
+    margin-top: 25px;
+    color: #ffffff;
+    background-color: #625750;
+    border-radius: 20px;
+    line-height: 0;
+}
+
+/*Body ====================================================================*/
+body.my-body {
+    font-family: "Roboto Slab", sans-serif;
+    background-color: #96897f;
+}
+
+footer {
+    bottom: 0;
+    width: 100%;
+    line-height: 60px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #625750;
+}
+
+h1 {
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+/*Custom ====================================================================*/
+textarea {
+    border-radius: 5px;
+    font-family: "Roboto Condensed", sans-serif;
+    width: 100%;
+}
+
+h1.center-text {
+    margin: 0;
+}
+
+div.form-text {
+    padding-right: 5px;
+}
+
+img.time-image {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-radius: 50px;
+}
+
+div.pom-form {
+    border-style: solid;
+    border-radius: 20px;
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+div.pom-sheet {
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #fdfdfd;
+}
+
+div.pom-app {
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    background-color: #fdfdfd;
+}
+
 .center-text {
     text-align: center;
 }
@@ -58,69 +136,5 @@ td.center-text {
 .keep-format {
     white-space: pre-line;
     padding-top: 0;
-}
-
-/*Body ====================================================================*/
-body.my-body {
-    font-family: "Roboto Slab", sans-serif;
-    background-color: #8a6d3b;
-    padding: 0 50px 0 50px;
-}
-
-div.footer {
-    margin-top: 20px;
-    text-align: center;
-    color: #ffffff;
-    background-color: #adadad;
-    padding: 20px;
-    width: 105%;
-    margin-left: -50px;
-    /*margin-right: -10px;*/
-}
-
-p.footer {
-    margin: 0;
-}
-
-header {
-    background-color: #fdfdfd;
-    padding: 20px;
-    margin-bottom: 10px;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-textarea {
-    border-radius: 5px;
-    font-family: "Roboto Condensed", sans-serif;
-}
-
-h1 {
-    font-family: "Roboto Condensed", sans-serif;
-}
-
-div.pom-form {
-    border-style: solid;
-    border-radius: 50px;
-    padding: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-div.pom-sheet {
-    padding: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    background-color: #fdfdfd;
-    border-radius: 50px;
-}
-
-div.pom-app {
-    padding: 20px;
-    min-width: 550px;
-    max-width: 1600px;
-    width: 100%;
-    background-color: #fdfdfd;
-    border-radius: 50px;
 }
 

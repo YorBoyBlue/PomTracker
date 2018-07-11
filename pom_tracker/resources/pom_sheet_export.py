@@ -1,4 +1,5 @@
 import json
+import falcon
 from helpers.my_requests import Requests
 from resources.pomodora_collection import PomodoraCollectionResource
 from datetime import datetime, date
@@ -25,3 +26,6 @@ class PomSheetExport:
         filename = str(today) + '-Arin_Pom_Sheet.json'
         with open('pom_sheets/' + filename, 'w') as outfile:
             json.dump(data, outfile, indent=2)
+
+        # Send user to pomodora page again
+        raise falcon.HTTPFound('/app/pomodora')

@@ -33,13 +33,13 @@ class Application:
         # routes
         dir_path = os.path.dirname(os.path.realpath(__file__))
         self.api.add_route('/app/pomodora', PomodoraResource())
-        self.api.add_route('/app/reports?type=code', PomodoraResource())
         self.api.add_route('/api/poms', PomodoraCollectionResource())
         self.api.add_route('/api/flag_types', FlagTypesResource())
         self.api.add_route('/api/pom_flags', PomFlagsResource())
         self.api.add_route('/api/pom_sheet_export', PomSheetExport())
         self.api.add_static_route('/css', dir_path + '/css')
         self.api.add_static_route('/js', dir_path + '/js')
+        self.api.add_static_route('/assets', dir_path + '/assets')
 
     def start_app(self, forever=False):
         httpd = make_server('localhost', 8000, self.api)
