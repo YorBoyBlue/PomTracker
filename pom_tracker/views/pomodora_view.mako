@@ -9,9 +9,43 @@
     <script src="/js/bootstrap.min.js"></script>
 </head>
 <body class="my-body">
-<div class="container pom-app">
+<header class="container">
     <h1 class="center-text">Pomodora Time Tracker</h1>
     <br>
+    <div class="row header">
+        <div class="col-md-12">
+        </div>
+    </div>
+</header>
+<div class="container pom-app">
+##     <div class="row pom-form">
+##         <form action='http://localhost:8000/api/poms' method='post'>
+##             <div class="col-md-4">
+##                 <h2>Pomodora:</h2>
+##                 <br>
+##                 <h5>Time Block:</h5>
+##                 <select class="custom-select" name="time_block">
+##                     % for time in time_blocks:
+##                         <option>${time}</option>
+##                     % endfor
+##                 </select>
+##                 <br><br>
+##                 <h5>Flags:</h5>
+##                 % for flag in flag_types:
+##                     <input type="checkbox" name="flags" value="${flag[0]}"> ${flag[0]} </input><br>
+##                 % endfor
+##             </div>
+##             <div class="col-md-4">
+##                 <h5>Title:</h5>
+##                 <textarea rows="4" cols="50" type='text' name='task'></textarea>
+##             </div>
+##             <div class="col-md-4">
+##                 <h5>Review:</h5>
+##                 <textarea rows="8" cols="50" type='text' name='review'></textarea><br><br>
+##                 <input class="btn btn-primary" type='submit' value='Submit Pomodora'>
+##             </div>
+##         </form>
+##     </div>
     <div class="row pom-form">
         <div class="col-md-12">
             <form action='http://localhost:8000/api/poms' method='post'>
@@ -86,8 +120,9 @@
         </div>
     </div>
 </div>
+<div></div>
 <div class="footer">
-    <p>&copy; Arin Blue 2018</p>
+    <p class="footer">&copy; Arin Blue 2018</p>
 </div>
 </body>
 </html>
