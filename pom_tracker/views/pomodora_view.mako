@@ -8,6 +8,9 @@
     <script src="/js/jquery.js"></script>
 </head>
 <body class="my-body">
+<form action='/app/settings' method='get'>
+    <input style="margin-right: 30px" class="btn btn-dark float-right" type='submit' role="button" value='&#9881;'>
+</form>
 <header class="container">
     <div class="row header">
         <div class="col-md-12">
@@ -20,7 +23,7 @@
     <div class="container pom-app">
         <div class="row pom-form">
             <div class="col-md-12">
-                <form action='http://localhost:8000/api/poms' method='post'>
+                <form action='/api/poms' method='post'>
                     <div class="row">
                         <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
                             <h2>Pomodora:</h2>
@@ -40,11 +43,12 @@
                         </div>
                         <div class="col-xl-6 col-lg-8 col-md-12 col-sm-12 form-text">
                             <h5>Title:</h5>
-                            <textarea rows="3" cols="50" type='text' name='task'></textarea>
+                            <textarea rows="3" cols="50" type='text' name='task' required></textarea>
                             <br>
                             <h5>Description:</h5>
-                            <textarea rows="6" cols="50" type='text' name='review'></textarea><br><br>
-                            <input class="btn btn-primary float-right" type='submit' role="button" value='Submit Pomodora'>
+                            <textarea rows="6" cols="50" type='text' name='review' required></textarea><br><br>
+                            <input class="btn btn-primary float-right" type='submit' role="button"
+                                   value='Submit Pomodora'>
                         </div>
                     </div>
                 </form>
@@ -57,11 +61,11 @@
         <div class="row pom-sheet">
             <div class="col-md-12">
                 <br>
-                <a class="btn btn-success float-right" href="http://localhost:8000/api/pom_sheet_export" role="button">Export</a>
+                <a class="btn btn-success float-right" href="/api/pom_sheet_export" role="button">Export</a>
                 <h1>Todays Pom Sheet</h1>
                 <table id="pom-table" width="100%">
                     <tr>
-                        <th class="center-text" width="10%">Date</th>
+                        <th class="center-text" width="11%">Date</th>
                         <th width="25%">Title</th>
                         <th class="center-text" width="10%">Flags</th>
                         <th class="center-text" width="11%">Start Time</th>

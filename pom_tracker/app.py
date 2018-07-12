@@ -6,6 +6,13 @@ from helpers.error_handler import error_handler
 from handlers.handler_urlencoded import URLEncodedHandler
 from middlewares.config_middleware import ConfigMiddleware
 from middlewares.db_middleware import DatabaseMiddleware
+from middlewares.validation_middleware import ValidationMiddleware
+from middlewares.negotiation_middleware import NegotiationMiddleware
+from resources.user_collection import UserCollectionResource
+from views.user_create import UserCreateResource
+from views.user_login import UserLoginResource
+from views.user_settings import UserSettingsResource
+from resources.session import SessionResource
 from views.pomodora import PomodoraResource
 from resources.pomodora_collection import PomodoraCollectionResource
 from resources.flag_types import FlagTypesResource
@@ -24,19 +31,35 @@ class Application:
         })
         self.db_middleware = DatabaseMiddleware()
         self.config_middleware = ConfigMiddleware()
-        self.api = falcon.API(
-            middleware=[self.db_middleware, self.config_middleware])
+        self.validation_middleware = ValidationMiddleware()
+        self.negotiation_middleware = NegotiationMiddleware()
+
+        self.api = falcon.API(middleware=[
+            self.db_middleware, self.config_middleware,
+            self.validation_middleware, self.negotiation_middleware
+        ])
         self.api.req_options.media_handlers = handlers
         self.api.resp_options.media_handlers = handlers
         self.api.add_error_handler(Exception, error_handler)
+        self.api.resp_options.secure_cookies_by_default = False
 
-        # routes
+        # Routes
         dir_path = os.path.dirname(os.path.realpath(__file__))
+        # User routes
+        self.api.add_route('/app/create', UserCreateResource())
+        self.api.add_route('/app/login', UserLoginResource())
+        self.api.add_route('/api/users', UserCollectionResource())
+        # Session routes
+        self.api.add_route('/api/session', SessionResource())
+        # Pomodora routes
         self.api.add_route('/app/pomodora', PomodoraResource())
         self.api.add_route('/api/poms', PomodoraCollectionResource())
         self.api.add_route('/api/flag_types', FlagTypesResource())
         self.api.add_route('/api/pom_flags', PomFlagsResource())
         self.api.add_route('/api/pom_sheet_export', PomSheetExport())
+        # Settings route
+        self.api.add_route('/app/settings', UserSettingsResource())
+        # Static directory routes
         self.api.add_static_route('/css', dir_path + '/css')
         self.api.add_static_route('/js', dir_path + '/js')
         self.api.add_static_route('/assets', dir_path + '/assets')

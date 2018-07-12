@@ -18,11 +18,10 @@ class PomodoraModel(BaseModel):
     __table_args__ = (UniqueConstraint('add_date', 'start_time',
                                        name='date_start_time_uc',
                                        ),
-                      # (),
                       )
 
     def __repr__(self):
-        return "<Pomodora(task='%s', review='%s', flags=%s, pom_date='%s', " \
-               "start_time='%s', end_time='%s')>" % (
-                   self.task, self.review, self.flags, self.date,
+        return "<Pomodora(id='%s', task='%s', review='%s', flags=%s, " \
+               "add_date='%s', start_time='%s', end_time='%s')>" % (
+                   self.id, self.task, self.review, self.flags, self.add_date,
                    self.start_time, self.end_time)
