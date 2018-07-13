@@ -1,6 +1,6 @@
 from falcon.media import BaseHandler
 from falcon import errors
-from urllib.parse import parse_qs, parse_qsl
+from urllib.parse import parse_qs
 
 
 class URLEncodedHandler(BaseHandler):
@@ -13,6 +13,8 @@ class URLEncodedHandler(BaseHandler):
                 qs = parse_qs(raw)
                 # I don't care what is in the dict just that I return a dict
                 for k, v in qs.items():
+                    a = k
+                    b = v
                     # Create list element in the dict if necessary
                     if len(v) > 1:
                         data[k.decode('utf-8')] = []
@@ -21,7 +23,13 @@ class URLEncodedHandler(BaseHandler):
                                 item.decode('utf-8'))
                     # Just add the element to the dict
                     else:
-                        data[k.decode('utf-8')] = v.pop().decode('utf-8')
+                        if k.decode('utf-8') == 'flags':
+                            data[k.decode('utf-8')] = []
+                            data[k.decode('utf-8')].append(
+                                v.pop().decode('utf-8'))
+
+                        else:
+                            data[k.decode('utf-8')] = v.pop().decode('utf-8')
 
                 return data
 

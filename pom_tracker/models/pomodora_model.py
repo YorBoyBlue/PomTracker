@@ -7,6 +7,7 @@ class PomodoraModel(BaseModel):
     __tablename__ = 'pomodora'
 
     id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, nullable=False)
     task = Column(Text, nullable=False)
     review = Column(Text, nullable=False)
     add_date = Column(Date, nullable=False)
@@ -21,7 +22,7 @@ class PomodoraModel(BaseModel):
                       )
 
     def __repr__(self):
-        return "<Pomodora(id='%s', task='%s', review='%s', flags=%s, " \
-               "add_date='%s', start_time='%s', end_time='%s')>" % (
-                   self.id, self.task, self.review, self.flags, self.add_date,
-                   self.start_time, self.end_time)
+        return "<Pomodora(id='%s', user_id='%s', task='%s', review='%s', " \
+               "flags=%s, add_date='%s', start_time='%s', end_time='%s')>" % (
+                   self.id, self.user_id, self.task, self.review, self.flags,
+                   self.add_date, self.start_time, self.end_time)

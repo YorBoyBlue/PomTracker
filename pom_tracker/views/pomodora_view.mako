@@ -8,17 +8,22 @@
     <script src="/js/jquery.js"></script>
 </head>
 <body class="my-body">
-<form action='/app/settings' method='get'>
-    <input style="margin-right: 30px" class="btn btn-dark float-right" type='submit' role="button" value='&#9881;'>
-</form>
-<header class="container">
-    <div class="row header">
-        <div class="col-md-12">
-            <h1 class="center-text">Pomodora Time Tracker</h1>
-            <br>
-        </div>
-    </div>
+
+<header>
+    <section>
+        <h2 class="header-title">Pomodora Time Tracker</h2>
+        <nav>
+            <ul>
+                <li><a class="btn" role="button" href="/app/settings">&#9881;</a></li>
+                <li><a class="btn" role="button" href="/app/logout">Logout</a></li>
+                <li><a class="btn" role="button" href="/app/login">Login/Create</a></li>
+                <li><a class="btn" role="button" href="/app/pomodora">Pomodora</a></li>
+                <li><a class="btn" role="button" href="/app/home">Home</a></li>
+            </ul>
+        </nav>
+    </section>
 </header>
+
 <main class="container">
     <div class="container pom-app">
         <div class="row pom-form">
@@ -81,9 +86,13 @@
                                 ${row.task}
                             </td>
                             <td class="center-text">
-                                % for flag in row.flags:
-                                ${flag.flag_type}<br>
-                                % endfor
+                                % if len(row.flags) > 0:
+                                    % for flag in row.flags:
+                                    ${flag.flag_type}<br>
+                                    % endfor
+                                % else :
+                                    ${row.flags[0]}
+                                % endif
                             </td>
                             <td class="center-text">
                                 ${row.start_time.strftime('%I:%M%p').strip('0')}

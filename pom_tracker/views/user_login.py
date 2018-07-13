@@ -1,5 +1,6 @@
 import falcon
 import os
+from error_handling.my_exceptions import NoSessionRecordExists
 from mako.template import Template
 from datetime import datetime
 from sqlalchemy.orm.exc import NoResultFound
@@ -14,7 +15,6 @@ class UserLoginResource:
     def on_get(self, req, resp):
         """Handles GET requests"""
 
-        resp.status = falcon.HTTP_200  # This is the default status
         resp.content_type = 'text/html'
 
         dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -32,8 +32,7 @@ class UserLoginResource:
 
         # User was not found, send back to login failed end point
         except NoResultFound as e:
-            # TODO: create and then send back to login failed end point
-            raise falcon.HTTPFound('/app/create')
+            raise falcon.HTTPFound('/app/login_failed')
 
         # User is validated, create a session for that user
         else:
@@ -42,29 +41,35 @@ class UserLoginResource:
                     random.choices(string.ascii_uppercase + string.digits,
                                    k=20))
                 hash_object = hashlib.md5(rand_string.encode())
-                my_hash = hash_object.hexdigest()
+                pomodora_login_hash = hash_object.hexdigest()
+                now = datetime.utcnow()
                 # check if user has an existing session in DB and modify it
                 try:
-                    req.context['session'].query(SessionModel).filter_by(
-                        user_id=user.id).update(
-                        {"hash": my_hash})
+                    records_updated_count = req.context['session'].query(
+                        SessionModel).filter_by(user_id=user.id).update(
+                        {"hash": pomodora_login_hash,
+                         "create_date": now
+                         })
+
+                    if records_updated_count == 0:
+                        raise NoSessionRecordExists(
+                            'No session for this user was found')
+
                     req.context['session'].commit()
 
                 # create a new session in DB if one does not exist
-                except NoResultFound as e:
-
-
-                    now = datetime.utcnow()
+                except NoSessionRecordExists as e:
                     session_to_add = SessionModel(user_id=user.id,
-                                                  hash=my_hash,
+                                                  hash=pomodora_login_hash,
                                                   create_date=now)
                     req.context['session'].add(session_to_add)
                     req.context['session'].commit()
 
                 # Send user to the pomodora page
                 finally:
-                    resp.set_cookie('my_hash', my_hash, max_age=7200)
+                    resp.set_cookie('pomodora_login_hash', pomodora_login_hash,
+                                    max_age=7200, path='/')
                     raise falcon.HTTPFound('/app/pomodora')
 
             else:
-                raise falcon.HTTPFound('/app/login')
+                raise falcon.HTTPFound('/app/login_failed')

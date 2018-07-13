@@ -9,5 +9,5 @@ class ValidationMiddleware:
     def process_request(self, req, resp):
         # Check if session exists and is not expired
         # Simulated downstream request
-        if req.relative_uri not in req.context['excluded_paths']:
-            Requests().validate_get(req, resp, SessionResource())
+        if req.relative_uri not in req.context['excluded_paths_validate']:
+            Requests().get(req, resp, SessionResource())

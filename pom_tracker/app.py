@@ -2,21 +2,25 @@ import falcon
 import os
 from falcon import media
 from wsgiref.simple_server import make_server
-from helpers.error_handler import error_handler
+from error_handling.error_handler import error_handler
 from handlers.handler_urlencoded import URLEncodedHandler
 from middlewares.config_middleware import ConfigMiddleware
 from middlewares.db_middleware import DatabaseMiddleware
 from middlewares.validation_middleware import ValidationMiddleware
 from middlewares.negotiation_middleware import NegotiationMiddleware
+from middlewares.user_middleware import UserMiddleware
+from resources.user_logout import UserLogoutResource
 from resources.user_collection import UserCollectionResource
+from views.home import HomeResource
 from views.user_create import UserCreateResource
 from views.user_login import UserLoginResource
+from views.user_login_failed import UserLoginFailedResource
 from views.user_settings import UserSettingsResource
 from resources.session import SessionResource
+from views.session_expired import SessionExpiredResource
 from views.pomodora import PomodoraResource
 from resources.pomodora_collection import PomodoraCollectionResource
 from resources.flag_types import FlagTypesResource
-from resources.pom_flags import PomFlagsResource
 from resources.pom_sheet_export import PomSheetExport
 from models.base_model import BaseModel
 
@@ -33,9 +37,10 @@ class Application:
         self.config_middleware = ConfigMiddleware()
         self.validation_middleware = ValidationMiddleware()
         self.negotiation_middleware = NegotiationMiddleware()
+        self.user_middleware = UserMiddleware()
 
         self.api = falcon.API(middleware=[
-            self.db_middleware, self.config_middleware,
+            self.config_middleware, self.db_middleware, self.user_middleware,
             self.validation_middleware, self.negotiation_middleware
         ])
         self.api.req_options.media_handlers = handlers
@@ -45,9 +50,14 @@ class Application:
 
         # Routes
         dir_path = os.path.dirname(os.path.realpath(__file__))
+        # Home route
+        self.api.add_route('/app/home', HomeResource())
         # User routes
         self.api.add_route('/app/create', UserCreateResource())
         self.api.add_route('/app/login', UserLoginResource())
+        self.api.add_route('/app/login_failed', UserLoginFailedResource())
+        self.api.add_route('/app/session_expired', SessionExpiredResource())
+        self.api.add_route('/app/logout', UserLogoutResource())
         self.api.add_route('/api/users', UserCollectionResource())
         # Session routes
         self.api.add_route('/api/session', SessionResource())
@@ -55,7 +65,6 @@ class Application:
         self.api.add_route('/app/pomodora', PomodoraResource())
         self.api.add_route('/api/poms', PomodoraCollectionResource())
         self.api.add_route('/api/flag_types', FlagTypesResource())
-        self.api.add_route('/api/pom_flags', PomFlagsResource())
         self.api.add_route('/api/pom_sheet_export', PomSheetExport())
         # Settings route
         self.api.add_route('/app/settings', UserSettingsResource())
@@ -76,6 +85,7 @@ class Application:
         BaseModel.metadata.create_all(self.db_middleware.engine)
 
 
+# Entry point for the application
 if __name__ == '__main__':
     app = Application()
     app.start_app(forever=True)

@@ -8,8 +8,8 @@ class SessionResource:
     def on_get(self, req, resp):
         """Handles GET requests"""
         cookies = req.cookies
-        if 'my_hash' in cookies:
-            my_cookie_hash = cookies.get('my_hash', None)
+        if 'pomodora_login_hash' in cookies:
+            my_cookie_hash = cookies.get('pomodora_login_hash', None)
             if my_cookie_hash is not None:
                 try:
                     my_session = req.context['session'].query(
@@ -18,7 +18,7 @@ class SessionResource:
                         filter_by(hash=my_cookie_hash).one()
 
                 except NoResultFound:
-                    resp.unset_cookie('my_hash')
+                    resp.unset_cookie('pomodora_login_hash')
                     raise falcon.HTTPFound('/app/login')
 
                 else:
@@ -28,8 +28,7 @@ class SessionResource:
                     session_expire_time = session_create_time + tdelta
 
                     if now > session_expire_time:
-                        resp.unset_cookie('my_hash')
-                        raise falcon.HTTPFound('/app/login')
+                        raise falcon.HTTPFound('/app/session_expired')
 
         else:
             raise falcon.HTTPFound('/app/login')

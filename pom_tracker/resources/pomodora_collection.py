@@ -24,7 +24,8 @@ class PomodoraCollectionResource:
         end_time = datetime.strptime(times[1].strip(), '%I:%M%p').replace(
             tzinfo=pytz.UTC)
         today = datetime.now(tz=pytz.UTC).date()
-        pom_to_add = PomodoraModel(task=req.media['task'],
+        user_id = req.context['user'].id
+        pom_to_add = PomodoraModel(user_id=user_id, task=req.media['task'],
                                    review=req.media['review'], add_date=today,
                                    start_time=start_time.time(),
                                    end_time=end_time.time())

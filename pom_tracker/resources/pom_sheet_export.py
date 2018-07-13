@@ -1,5 +1,4 @@
 import json
-import falcon
 from helpers.my_requests import Requests
 from resources.pomodora_collection import PomodoraCollectionResource
 from datetime import datetime, date
@@ -7,7 +6,8 @@ from datetime import datetime, date
 
 class PomSheetExport:
     def on_get(self, req, resp):
-        todays_poms = Requests().get(req, resp, PomodoraCollectionResource())
+        Requests().get(req, resp, PomodoraCollectionResource())
+        todays_poms = resp.content
         data = {'poms': []}
         for row in todays_poms:
             pom = {
@@ -24,8 +24,6 @@ class PomSheetExport:
 
         today = date.today()
         filename = str(today) + '-Arin_Pom_Sheet.json'
-        with open('pom_sheets/' + filename, 'w') as outfile:
-            json.dump(data, outfile, indent=2)
-
-        # Send user to pomodora page again
-        raise falcon.HTTPFound('/app/pomodora')
+        resp.body = json.dumps(data, indent=2)
+        resp.downloadable_as = filename
+        resp.content_type = 'application/octet-stream'
