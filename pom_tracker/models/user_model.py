@@ -12,12 +12,13 @@ class UserModel(BaseModel):
     last_name = Column(Text, nullable=False)
     display_name = Column(Text, nullable=True)
     password = Column(Text, nullable=False)
-    create_date = Column(DateTime, nullable=False)
+    created = Column(DateTime, nullable=False)
+    modified = Column(DateTime, nullable=False)
 
     def __repr__(self):
         return "<User(id='%s', email='%s', first_name=%s, middle_name='%s', " \
                "last_name='%s', display_name='%s', password='%s', " \
-               "create_date='%s')>" % (
+               "created='%s', modified='%s')>" % (
                    self.id, self.email, self.first_name, self.middle_name,
                    self.last_name, self.display_name, self.password,
-                   self.create_date)
+                   self.created, self.modified)

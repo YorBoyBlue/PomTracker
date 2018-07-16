@@ -10,9 +10,10 @@ class PomodoraCollectionResource:
     def on_get(self, req, resp):
         """Handles GET requests"""
 
-        today = datetime.now(tz=pytz.UTC).date()
+        today = datetime.utcnow().date()
         resp.content = req.context['session'].query(
-            PomodoraModel).filter_by(add_date=today).all()
+            PomodoraModel).filter_by(created=today,
+                                     user_id=req.context['user'].id).all()
 
     def on_post(self, req, resp):
         """Handles POST requests"""
@@ -23,10 +24,10 @@ class PomodoraCollectionResource:
             tzinfo=pytz.UTC)
         end_time = datetime.strptime(times[1].strip(), '%I:%M%p').replace(
             tzinfo=pytz.UTC)
-        today = datetime.now(tz=pytz.UTC).date()
+        today = datetime.utcnow().date()
         user_id = req.context['user'].id
         pom_to_add = PomodoraModel(user_id=user_id, task=req.media['task'],
-                                   review=req.media['review'], add_date=today,
+                                   review=req.media['review'], created=today,
                                    start_time=start_time.time(),
                                    end_time=end_time.time())
         for flag in req.media['flags']:
@@ -35,7 +36,8 @@ class PomodoraCollectionResource:
             req.context['session'].add(pom_to_add)
             req.context['session'].commit()
         except IntegrityError as e:
-            # Insert failed due to a unique constraint on add_date/start_time
+            # Insert failed due to a unique constraint on
+            # created/start_time/user_id
             # TODO: create a pop up to let the user know there is a pom with
             # TODO: that time block already and ask if they want to replace it.
             req.context['session'].rollback()

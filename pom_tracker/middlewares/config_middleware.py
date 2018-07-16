@@ -7,9 +7,11 @@ class ConfigMiddleware:
         data = YamlHelper().loader(filepath)
         self.time_blocks = data.get('time_blocks')
         self.excluded_paths_validate = ['/app/login',
+                                        '/app/create',
                                         '/app/home',
                                         '/app/login_failed',
                                         '/app/session_expired',
+                                        '/api/users',
                                         '/favicon.ico',
                                         '/css/style.css',
                                         '/css/user_create.css',
@@ -30,7 +32,8 @@ class ConfigMiddleware:
                                         '/assets/time.jpg'
                                         ]
         self.included_paths_user = ['/app/pomodora',
-                                    '/api/poms'
+                                    '/api/poms',
+                                    '/api/pom_sheet_export'
                                     ]
 
     def process_request(self, req, resp):

@@ -33,7 +33,7 @@
                     <div class="col-12">
                         <p>Welcome to the Pomodora Time Tracker! Time is the only non-renewable resource. Here you can
                             make sure you are spending it wisely!</p>
-                        <p>Create your account below and start tracking where you spend your valuable time!</p>
+                        <p>Create your account below and start tracking where you spend your valuable time today!</p>
                     </div>
                 </div>
                 <form action='/api/users' method='post'>
@@ -58,7 +58,7 @@
                             <br><br>
                             <label class="password" for="password"><b>Password:</b></label>
                             <input type="password" placeholder="Enter Password" name="password" required>
-                            <br><br>
+                            <br><br><br>
                             <button class="btn btn-primary" type="submit">Create User</button>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">

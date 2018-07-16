@@ -14,7 +14,7 @@ class SessionResource:
                 try:
                     my_session = req.context['session'].query(
                         SessionModel, SessionModel.hash,
-                        SessionModel.create_date). \
+                        SessionModel.modified). \
                         filter_by(hash=my_cookie_hash).one()
 
                 except NoResultFound:
@@ -22,10 +22,10 @@ class SessionResource:
                     raise falcon.HTTPFound('/app/login')
 
                 else:
-                    session_create_time = my_session.create_date
+                    session_modified_time = my_session.modified
                     tdelta = datetime.timedelta(hours=2)
                     now = datetime.datetime.utcnow()
-                    session_expire_time = session_create_time + tdelta
+                    session_expire_time = session_modified_time + tdelta
 
                     if now > session_expire_time:
                         raise falcon.HTTPFound('/app/session_expired')

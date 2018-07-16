@@ -27,7 +27,8 @@ class UserCollectionResource:
                                 last_name=last_name,
                                 display_name=display_name,
                                 password=password,
-                                create_date=today)
+                                created=today,
+                                modified=today)
         try:
             req.context['session'].add(user_to_add)
             req.context['session'].commit()
@@ -39,5 +40,5 @@ class UserCollectionResource:
             raise falcon.HTTPFound('/app/create')
 
         else:
-            # Send user to the pomodora page
-            raise falcon.HTTPFound('/app/pomodora')
+            # Send user to the login page
+            raise falcon.HTTPFound('/app/login')

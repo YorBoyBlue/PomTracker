@@ -80,7 +80,7 @@
                     % for row in pom_rows:
                         <tr>
                             <td class="center-text">
-                                ${row.add_date}
+                                ${row.created}
                             </td>
                             <td class="keep-format">
                                 ${row.task}

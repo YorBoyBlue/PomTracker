@@ -34,8 +34,9 @@ class UserLoginResource:
         except NoResultFound as e:
             raise falcon.HTTPFound('/app/login_failed')
 
-        # User is validated, create a session for that user
+        # User email is validated. Validate password as well
         else:
+            # User is validated, create or modify existing session for the user
             if user.password == req.media['password']:
                 rand_string = ''.join(
                     random.choices(string.ascii_uppercase + string.digits,
@@ -48,7 +49,7 @@ class UserLoginResource:
                     records_updated_count = req.context['session'].query(
                         SessionModel).filter_by(user_id=user.id).update(
                         {"hash": pomodora_login_hash,
-                         "create_date": now
+                         "modified": now
                          })
 
                     if records_updated_count == 0:
@@ -61,7 +62,7 @@ class UserLoginResource:
                 except NoSessionRecordExists as e:
                     session_to_add = SessionModel(user_id=user.id,
                                                   hash=pomodora_login_hash,
-                                                  create_date=now)
+                                                  created=now, modified=now)
                     req.context['session'].add(session_to_add)
                     req.context['session'].commit()
 

@@ -8,8 +8,9 @@ class SessionModel(BaseModel):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, nullable=False, unique=True)
     hash = Column(Text, nullable=False, unique=True)
-    create_date = Column(DateTime, nullable=False)
+    created = Column(DateTime, nullable=False)
+    modified = Column(DateTime, nullable=False)
 
     def __repr__(self):
-        return "<Session(id='%s', hash='%s', create_date='%s')>" % (
-            self.id, self.hash, self.create_date)
+        return "<Session(id='%s', hash='%s', created='%s', modified='%s')>" % (
+            self.id, self.hash, self.created, self.modified)

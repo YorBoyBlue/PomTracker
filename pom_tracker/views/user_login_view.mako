@@ -43,23 +43,19 @@
                                 <strong>Oops!</strong> Your session has expired. Please login to verify it is still you.
                             </div>
                         % endif
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including
-                            versions of Lorem Ipsum.</p>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including
-                            versions of Lorem Ipsum.</p>
                         <p>Welcome to the Pomodora Time Tracker! Time is the only non-renewable resource. Here you can
                             make sure you are spending it wisely!</p>
-                        <p>Login below and start tracking where you spend your valuable time!</p>
+                        <br>
+                        <p>If you do not already have an account, you can create a new one by clicking the button below
+                            and
+                            filling out the form that follows. Start tracking where you spend your valuable time
+                            today!</p>
+
+                        <br>
+                        <a class="btn btn-success" href="/app/create" role="button">Create New Account</a>
+                        <br><br><br>
+
+                        <p>If you do already have an account, login below.</p>
                     </div>
                 </div>
                 <form action='/app/login' method='post' autocomplete="on">
@@ -73,7 +69,7 @@
                             <label class="password" for="password"><b>Password:</b></label>
                             <input type="password" placeholder="Enter Password" name="password" autocomplete="off"
                                    required>
-                            <br><br>
+                            <br><br><br>
                             <button class="btn btn-primary" role="button" type="submit">Login</button>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">

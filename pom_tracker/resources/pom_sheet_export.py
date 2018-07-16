@@ -11,7 +11,7 @@ class PomSheetExport:
         data = {'poms': []}
         for row in todays_poms:
             pom = {
-                'add_date': datetime.strftime(row.add_date, '%Y-%m-%d'),
+                'created': datetime.strftime(row.created, '%Y-%m-%d'),
                 'title': row.task,
                 'start_time': row.start_time.strftime('%I:%M%p'),
                 'end_time': row.end_time.strftime('%I:%M%p'),
