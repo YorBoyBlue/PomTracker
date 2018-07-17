@@ -13,6 +13,7 @@ from resources.user_logout import UserLogoutResource
 from resources.user_collection import UserCollectionResource
 from views.home import HomeResource
 from views.user_create import UserCreateResource
+from views.user_create_email_exists import UserCreateEmailExistsResource
 from views.user_login import UserLoginResource
 from views.user_login_failed import UserLoginFailedResource
 from views.user_settings import UserSettingsResource
@@ -57,6 +58,7 @@ class Application:
         self.api.add_route('/app/home', HomeResource())
         # User routes
         self.api.add_route('/app/create', UserCreateResource())
+        self.api.add_route('/app/create_email_exists', UserCreateEmailExistsResource())
         self.api.add_route('/app/login', UserLoginResource())
         self.api.add_route('/app/login_failed', UserLoginFailedResource())
         self.api.add_route('/app/session_expired', SessionExpiredResource())

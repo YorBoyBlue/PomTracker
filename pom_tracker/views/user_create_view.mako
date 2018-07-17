@@ -31,6 +31,13 @@
         <div class="row pom-form">
             <div class="col-md-12">
                 <div class="row">
+                    % if email_exists:
+                        <div class="alert alert-warning">
+                            <strong>Oops!</strong> There is already an account with that email address. Please double
+                            check your email address or use a different one if you have already created an account and
+                            would like to create another.
+                        </div>
+                    % endif
                     <div class="col-12">
                         <p>Welcome to the Pomodora Time Tracker! Time is the only non-renewable resource. Here you can
                             make sure you are spending it wisely!</p>

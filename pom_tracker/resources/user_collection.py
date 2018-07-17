@@ -34,11 +34,8 @@ class UserCollectionResource:
             req.context['session'].commit()
         except IntegrityError as e:
             req.context['session'].rollback()
-            message = 'There is already a user with that email. Please use ' \
-                      'a different one.'
-            e.statement = message
-            raise falcon.HTTPFound('/app/create')
+            raise falcon.HTTPFound('/app/create_email_exists')
 
         else:
-            # Send user to the login page
+            # Send user to the login page if their account was created
             raise falcon.HTTPFound('/app/login')

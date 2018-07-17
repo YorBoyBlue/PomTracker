@@ -8,6 +8,7 @@ class ConfigMiddleware:
         self.time_blocks = data.get('time_blocks')
         self.excluded_paths_validate = ['/app/login',
                                         '/app/create',
+                                        '/app/create_email_exists',
                                         '/app/home',
                                         '/app/login_failed',
                                         '/app/session_expired',

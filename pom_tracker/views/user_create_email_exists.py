@@ -2,7 +2,7 @@ import os
 from mako.template import Template
 
 
-class UserCreateResource:
+class UserCreateEmailExistsResource:
     def on_get(self, req, resp):
         """Handles GET requests"""
 
@@ -11,4 +11,6 @@ class UserCreateResource:
         dir_path = os.path.dirname(os.path.realpath(__file__))
         user_create_template = Template(
             filename=dir_path + '/user_create_view.mako')
-        resp.body = user_create_template.render()
+        resp.body = user_create_template.render(
+            email_exists=True
+        )
