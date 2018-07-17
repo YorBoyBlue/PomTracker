@@ -17,9 +17,11 @@ from views.user_login import UserLoginResource
 from views.user_login_failed import UserLoginFailedResource
 from views.user_settings import UserSettingsResource
 from views.export_poms import ExportPomsResource
+from resources.delete_poms import DeletePomsResource
 from resources.session import SessionResource
 from views.session_expired import SessionExpiredResource
 from views.pomodora import PomodoraResource
+from views.pomodora_exists import PomodoraExistsResource
 from resources.pomodora_collection import PomodoraCollectionResource
 from resources.flag_types import FlagTypesResource
 from resources.pom_sheet_export import PomSheetExportResource
@@ -64,7 +66,9 @@ class Application:
         self.api.add_route('/api/session', SessionResource())
         # Pomodora routes
         self.api.add_route('/app/pomodora', PomodoraResource())
+        self.api.add_route('/app/pom_exists', PomodoraExistsResource())
         self.api.add_route('/api/poms', PomodoraCollectionResource())
+        self.api.add_route('/api/delete_poms', DeletePomsResource())
         self.api.add_route('/api/flag_types', FlagTypesResource())
         self.api.add_route('/api/pom_sheet_export', PomSheetExportResource())
         self.api.add_route('/app/export_poms', ExportPomsResource())

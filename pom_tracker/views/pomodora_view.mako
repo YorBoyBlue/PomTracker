@@ -31,6 +31,13 @@
             <div class="col-md-12">
                 <form action='/api/poms' method='post'>
                     <div class="row">
+                        % if pom_exists:
+                            <div class="alert alert-warning">
+                                <strong>Oops!</strong> You have already submitted a pomodora with that start time
+                                today.
+                                You can delete it and submit a new one if you like but you must delete it first.
+                            </div>
+                        % endif
                         <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
                             <h2>Pomodora:</h2>
                             <br>
@@ -68,45 +75,54 @@
             <div class="col-md-12">
                 <br>
                 <a class="btn btn-success float-right" href="/api/pom_sheet_export" role="button">Export</a>
+                <input style="margin-right: 15px" class="btn btn-warning float-right" type='submit' role="button"
+                       value='Delete Selected Poms'>
                 <h1>Todays Pom Sheet</h1>
-                <table id="pom-table" width="100%">
-                    <tr>
-                        <th class="center-text" width="11%">Date</th>
-                        <th width="25%">Title</th>
-                        <th class="center-text" width="10%">Flags</th>
-                        <th class="center-text" width="11%">Start Time</th>
-                        <th class="center-text" width="10%">End Time</th>
-                        <th>Review</th>
-                    </tr>
-                    % for row in pom_rows:
+                <form action='/api/delete_poms' method='post'>
+                    <table id="pom-table" width="100%">
                         <tr>
-                            <td class="center-text">
-                                ${row.created}
-                            </td>
-                            <td class="keep-format">
-                                ${row.task}
-                            </td>
-                            <td class="center-text">
-                                % if len(row.flags) > 0:
-                                    % for flag in row.flags:
-                                    ${flag.flag_type}<br>
-                                    % endfor
-                                % else :
-                                    ${row.flags[0]}
-                                % endif
-                            </td>
-                            <td class="center-text">
-                                ${row.start_time.strftime('%I:%M%p').strip('0')}
-                            </td>
-                            <td class="center-text">
-                                ${row.end_time.strftime('%I:%M%p').strip('0')}
-                            </td>
-                            <td class="keep-format">
-                                ${row.review}
-                            </td>
+                            <th width="2%"></th>
+                            <th class="center-text" width="11%">Date</th>
+                            <th width="25%">Title</th>
+                            <th class="center-text" width="10%">Flags</th>
+                            <th class="center-text" width="11%">Start Time</th>
+                            <th class="center-text" width="10%">End Time</th>
+                            <th>Review</th>
                         </tr>
-                    % endfor
-                </table>
+                        % for row in pom_rows:
+                            <tr>
+                                <td class="center-text">
+                                    <input type="checkbox" name="poms_to_delete" value="${row.id}">&nbsp;</input>
+                                </td>
+                                <td class="center-text">
+                                    ${row.created}
+                                </td>
+                                <td class="keep-format">
+                                    ${row.task}
+                                </td>
+                                <td class="center-text">
+                                    % if len(row.flags) > 0:
+                                        % for flag in row.flags:
+                                        ${flag.flag_type}<br>
+                                        % endfor
+                                    % else :
+                                        ${row.flags[0]}
+                                    % endif
+                                </td>
+                                <td class="center-text">
+                                    ${row.start_time.strftime('%I:%M%p').strip('0')}
+                                </td>
+                                <td class="center-text">
+                                    ${row.end_time.strftime('%I:%M%p').strip('0')}
+                                </td>
+                                <td class="keep-format">
+                                    ${row.review}
+                                </td>
+                            </tr>
+                        % endfor
+                    </table>
+                    <br>
+                </form>
             </div>
         </div>
     </div>

@@ -36,14 +36,8 @@ class PomodoraCollectionResource:
             req.context['session'].add(pom_to_add)
             req.context['session'].commit()
         except IntegrityError as e:
-            # Insert failed due to a unique constraint on
-            # created/start_time/user_id
-            # TODO: create a pop up to let the user know there is a pom with
-            # TODO: that time block already and ask if they want to replace it.
             req.context['session'].rollback()
-            message = 'You already have a pom for that time block. Delete ' \
-                      'it if you want to add a new one.'
-            e.statement = message
+            raise falcon.HTTPFound('/app/pom_exists')
 
         # Send user to pomodora page again
         raise falcon.HTTPFound('/app/pomodora')
