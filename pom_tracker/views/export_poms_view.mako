@@ -32,35 +32,28 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-12">
-                        <p>Welcome to the Pomodora Time Tracker! Time is the only non-renewable resource. Here you can
-                            make sure you are spending it wisely!</p>
-                        <p>Create your account below and start tracking where you spend your valuable time today!</p>
+                        <h2>Export Pom Sheets:</h2>
+                        <br><br>
+                        <p>You can choose a start and end date to export all pomodoras within those dates (including the
+                            start and end date). This will export all poms into a single file.</p>
+                        <br>
+                        <p>There is currently only support to export a JSON file but there will be a CSV export coming
+                            soon as well.</p>
+                        <br><br>
                     </div>
                 </div>
-                <form action='/api/users' method='post'>
+                <form action='/app/export_poms' method='post' autocomplete="on">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                            <h2>Create User:</h2>
+                            <label class="date" for="start_date"><b>Start Date:</b></label>
                             <br>
-                            <label class="email" for="email"><b>Email:</b></label>
-                            <input type="text" placeholder="Enter Email" name="email" required>
-                            <br><br>
-                            <label class="first_name" for="first_name"><b>First Name:</b></label>
-                            <input type="text" placeholder="Enter First Name" name="first_name" required>
-                            <br><br>
-                            <label class="middle_name" for="middle_name"><b>Middle Name:</b></label>
-                            <input type="text" placeholder="Enter Middle Name" name="middle_name">
-                            <br><br>
-                            <label class="last_name" for="last_name"><b>Last Name:</b></label>
-                            <input type="text" placeholder="Enter Last Name" name="last_name" required>
-                            <br><br>
-                            <label class="display_name" for="display_name"><b>Display Name:</b></label>
-                            <input type="text" placeholder="Enter Display Name" name="display_name">
-                            <br><br>
-                            <label class="password" for="password"><b>Password:</b></label>
-                            <input type="password" placeholder="Enter Password" name="password" required>
+                            <input type="date" title="start_date" name="start_date" required>
                             <br><br><br>
-                            <button class="btn btn-primary" type="submit">Create User</button>
+                            <label class="date" for="end_date"><b>End Date:</b></label>
+                            <br>
+                            <input type="date" title="end_date" name="end_date" required>
+                            <br><br><br><br>
+                            <button class="btn btn-primary" role="button" type="submit">Export</button>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         </div>

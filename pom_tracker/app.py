@@ -16,12 +16,13 @@ from views.user_create import UserCreateResource
 from views.user_login import UserLoginResource
 from views.user_login_failed import UserLoginFailedResource
 from views.user_settings import UserSettingsResource
+from views.export_poms import ExportPomsResource
 from resources.session import SessionResource
 from views.session_expired import SessionExpiredResource
 from views.pomodora import PomodoraResource
 from resources.pomodora_collection import PomodoraCollectionResource
 from resources.flag_types import FlagTypesResource
-from resources.pom_sheet_export import PomSheetExport
+from resources.pom_sheet_export import PomSheetExportResource
 from models.base_model import BaseModel
 
 
@@ -65,7 +66,8 @@ class Application:
         self.api.add_route('/app/pomodora', PomodoraResource())
         self.api.add_route('/api/poms', PomodoraCollectionResource())
         self.api.add_route('/api/flag_types', FlagTypesResource())
-        self.api.add_route('/api/pom_sheet_export', PomSheetExport())
+        self.api.add_route('/api/pom_sheet_export', PomSheetExportResource())
+        self.api.add_route('/app/export_poms', ExportPomsResource())
         # Settings route
         self.api.add_route('/app/settings', UserSettingsResource())
         # Static directory routes

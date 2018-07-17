@@ -33,7 +33,8 @@ class ConfigMiddleware:
                                         ]
         self.included_paths_user = ['/app/pomodora',
                                     '/api/poms',
-                                    '/api/pom_sheet_export'
+                                    '/api/pom_sheet_export',
+                                    '/app/export_poms'
                                     ]
 
     def process_request(self, req, resp):

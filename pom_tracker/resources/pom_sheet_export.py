@@ -4,7 +4,7 @@ from resources.pomodora_collection import PomodoraCollectionResource
 from datetime import datetime, date
 
 
-class PomSheetExport:
+class PomSheetExportResource:
     def on_get(self, req, resp):
         Requests().get(req, resp, PomodoraCollectionResource())
         todays_poms = resp.content
