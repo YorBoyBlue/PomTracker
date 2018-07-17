@@ -73,12 +73,12 @@
     <div class="container pom-app">
         <div class="row pom-sheet">
             <div class="col-md-12">
-                <br>
-                <a class="btn btn-success float-right" href="/api/pom_sheet_export" role="button">Export</a>
-                <input style="margin-right: 15px" class="btn btn-warning float-right" type='submit' role="button"
-                       value='Delete Selected Poms'>
-                <h1>Todays Pom Sheet</h1>
                 <form action='/api/delete_poms' method='post'>
+                    <br>
+                    <a class="btn btn-success float-right" href="/api/pom_sheet_export" role="button">Export</a>
+                    <input style="margin-right: 15px" class="btn btn-warning float-right" type='submit' role="button"
+                           value='Delete Selected Poms'>
+                    <h1>Todays Pom Sheet</h1>
                     <table id="pom-table" width="100%">
                         <tr>
                             <th width="2%"></th>

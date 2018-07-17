@@ -7,6 +7,7 @@ class ConfigMiddleware:
         data = YamlHelper().loader(filepath)
         self.time_blocks = data.get('time_blocks')
         self.excluded_paths_validate = ['/app/login',
+                                        '/app/logout',
                                         '/app/create',
                                         '/app/create_email_exists',
                                         '/app/home',
@@ -29,6 +30,7 @@ class ConfigMiddleware:
                                         '/css/bootstrap-reboot.min.css.map',
                                         '/js/bootstrap.js',
                                         '/js/bootstrap.min.js',
+                                        '/js/bootstrap.min.js.map',
                                         '/js/jquery.js',
                                         '/assets/time.jpg'
                                         ]
