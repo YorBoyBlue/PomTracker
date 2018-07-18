@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="01e63025-a4b3-4219-bb72-c8d93cc09ff6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/middlewares/config_middleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/middlewares/config_middleware.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/resources/user_logout.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/resources/user_logout.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,8 +58,8 @@
           <file leaf-file-name="user_logout.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pom_tracker/resources/user_logout.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="220">
-                  <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+                <state relative-caret-position="242">
+                  <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
                 </state>
               </provider>
             </entry>
@@ -282,18 +279,6 @@
               <item name="PomTracker" type="b2602c69:ProjectViewProjectNode" />
               <item name="PomTracker" type="462c0819:PsiDirectoryNode" />
               <item name="pom_tracker" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PomTracker" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PomTracker" type="462c0819:PsiDirectoryNode" />
-              <item name="pom_tracker" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PomTracker" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PomTracker" type="462c0819:PsiDirectoryNode" />
-              <item name="pom_tracker" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -732,7 +717,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531839818877</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Fixed logout bug">
+      <created>1531865211900</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1531865211900</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView">
@@ -746,17 +738,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32942098" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32942098" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32942098" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.26525822" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.26525822" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.31220657" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13354531" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13354531" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32942098" />
@@ -780,7 +771,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Restructured file hierarchy and started implementing SQLAlchemy" />
     <MESSAGE value="A little more file hierarchy restructuring" />
     <MESSAGE value="Stable state with SQLAlchemy" />
     <MESSAGE value="Insert will not work for me with SQLAlchemy" />
@@ -805,7 +795,8 @@
     <MESSAGE value="Refactored models and tables to use datetime where appropriate and fixed a few bugs" />
     <MESSAGE value="Exporting specific date(s) poms" />
     <MESSAGE value="Deleting specific poms for current day and outputting warning for duplicate pom submissions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleting specific poms for current day and outputting warning for duplicate pom submissions" />
+    <MESSAGE value="Fixed logout bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed logout bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1152,13 +1143,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/resources/user_logout.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
@@ -1166,6 +1150,13 @@
           <folding>
             <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/resources/user_logout.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
