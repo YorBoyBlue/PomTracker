@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="01e63025-a4b3-4219-bb72-c8d93cc09ff6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/database/pom_tracker.db" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/database/pom_tracker.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/middlewares/config_middleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/middlewares/config_middleware.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/middlewares/validation_middleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/middlewares/validation_middleware.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/resources/session.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/resources/session.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/resources/user_logout.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/resources/user_logout.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom_tracker/views/home_view.mako" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/views/home_view.mako" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,71 +41,14 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5790441">
+    <splitter split-orientation="horizontal" split-proportion="0.44741455">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="user_logout.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pom_tracker/resources/user_logout.py">
+          <file leaf-file-name="home_view.mako" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pom_tracker/views/home_view.mako">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="242">
-                  <caret line="11" column="76" lean-forward="true" selection-start-line="11" selection-start-column="76" selection-end-line="14" selection-end-column="42" />
-                  <folding>
-                    <element signature="e#0#13#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="validation_middleware.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pom_tracker/middlewares/validation_middleware.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="110">
-                  <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-                  <folding>
-                    <element signature="e#0#40#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="pomodora_view.mako" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
-                  <folding>
-                    <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="session.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pom_tracker/resources/session.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="635">
-                  <caret line="32" column="54" lean-forward="true" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
-                  <folding>
-                    <element signature="e#0#13#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="config_middleware.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pom_tracker/middlewares/config_middleware.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="594">
-                  <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="user_middleware.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pom_tracker/middlewares/user_middleware.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="704">
-                  <caret line="35" column="43" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="43" />
+                <state relative-caret-position="550">
+                  <caret line="52" column="57" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
                 </state>
               </provider>
             </entry>
@@ -131,8 +69,8 @@
           <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pom_tracker/app.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="517">
-                  <caret line="45" column="42" lean-forward="true" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
+                <state relative-caret-position="341">
+                  <caret line="37" column="43" lean-forward="true" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
@@ -140,23 +78,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="user_login.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_login.py">
+          <file leaf-file-name="user_login_view.mako" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_login_view.mako">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
-                  <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-                  <folding>
-                    <element signature="e#0#13#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="delete_poms.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pom_tracker/resources/delete_poms.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="19" column="47" lean-forward="true" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+                <state relative-caret-position="559">
+                  <caret line="56" column="24" selection-start-line="55" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -266,7 +192,6 @@
         <option value="$PROJECT_DIR$/pom_tracker/views/user_create_email_exists.py" />
         <option value="$PROJECT_DIR$/pom_tracker/app.py" />
         <option value="$PROJECT_DIR$/pom_tracker/resources/user_collection.py" />
-        <option value="$PROJECT_DIR$/pom_tracker/views/home_view.mako" />
         <option value="$PROJECT_DIR$/pom_tracker/views/user_settings_view.mako" />
         <option value="$PROJECT_DIR$/pom_tracker/views/export_poms_view.mako" />
         <option value="$PROJECT_DIR$/pom_tracker/css/style.css" />
@@ -278,6 +203,7 @@
         <option value="$PROJECT_DIR$/pom_tracker/views/user_login.py" />
         <option value="$PROJECT_DIR$/pom_tracker/resources/session.py" />
         <option value="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" />
+        <option value="$PROJECT_DIR$/pom_tracker/views/home_view.mako" />
       </list>
     </option>
   </component>
@@ -315,6 +241,12 @@
               <item name="PomTracker" type="b2602c69:ProjectViewProjectNode" />
               <item name="PomTracker" type="462c0819:PsiDirectoryNode" />
               <item name="pom_tracker" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PomTracker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PomTracker" type="462c0819:PsiDirectoryNode" />
+              <item name="pom_tracker" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -774,7 +706,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531919273333</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Tweaked log out and session expire to delete the session row from the DB">
+      <created>1531945226956</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1531945226957</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TodoView">
@@ -793,12 +732,12 @@
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32942098" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.26525822" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.23317684" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32942098" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32942098" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.31220657" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13513513" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09300477" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -822,7 +761,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Insert will not work for me with SQLAlchemy" />
     <MESSAGE value="Falcon framework is set up with SQLAlchemy and inserting data to DB." />
     <MESSAGE value="Got Mako working with my yaml template. Sorta lol" />
     <MESSAGE value="Cleaned up a file" />
@@ -847,7 +785,8 @@
     <MESSAGE value="Fixed logout bug" />
     <MESSAGE value="Fixed some styling issues" />
     <MESSAGE value="Added excluding of folders to the config middleware" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added excluding of folders to the config middleware" />
+    <MESSAGE value="Tweaked log out and session expire to delete the session row from the DB" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tweaked log out and session expire to delete the session row from the DB" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1081,13 +1020,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/views/home_view.mako">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="79" selection-start-line="22" selection-start-column="79" selection-end-line="22" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_settings_view.mako">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
@@ -1099,13 +1031,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="55" column="58" lean-forward="true" selection-start-line="55" selection-start-column="58" selection-end-line="55" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_login_view.mako">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="75" column="67" selection-start-line="75" selection-start-column="67" selection-end-line="75" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -1127,23 +1052,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/middlewares/user_middleware.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="35" column="43" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="45" column="42" lean-forward="true" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1174,10 +1082,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/middlewares/config_middleware.py">
+    <entry file="file://$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+        <state relative-caret-position="330">
+          <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1191,6 +1102,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/middlewares/config_middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/middlewares/user_middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="35" column="43" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_login.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -1201,13 +1126,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako">
+    <entry file="file://$PROJECT_DIR$/pom_tracker/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+        <state relative-caret-position="341">
+          <caret line="37" column="43" lean-forward="true" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
           <folding>
-            <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_login_view.mako">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="559">
+          <caret line="56" column="24" selection-start-line="55" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/views/home_view.mako">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="52" column="57" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
         </state>
       </provider>
     </entry>

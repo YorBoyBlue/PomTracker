@@ -35,28 +35,22 @@
                         <h1>Home Page</h1><br>
                         <p>Welcome to the Pomodora Time Tracker! Time is the only non-renewable resource. Here you can
                             make sure you are spending it wisely!</p>
-                        <p>Login below and start tracking where you spend your valuable time!</p>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including
-                            versions of Lorem Ipsum.</p>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including
-                            versions of Lorem Ipsum.</p>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including
-                            versions of Lorem Ipsum.</p>
+                        <p>Click the button below to create a new account right now and you will be amazed at how much
+                            you can get done in one day!</p>
+                        <br>
+                        <a class="btn btn-success main-button" href="/app/create" role="button">Create New Account</a>
+                        <br><br><br>
+                        <p>I started creating this application as an exercise to learn more about Python and HTTP. It
+                            it was a fantastic learning experience and I hope you enjoy using this if you decide it is
+                            right for you.</p>
+                        <p>The concept is simple, the day is broken down into 25 minute blocks plus a 5 or 10 minute
+                            break in between. This is called a Pomodora. The point is to focus 100% on a single task for
+                            25 minutes and then take a break to review your progress and re evaluate the path you are
+                            taking. There are studies done where the results of this approach show a significant
+                            increase in productivity and decrease in mental fatigue. In other words, you get more done
+                            in less time.</p>
+                        <p>Sounds too good to be true? Try it for yourself and you will be surprised at the result.</p>
+                        <p>Hope to see you back here soon!</p>
                     </div>
                 </div>
             </div>
