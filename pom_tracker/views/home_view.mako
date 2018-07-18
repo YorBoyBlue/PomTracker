@@ -16,10 +16,10 @@
         <nav>
             <ul>
                 <li><a class="btn" role="button" href="/app/settings">&#9881;</a></li>
-                <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
-                <li><a class="btn" role="button" href="/app/pomodora">Pomodora</a></li>
                 <li><a class="btn" role="button" href="/app/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/app/login">Login/Create</a></li>
+                <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
+                <li><a class="btn" role="button" href="/app/pomodora">Pomodora</a></li>
                 <li><a class="btn" role="button" href="/app/home">Home</a></li>
             </ul>
         </nav>

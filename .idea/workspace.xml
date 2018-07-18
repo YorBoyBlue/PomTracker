@@ -3,6 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="01e63025-a4b3-4219-bb72-c8d93cc09ff6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom_tracker/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom_tracker/database/pom_tracker.db" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/database/pom_tracker.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom_tracker/resources/user_logout.py" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/resources/user_logout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom_tracker/views/export_poms_view.mako" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/views/export_poms_view.mako" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom_tracker/views/home_view.mako" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/views/home_view.mako" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom_tracker/views/user_create_view.mako" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/views/user_create_view.mako" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom_tracker/views/user_login_view.mako" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/views/user_login_view.mako" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom_tracker/views/user_settings_view.mako" beforeDir="false" afterPath="$PROJECT_DIR$/pom_tracker/views/user_settings_view.mako" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,7 +24,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/PomTracker$PeopleWindow.coverage" NAME="PomSheetWindow Coverage Results" MODIFIED="1530307583948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pom_tracker" />
     <SUITE FILE_PATH="coverage/PomTracker$mako_testing.coverage" NAME="mako_testing Coverage Results" MODIFIED="1530905532954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pom_tracker/templates" />
-    <SUITE FILE_PATH="coverage/PomTracker$PomApp.coverage" NAME="PomApp Coverage Results" MODIFIED="1531865055760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pom_tracker" />
+    <SUITE FILE_PATH="coverage/PomTracker$PomApp.coverage" NAME="PomApp Coverage Results" MODIFIED="1531915522367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pom_tracker" />
     <SUITE FILE_PATH="coverage/PomTracker$deploy.coverage" NAME="deploy Coverage Results" MODIFIED="1531750209455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pom_tracker" />
     <SUITE FILE_PATH="coverage/PomTracker$person_window.coverage" NAME="person_window Coverage Results" MODIFIED="1529804846884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pom_tracker" />
     <SUITE FILE_PATH="coverage/PomTracker$PomSheetWindow.coverage" NAME="Pom_Model Coverage Results" MODIFIED="1530734814487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pom_tracker" />
@@ -40,26 +49,14 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.46160877">
+    <splitter split-orientation="horizontal" split-proportion="0.40679523">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="user_create_email_exists.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_create_email_exists.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="352">
-                  <caret line="16" selection-start-line="16" selection-end-line="16" />
-                  <folding>
-                    <element signature="e#0#9#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="user_logout.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="user_logout.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pom_tracker/resources/user_logout.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="242">
-                  <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+                  <caret line="11" column="44" lean-forward="true" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
                 </state>
               </provider>
             </entry>
@@ -67,11 +64,20 @@
           <file leaf-file-name="user_login.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_login.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="675">
-                  <caret line="69" column="24" lean-forward="true" selection-start-line="69" selection-start-column="24" selection-end-line="71" selection-end-column="59" />
+                <state relative-caret-position="1298">
+                  <caret line="69" column="24" selection-start-line="69" selection-start-column="24" selection-end-line="71" selection-end-column="59" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pom_tracker/css/style.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="239">
+                  <caret line="124" column="19" lean-forward="true" selection-start-line="124" selection-start-column="19" selection-end-line="124" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -89,23 +95,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="user_collection.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pom_tracker/resources/user_collection.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="770">
-                  <caret line="39" column="70" selection-start-line="39" selection-start-column="70" selection-end-line="39" selection-end-column="70" />
-                  <folding>
-                    <element signature="e#0#13#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pom_tracker/app.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="407">
-                  <caret line="61" column="34" lean-forward="true" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
+                <state relative-caret-position="209">
+                  <caret line="52" column="27" lean-forward="true" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
@@ -113,14 +107,29 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="pomodora_view.mako" pinned="false" current-in-tab="true">
+          <file leaf-file-name="pomodora_view.mako" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="349">
-                  <caret line="73" column="35" lean-forward="true" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
-                  <folding>
-                    <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                  </folding>
+                <state relative-caret-position="330">
+                  <caret line="72" column="35" lean-forward="true" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="user_login_view.mako" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_login_view.mako">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="726">
+                  <caret line="75" column="67" selection-start-line="75" selection-start-column="67" selection-end-line="75" selection-end-column="67" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="user_create_view.mako" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_create_view.mako">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="594">
+                  <caret line="69" column="70" selection-start-line="69" selection-start-column="70" selection-end-line="69" selection-end-column="70" />
                 </state>
               </provider>
             </entry>
@@ -217,31 +226,31 @@
         <option value="$PROJECT_DIR$/pom_tracker/views/pomodora.py" />
         <option value="$PROJECT_DIR$/pom_tracker/handlers/handler_urlencoded.py" />
         <option value="$PROJECT_DIR$/pom_tracker/error_handling/my_exceptions.py" />
-        <option value="$PROJECT_DIR$/pom_tracker/css/style.css" />
         <option value="$PROJECT_DIR$/pom_tracker/models/session_model.py" />
         <option value="$PROJECT_DIR$/pom_tracker/models/user_model.py" />
         <option value="$PROJECT_DIR$/pom_tracker/models/pomodora_model.py" />
         <option value="$PROJECT_DIR$/pom_tracker/resources/pom_sheet_export.py" />
         <option value="$PROJECT_DIR$/pom_tracker/views/export_specific_poms_view.mako" />
-        <option value="$PROJECT_DIR$/pom_tracker/views/home_view.mako" />
         <option value="$PROJECT_DIR$/pom_tracker/views/export_specific_poms.py" />
-        <option value="$PROJECT_DIR$/pom_tracker/views/user_login_view.mako" />
-        <option value="$PROJECT_DIR$/pom_tracker/views/user_settings_view.mako" />
         <option value="$PROJECT_DIR$/pom_tracker/views/export_poms.py" />
-        <option value="$PROJECT_DIR$/pom_tracker/views/export_poms_view.mako" />
         <option value="$PROJECT_DIR$/pom_tracker/resources/delete_poms.py" />
         <option value="$PROJECT_DIR$/pom_tracker/views/pomodora_exists.py" />
         <option value="$PROJECT_DIR$/pom_tracker/resources/pomodora_collection.py" />
         <option value="$PROJECT_DIR$/pom_tracker/views/user_create.py" />
         <option value="$PROJECT_DIR$/pom_tracker/views/user_create_email_exists.py" />
         <option value="$PROJECT_DIR$/pom_tracker/app.py" />
-        <option value="$PROJECT_DIR$/pom_tracker/views/user_create_view.mako" />
         <option value="$PROJECT_DIR$/pom_tracker/resources/user_collection.py" />
         <option value="$PROJECT_DIR$/pom_tracker/resources/session.py" />
         <option value="$PROJECT_DIR$/pom_tracker/middlewares/config_middleware.py" />
         <option value="$PROJECT_DIR$/pom_tracker/views/user_login.py" />
-        <option value="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" />
         <option value="$PROJECT_DIR$/pom_tracker/resources/user_logout.py" />
+        <option value="$PROJECT_DIR$/pom_tracker/views/home_view.mako" />
+        <option value="$PROJECT_DIR$/pom_tracker/views/user_settings_view.mako" />
+        <option value="$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako" />
+        <option value="$PROJECT_DIR$/pom_tracker/views/export_poms_view.mako" />
+        <option value="$PROJECT_DIR$/pom_tracker/css/style.css" />
+        <option value="$PROJECT_DIR$/pom_tracker/views/user_login_view.mako" />
+        <option value="$PROJECT_DIR$/pom_tracker/views/user_create_view.mako" />
       </list>
     </option>
   </component>
@@ -268,6 +277,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -280,11 +290,22 @@
               <item name="PomTracker" type="462c0819:PsiDirectoryNode" />
               <item name="pom_tracker" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="PomTracker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PomTracker" type="462c0819:PsiDirectoryNode" />
+              <item name="pom_tracker" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PomTracker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PomTracker" type="462c0819:PsiDirectoryNode" />
+              <item name="pom_tracker" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -738,19 +759,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32942098" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32942098" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32942098" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.26525822" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.26525822" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.31220657" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13354531" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13434023" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32942098" />
       <window_info anchor="right" id="SciView" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -761,6 +782,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32942098" />
       <window_info active="true" anchor="bottom" id="Concurrent Activities Diagram" order="0" weight="0.32942098" />
     </layout>
   </component>
@@ -905,13 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="136" lean-forward="true" selection-start-line="136" selection-end-line="136" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom_tracker/deploy.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -940,27 +955,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/views/home_view.mako">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="86" lean-forward="true" selection-start-line="17" selection-start-column="86" selection-end-line="18" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_settings_view.mako">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="93" selection-start-line="18" selection-start-column="93" selection-end-line="18" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/views/export_poms_view.mako">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="54" column="44" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -999,13 +993,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_login_view.mako">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="33" column="40" lean-forward="true" selection-start-line="33" selection-start-column="40" selection-end-line="40" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom_tracker/views/pomodora.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
@@ -1037,13 +1024,6 @@
     <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_create.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.http">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="38" selection-start-column="4" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom_tracker/resources/user_collection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="770">
@@ -1051,13 +1031,6 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_create_view.mako">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1012">
-          <caret line="79" column="38" lean-forward="true" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -1094,7 +1067,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_create_email_exists.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
+        <state relative-caret-position="330">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -1116,16 +1089,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="61" column="34" lean-forward="true" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/falcon/response.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="568">
@@ -1135,20 +1098,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_login.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="69" column="24" lean-forward="true" selection-start-line="69" selection-start-column="24" selection-end-line="71" selection-end-column="59" />
+        <state relative-caret-position="1298">
+          <caret line="69" column="24" selection-start-line="69" selection-start-column="24" selection-end-line="71" selection-end-column="59" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.http">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="73" column="35" lean-forward="true" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
+        <state>
+          <caret column="38" selection-start-column="4" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/views/home_view.mako">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="22" column="79" selection-start-line="22" selection-start-column="79" selection-end-line="22" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_settings_view.mako">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="22" column="79" selection-start-line="22" selection-start-column="79" selection-end-line="22" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="52" column="27" lean-forward="true" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
           <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1156,7 +1140,42 @@
     <entry file="file://$PROJECT_DIR$/pom_tracker/resources/user_logout.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <caret line="11" column="44" lean-forward="true" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/views/export_poms_view.mako">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="55" column="58" lean-forward="true" selection-start-line="55" selection-start-column="58" selection-end-line="55" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/views/pomodora_view.mako">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="72" column="35" lean-forward="true" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_login_view.mako">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="75" column="67" selection-start-line="75" selection-start-column="67" selection-end-line="75" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/views/user_create_view.mako">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="69" column="70" selection-start-line="69" selection-start-column="70" selection-end-line="69" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom_tracker/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="124" column="19" lean-forward="true" selection-start-line="124" selection-start-column="19" selection-end-line="124" selection-end-column="19" />
         </state>
       </provider>
     </entry>

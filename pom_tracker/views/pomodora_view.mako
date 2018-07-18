@@ -15,9 +15,9 @@
         <nav>
             <ul>
                 <li><a class="btn" role="button" href="/app/settings">&#9881;</a></li>
-                <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
                 <li><a class="btn" role="button" href="/app/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/app/login">Login/Create</a></li>
+                <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
                 <li><a class="btn" role="button" href="/app/pomodora">Pomodora</a></li>
                 <li><a class="btn" role="button" href="/app/home">Home</a></li>
             </ul>
@@ -60,7 +60,7 @@
                             <br>
                             <h5>Description:</h5>
                             <textarea rows="6" cols="50" type='text' name='review' required></textarea><br><br>
-                            <input class="btn btn-primary float-right" type='submit' role="button"
+                            <input class="btn btn-primary float-right main-button" type='submit' role="button"
                                    value='Submit Pomodora'>
                         </div>
                     </div>
@@ -75,8 +75,8 @@
             <div class="col-md-12">
                 <form action='/api/delete_poms' method='post'>
                     <br>
-                    <a class="btn btn-success float-right" href="/api/pom_sheet_export" role="button">Export</a>
-                    <input style="margin-right: 15px" class="btn btn-warning float-right" type='submit' role="button"
+                    <a class="btn btn-success float-right main-button" href="/api/pom_sheet_export" role="button">Export Sheet</a>
+                    <input style="margin-right: 15px" class="btn btn-secondary float-right main-button" type='submit' role="button"
                            value='Delete Selected Poms'>
                     <h1>Todays Pom Sheet</h1>
                     <table id="pom-table" width="100%">

@@ -120,6 +120,31 @@ h1 {
     font-family: "Roboto Condensed", sans-serif;
 }
 
+/*Buttons ====================================================================*/
+input.main-button {
+    color: #ffffff;
+}
+
+input.main-button:hover {
+    color: #000000;
+}
+
+button.main-button {
+    color: #ffffff;
+}
+
+button.main-button:hover {
+    color: #000000;
+}
+
+a.main-button {
+    color: #ffffff;
+}
+
+a.main-button:hover {
+    color: #000000;
+}
+
 /*Custom ====================================================================*/
 textarea {
     border-radius: 5px;

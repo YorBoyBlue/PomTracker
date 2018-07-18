@@ -16,9 +16,9 @@
         <nav>
             <ul>
                 <li><a class="btn" role="button" href="/app/settings">&#9881;</a></li>
-                <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
                 <li><a class="btn" role="button" href="/app/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/app/login">Login/Create</a></li>
+                <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
                 <li><a class="btn" role="button" href="/app/pomodora">Pomodora</a></li>
                 <li><a class="btn" role="button" href="/app/home">Home</a></li>
             </ul>
@@ -67,7 +67,7 @@
                             <label class="password" for="password"><b>Password:</b></label>
                             <input type="password" placeholder="Enter Password" name="password" required>
                             <br><br><br>
-                            <button class="btn btn-primary" type="submit">Create User</button>
+                            <button class="btn btn-primary main-button" type="submit">Create User</button>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         </div>

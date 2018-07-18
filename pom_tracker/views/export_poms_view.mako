@@ -16,9 +16,9 @@
         <nav>
             <ul>
                 <li><a class="btn" role="button" href="/app/settings">&#9881;</a></li>
-                <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
                 <li><a class="btn" role="button" href="/app/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/app/login">Login/Create</a></li>
+                <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
                 <li><a class="btn" role="button" href="/app/pomodora">Pomodora</a></li>
                 <li><a class="btn" role="button" href="/app/home">Home</a></li>
             </ul>
@@ -53,7 +53,7 @@
                             <br>
                             <input type="date" title="end_date" name="end_date" required>
                             <br><br><br><br>
-                            <button class="btn btn-primary" role="button" type="submit">Export</button>
+                            <button class="btn btn-primary main-button" role="button" type="submit">Export</button>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         </div>
