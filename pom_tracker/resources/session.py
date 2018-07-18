@@ -13,8 +13,7 @@ class SessionResource:
             if my_cookie_hash is not None:
                 try:
                     my_session = req.context['session'].query(
-                        SessionModel, SessionModel.hash,
-                        SessionModel.modified). \
+                        SessionModel.hash, SessionModel.modified). \
                         filter_by(hash=my_cookie_hash).one()
 
                 except NoResultFound:
@@ -28,6 +27,11 @@ class SessionResource:
                     session_expire_time = session_modified_time + tdelta
 
                     if now > session_expire_time:
+                        req.context['session'].query(
+                            SessionModel).filter_by(
+                            user_id=req.context['user'].id).delete(
+                            synchronize_session=False)
+                        req.context['session'].commit()
                         raise falcon.HTTPFound('/app/session_expired')
 
         else:

@@ -42,7 +42,7 @@
                             <h2>Pomodora:</h2>
                             <br>
                             <h5>Time Block:</h5>
-                            <select class="custom-select" name="time_block">
+                            <select style="width: auto" class="custom-select" name="time_block">
                                 % for time in time_blocks:
                                     <option>${time}</option>
                                 % endfor
