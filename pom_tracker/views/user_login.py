@@ -69,7 +69,7 @@ class UserLoginResource:
                 # Send user to the pomodora page
                 finally:
                     resp.set_cookie('pomodora_login_hash', pomodora_login_hash,
-                                    max_age=7200, path='/')
+                                    max_age=88200, path='/')
                     raise falcon.HTTPFound('/app/pomodora')
 
             else:
