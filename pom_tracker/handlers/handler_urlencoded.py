@@ -23,7 +23,8 @@ class URLEncodedHandler(BaseHandler):
                                 item.decode('utf-8'))
                     # Just add the element to the dict
                     else:
-                        if k.decode('utf-8') == 'flags':
+                        if k.decode('utf-8') == 'flags' or k.decode(
+                                'utf-8') == 'distractions':
                             data[k.decode('utf-8')] = []
                             data[k.decode('utf-8')].append(
                                 v.pop().decode('utf-8'))

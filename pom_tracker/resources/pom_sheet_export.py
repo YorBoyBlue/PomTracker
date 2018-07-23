@@ -15,6 +15,8 @@ class PomSheetExportResource:
                 'title': row.task,
                 'start_time': row.start_time.strftime('%I:%M%p'),
                 'end_time': row.end_time.strftime('%I:%M%p'),
+                'distractions': row.distractions,
+                'pom_success': row.pom_success,
                 'review': row.review,
                 'flags': []
             }

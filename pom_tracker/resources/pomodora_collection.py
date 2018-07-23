@@ -26,7 +26,15 @@ class PomodoraCollectionResource:
             tzinfo=pytz.UTC)
         today = datetime.utcnow().date()
         user_id = req.context['user'].id
-        pom_to_add = PomodoraModel(user_id=user_id, task=req.media['task'],
+        was_distractions = req.media.get('distractions', 0)
+        distractions = 0
+        if was_distractions:
+            for distraction in req.media['distractions']:
+                distractions += 1
+        pom_success = req.media.get('pom_success', 0)
+        pom_to_add = PomodoraModel(user_id=user_id, distractions=distractions,
+                                   pom_success=pom_success,
+                                   task=req.media['task'],
                                    review=req.media['review'], created=today,
                                    start_time=start_time.time(),
                                    end_time=end_time.time())

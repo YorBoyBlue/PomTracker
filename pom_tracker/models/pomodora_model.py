@@ -11,6 +11,8 @@ class PomodoraModel(BaseModel):
     task = Column(Text, nullable=False)
     review = Column(Text, nullable=False)
     created = Column(Date, nullable=False)
+    distractions = Column(Integer, nullable=False)
+    pom_success = Column(Integer, nullable=False)
     start_time = Column(Time, nullable=False)
     end_time = Column(Time, nullable=False)
 
@@ -23,6 +25,8 @@ class PomodoraModel(BaseModel):
 
     def __repr__(self):
         return "<Pomodora(id='%s', user_id='%s', task='%s', review='%s', " \
-               "flags=%s, created='%s', start_time='%s', end_time='%s')>" % (
+               "flags=%s, created='%s', distractions='%s', pom_success='%s'," \
+               " start_time='%s', end_time='%s')>" % (
                    self.id, self.user_id, self.task, self.review, self.flags,
-                   self.created, self.start_time, self.end_time)
+                   self.created, self.distractions, self.pom_success,
+                   self.start_time, self.end_time)

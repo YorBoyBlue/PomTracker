@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Pomodora Tracker</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/pomodora.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <script src="/js/jquery.js"></script>
 </head>
@@ -39,29 +40,56 @@
                             </div>
                         % endif
                         <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
-                            <h2>Pomodora:</h2>
-                            <br>
-                            <h5>Time Block:</h5>
-                            <select style="width: auto" class="custom-select" name="time_block">
-                                % for time in time_blocks:
-                                    <option>${time}</option>
-                                % endfor
-                            </select>
+                            <div class="row">
+                                <h2>Pomodora:</h2>
+                            </div>
                             <br><br>
-                            <h5>Flags:</h5>
-                            % for flag in flag_types:
-                                <input type="checkbox" name="flags" value="${flag[0]}"> ${flag[0]} </input><br>
-                            % endfor
-                            <br>
+                            <div class="row">
+                                <h5 style="padding-top: 5px; margin-right: 5px">Time Block:</h5>
+                                <select style="width: auto" class="custom-select" name="time_block">
+                                    % for time in time_blocks:
+                                        <option>${time}</option>
+                                    % endfor
+                                </select>
+                            </div>
+                            <br><br>
+                            <div class="row">
+                                <div style="float: left; margin-right: 30px">
+                                    <h5>Flags:</h5>
+                                    % for flag in flag_types:
+                                        <input type="checkbox" name="flags" value="${flag[0]}"> ${flag[0]}  <br>
+                                    % endfor
+                                </div>
+                                <div class="distractions">
+                                    <h5>Distractions:</h5>
+                                    <input class="distractions_check top" type="checkbox" name="distractions" value="1">
+                                    <input class="distractions_check" type="checkbox" name="distractions" value="1"><br>
+                                    <input class="distractions_check middle" type="checkbox" name="distractions"
+                                           value="1"><br>
+                                    <input class="distractions_check bottom" type="checkbox" name="distractions"
+                                           value="1">
+                                    <input class="distractions_check" type="checkbox" name="distractions" value="1">
+                                </div>
+                            </div>
                         </div>
                         <div class="col-xl-6 col-lg-8 col-md-12 col-sm-12 form-text">
-                            <h5>Title:</h5>
-                            <textarea rows="3" cols="50" type='text' name='task' required></textarea>
+                            <div class="row">
+                                <h5>Title:</h5>
+                                <textarea rows="3" cols="50" type='text' name='task' required></textarea>
+                                <h5 style="margin-top: 10px">Description:</h5>
+                                <textarea rows="6" cols="50" type='text' name='review' required></textarea>
+                            </div>
                             <br>
-                            <h5>Description:</h5>
-                            <textarea rows="6" cols="50" type='text' name='review' required></textarea><br><br>
-                            <input class="btn btn-primary float-right main-button" type='submit' role="button"
-                                   value='Submit Pomodora'>
+                            <div class="row">
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6" style="padding-left: 0">
+                                    <input style="margin-top: 5px; margin-right: 5px" type="checkbox" name="pom_success"
+                                           value="1"> Was this pom successful? <br>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6" style="padding-right: 0">
+                                    <input class="btn btn-primary main-button float-right" type='submit' role="button"
+                                           value='Submit Pomodora'>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -75,27 +103,27 @@
             <div class="col-md-12">
                 <form action='/api/delete_poms' method='post'>
                     <br>
-                    <a class="btn btn-success float-right main-button" href="/api/pom_sheet_export" role="button">Export Sheet</a>
-                    <input style="margin-right: 15px" class="btn btn-secondary float-right main-button" type='submit' role="button"
+                    <a class="btn btn-success float-right main-button" href="/api/pom_sheet_export" role="button">Export
+                        Sheet</a>
+                    <input style="margin-right: 15px" class="btn btn-secondary float-right main-button" type='submit'
+                           role="button"
                            value='Delete Selected Poms'>
                     <h1>Todays Pom Sheet</h1>
                     <table id="pom-table" width="100%">
                         <tr>
                             <th width="2%"></th>
-                            <th class="center-text" width="11%">Date</th>
-                            <th width="25%">Title</th>
-                            <th class="center-text" width="10%">Flags</th>
-                            <th class="center-text" width="11%">Start Time</th>
-                            <th class="center-text" width="10%">End Time</th>
+                            <th width="20%">Title</th>
+                            <th class="center-text" width="2%">Flags</th>
+                            <th class="center-text" width="2%">Start Time</th>
+                            <th class="center-text" width="2%">End Time</th>
+                            <th class="center-text" width="2%">Distractions</th>
+                            <th class="center-text" width="2%">Pom Success</th>
                             <th>Review</th>
                         </tr>
                         % for row in pom_rows:
                             <tr>
                                 <td class="center-text">
-                                    <input type="checkbox" name="poms_to_delete" value="${row.id}">&nbsp;</input>
-                                </td>
-                                <td class="center-text">
-                                    ${row.created}
+                                    <input type="checkbox" name="poms_to_delete" value="${row.id}">
                                 </td>
                                 <td class="keep-format">
                                     ${row.task}
@@ -114,6 +142,16 @@
                                 </td>
                                 <td class="center-text">
                                     ${row.end_time.strftime('%I:%M%p').strip('0')}
+                                </td>
+                                <td class="center-text">
+                                    ${row.distractions}
+                                </td>
+                                <td class="center-text">
+                                    % if row.pom_success == 1:
+                                        &#x2714;
+                                    % else:
+                                        &#x2718;
+                                    % endif
                                 </td>
                                 <td class="keep-format">
                                     ${row.review}
