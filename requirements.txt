@@ -1,0 +1,10 @@
+falcon==1.4.1
+Mako==1.0.7
+MarkupSafe==1.0
+python-mimeparse==1.6.0
+pytz==2018.5
+PyYAML==3.13
+ruamel.appconfig==0.5.4
+ruamel.std.argparse==0.8.1
+six==1.11.0
+SQLAlchemy==1.2.10
