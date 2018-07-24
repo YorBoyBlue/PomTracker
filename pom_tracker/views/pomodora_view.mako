@@ -74,7 +74,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-8 col-md-12 col-sm-12 form-text">
                             <div class="row">
-                                <h5>Title:</h5>
+                                <h5 class="title">Title:</h5>
                                 <textarea rows="3" cols="50" type='text' name='task' required></textarea>
                                 <h5 style="margin-top: 10px">Description:</h5>
                                 <textarea rows="6" cols="50" type='text' name='review' required></textarea>
