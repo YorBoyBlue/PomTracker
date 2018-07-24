@@ -15,7 +15,7 @@ downloads/
 eggs/
 .eggs/
 .idea
-.db
+*/database/*
 lib/
 lib64/
 parts/
