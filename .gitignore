@@ -15,7 +15,7 @@ downloads/
 eggs/
 .eggs/
 .idea
-pom_tracker/database/*
+*/database/*
 lib/
 lib64/
 parts/
