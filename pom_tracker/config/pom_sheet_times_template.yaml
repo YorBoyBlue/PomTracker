@@ -1,17 +1,5 @@
 time_blocks:
-    # SLEEP HOURS / EARLY MORNING
-    - 12:10am - 12:35am # 10 min break after
-    - 12:45am - 1:10am
-    - 1:15am - 1:40am
-    - 1:45am - 2:10am # 10 min break after
-    - 2:20am - 2:45am
-    - 2:50am - 3:15am
-    - 3:20am - 3:45am # 10 min break after
-    - 3:55am - 4:20am
-    - 4:25am - 4:50am
-    - 4:55am - 5:20am # breakfast after (30 mins)
-    - 5:50am - 6:15am
-    - 6:20am - 6:45am
+    # EARLY MORNING
     - 6:50am - 7:15am # 10 min break after
     - 7:25am - 7:50am
     - 7:55am - 8:20am
@@ -45,3 +33,16 @@ time_blocks:
     - 10:20pm - 10:45pm
     - 10:50pm - 11:15pm
     - 11:20pm - 11:45pm # late night snack after (25 mins)
+    # SLEEP HOURS 
+    - 12:10am - 12:35am # 10 min break after
+    - 12:45am - 1:10am
+    - 1:15am - 1:40am
+    - 1:45am - 2:10am # 10 min break after
+    - 2:20am - 2:45am
+    - 2:50am - 3:15am
+    - 3:20am - 3:45am # 10 min break after
+    - 3:55am - 4:20am
+    - 4:25am - 4:50am
+    - 4:55am - 5:20am # breakfast after (30 mins)
+    - 5:50am - 6:15am
+    - 6:20am - 6:45am

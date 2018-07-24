@@ -24,7 +24,8 @@ class URLEncodedHandler(BaseHandler):
                     # Just add the element to the dict
                     else:
                         if k.decode('utf-8') == 'flags' or k.decode(
-                                'utf-8') == 'distractions':
+                                'utf-8') == 'distractions' or k.decode(
+                                'utf-8') == 'poms_to_delete':
                             data[k.decode('utf-8')] = []
                             data[k.decode('utf-8')].append(
                                 v.pop().decode('utf-8'))

@@ -1,5 +1,4 @@
 import falcon
-import pytz
 from datetime import datetime
 from sqlalchemy.exc import IntegrityError
 from models.user_model import UserModel

@@ -1,4 +1,3 @@
-import falcon
 import os
 from mako.template import Template
 
