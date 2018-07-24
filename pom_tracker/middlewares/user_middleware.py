@@ -2,12 +2,19 @@ import falcon
 from models.user_model import UserModel
 from models.session_model import SessionModel
 from sqlalchemy.orm.exc import NoResultFound
+import re
 
 
 class UserMiddleware:
 
     def process_request(self, req, resp):
-        if req.relative_uri in req.context['included_paths_user']:
+        valid_uri_pattern = '/app/pomodora'
+        pattern = re.compile(valid_uri_pattern)
+        is_valid = False
+        if pattern.match(valid_uri_pattern) is not None:
+            is_valid = True
+
+        if req.relative_uri in req.context['included_paths_user'] or is_valid:
             my_cookie_hash = req.cookies.get('pomodora_login_hash', None)
             if my_cookie_hash is not None:
                 try:
@@ -25,6 +32,7 @@ class UserMiddleware:
                     try:
                         user = req.context['session'].query(
                             UserModel).filter_by(id=user_session.user_id).one()
+                        a = ''
 
                     except NoResultFound as e:
                         # User was not found, send user to session
