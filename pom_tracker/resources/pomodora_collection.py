@@ -4,6 +4,8 @@ from datetime import datetime
 from sqlalchemy.exc import IntegrityError
 from models.pomodora_model import PomodoraModel
 from models.pom_flags_model import PomFlagsModel
+from marshmallow import ValidationError
+from models.pomodora_schema import PomodoraSchema
 
 
 class PomodoraCollectionResource:
@@ -18,7 +20,9 @@ class PomodoraCollectionResource:
     def on_post(self, req, resp):
         """Handles POST requests"""
 
-        # Add pom to the DB
+        task = req.media.get('task', None)
+        review = req.media.get('review', None)
+        flags = req.media.get('flags', None)
         times = req.media['time_block'].split('-')
         start_time = datetime.strptime(times[0].strip(), '%I:%M%p').replace(
             tzinfo=pytz.UTC)
@@ -32,20 +36,38 @@ class PomodoraCollectionResource:
             for distraction in req.media['distractions']:
                 distractions += 1
         pom_success = req.media.get('pom_success', 0)
-        pom_to_add = PomodoraModel(user_id=user_id, distractions=distractions,
-                                   pom_success=pom_success,
-                                   task=req.media['task'],
-                                   review=req.media['review'], created=today,
-                                   start_time=start_time.time(),
-                                   end_time=end_time.time())
-        for flag in req.media['flags']:
-            pom_to_add.flags.append(PomFlagsModel(flag_type=flag))
-        try:
-            req.context['session'].add(pom_to_add)
-            req.context['session'].commit()
-        except IntegrityError as e:
-            req.context['session'].rollback()
-            raise falcon.HTTPFound('/app/pom_exists')
 
-        # Send user to pomodora page again
-        raise falcon.HTTPFound('/app/pomodora')
+        try:
+            PomodoraSchema().load(
+                {'task': task, 'review': review, 'flags': flags})
+        except ValidationError as err:
+            message = err.messages  # => {'email': ['"foo" is not a valid email address.']}
+            data = err.valid_data
+            # TODO: Add data that was sent but not required as well
+            
+            # TODO: need to redirect user back to pom page with form data to populate the form and tell user they fucked up
+            raise falcon.HTTPFound('/app/pomodora')
+
+        else:
+            # Create pomodora model object to submit to DB
+            pom_to_add = PomodoraModel(user_id=user_id,
+                                       distractions=distractions,
+                                       pom_success=pom_success,
+                                       task=task,
+                                       review=review, created=today,
+                                       start_time=start_time.time(),
+                                       end_time=end_time.time())
+            for flag in flags:
+                pom_to_add.flags.append(PomFlagsModel(flag_type=flag))
+
+            # Try to add pom to the DB
+            try:
+                req.context['session'].add(pom_to_add)
+                req.context['session'].commit()
+            except IntegrityError as e:
+                # Pomodora already exists with that time block
+                req.context['session'].rollback()
+                raise falcon.HTTPFound('/app/pom_exists')
+
+            # Success! Send user to pomodora page again
+            raise falcon.HTTPFound('/app/pomodora')
