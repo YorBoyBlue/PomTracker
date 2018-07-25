@@ -1,4 +1,5 @@
 import os
+import falcon
 from helpers.my_requests import Requests
 from mako.template import Template
 from resources.pomodora_collection import PomodoraCollectionResource

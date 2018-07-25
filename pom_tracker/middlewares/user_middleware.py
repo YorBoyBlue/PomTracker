@@ -12,9 +12,10 @@ class UserMiddleware:
         pattern = re.compile(valid_uri_pattern)
         is_valid = False
         if pattern.match(valid_uri_pattern) is not None:
-            is_valid = True
+            pass
+            # is_valid = True
 
-        if req.relative_uri in req.context['included_paths_user'] or is_valid:
+        if req.path in req.context['included_paths_user']:
             my_cookie_hash = req.cookies.get('pomodora_login_hash', None)
             if my_cookie_hash is not None:
                 try:

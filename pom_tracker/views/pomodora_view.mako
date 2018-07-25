@@ -30,8 +30,9 @@
     <div class="container pom-app">
         <div class="row pom-form">
             <div class="col-md-12">
-##                 <form action='/api/poms' method='post'>
-                <form>
+                ##                 <form action='/api/poms' method='post'>
+
+                <form class="pom-form">
                     <div class="row">
                         % if pom_exists:
                             <div class="alert alert-warning">
@@ -87,8 +88,8 @@
                                            value="1"> Was this pom successful? <br>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6" style="padding-right: 0">
-                                    <input class="btn btn-primary main-button float-right" role="button"
-                                           value='Submit Pomodora' onclick='submitPom(this.form)'>
+                                    <input style="width: 170px" class="btn btn-primary main-button float-right" role="button"
+                                           value='Submit Pomodora' onclick="submitPom()">
                                 </div>
                             </div>
                         </div>
@@ -165,6 +166,7 @@
             </div>
         </div>
     </div>
+    <div id="derp"></div>
     <div>
         <img class="time-image mx-auto d-block" src="/assets/time.jpg">
     </div>
@@ -176,15 +178,6 @@
     </div>
 </footer>
 <script src="/js/bootstrap.min.js"></script>
-<script>
-    function submitPom(form) {
-        var formData = $(form).serializeArray();
-        var xhttp = new XMLHttpRequest();
-        // Send the proper header information along with the request
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.open('POST', '/api/poms', true);
-        xhttp.send(formData);
-    }
-</script>
+<script src="/js/submit_pom.js"></script>
 </body>
 </html>

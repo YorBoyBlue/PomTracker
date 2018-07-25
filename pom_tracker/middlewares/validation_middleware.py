@@ -6,7 +6,7 @@ import re
 class ValidationMiddleware:
 
     def process_request(self, req, resp):
-        req_uri = req.relative_uri
+        req_uri = req.path
         match_folder = False
 
         # Is the requests URI in an ignored folder

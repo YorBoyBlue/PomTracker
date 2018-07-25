@@ -43,10 +43,10 @@ class PomodoraCollectionResource:
         except ValidationError as err:
             message = err.messages  # => {'email': ['"foo" is not a valid email address.']}
             data = err.valid_data
-            # TODO: Add data that was sent but not required as well
-            
-            # TODO: need to redirect user back to pom page with form data to populate the form and tell user they fucked up
-            raise falcon.HTTPFound('/app/pomodora')
+            raise falcon.HTTPBadRequest(
+                "You're missing some of the required fields.",
+                data
+            )
 
         else:
             # Create pomodora model object to submit to DB
@@ -67,7 +67,15 @@ class PomodoraCollectionResource:
             except IntegrityError as e:
                 # Pomodora already exists with that time block
                 req.context['session'].rollback()
-                raise falcon.HTTPFound('/app/pom_exists')
+                # Create dict with form data to send back to the browser
+                formData = {
+                    'distractions': distractions,
+                    'pom_success': pom_success,
+                    'review': review,
+                    'task': task,
+                    'time_block': times
+                }
+                raise falcon.HTTPBadRequest(formData)
 
-            # Success! Send user to pomodora page again
-            raise falcon.HTTPFound('/app/pomodora')
+            # Success! Let ajax reload the page
+            resp.status = falcon.HTTP_200

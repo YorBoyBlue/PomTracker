@@ -10,12 +10,14 @@ class PomodoraResource:
         """Handles GET requests"""
 
         resp.content_type = 'text/html'
+        # resp.responseType = 'document'
 
         # Simulated downstream request
         Requests().get(req, resp, PomodoraCollectionResource())
         todays_poms = resp.content
         Requests().get(req, resp, FlagTypesResource())
         flag_types = resp.content
+
         dir_path = os.path.dirname(os.path.realpath(__file__))
         pomodora_template = Template(
             filename=dir_path + '/pomodora_view.mako')
