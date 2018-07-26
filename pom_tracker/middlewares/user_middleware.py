@@ -2,18 +2,11 @@ import falcon
 from models.user_model import UserModel
 from models.session_model import SessionModel
 from sqlalchemy.orm.exc import NoResultFound
-import re
 
 
 class UserMiddleware:
 
     def process_request(self, req, resp):
-        valid_uri_pattern = '/app/pomodora'
-        pattern = re.compile(valid_uri_pattern)
-        is_valid = False
-        if pattern.match(valid_uri_pattern) is not None:
-            pass
-            # is_valid = True
 
         if req.path in req.context['included_paths_user']:
             my_cookie_hash = req.cookies.get('pomodora_login_hash', None)

@@ -22,7 +22,7 @@ from resources.delete_poms import DeletePomsResource
 from resources.session import SessionResource
 from views.session_expired import SessionExpiredResource
 from views.pomodora import PomodoraResource
-from views.pomodora_exists import PomodoraExistsResource
+from views.partials.pomodora_exists import PomodoraExistsResource
 from resources.pomodora_collection import PomodoraCollectionResource
 from resources.flag_types import FlagTypesResource
 from resources.pom_sheet_export import PomSheetExportResource

@@ -30,17 +30,8 @@
     <div class="container pom-app">
         <div class="row pom-form">
             <div class="col-md-12">
-                ##                 <form action='/api/poms' method='post'>
-
                 <form class="pom-form">
                     <div class="row">
-                        % if pom_exists:
-                            <div class="alert alert-warning">
-                                <strong>Oops!</strong> You have already submitted a pomodora with that start time
-                                today.
-                                You can delete it and submit a new one if you like but you must delete it first.
-                            </div>
-                        % endif
                         <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
                             <div class="row">
                                 <h2>Pomodora:</h2>
@@ -65,12 +56,12 @@
                                 <div class="distractions">
                                     <h5>Distractions:</h5>
                                     <input class="distractions_check top" type="checkbox" name="distractions" value="1">
-                                    <input class="distractions_check" type="checkbox" name="distractions" value="1"><br>
+                                    <input class="distractions_check" type="checkbox" name="distractions" value="2"><br>
                                     <input class="distractions_check middle" type="checkbox" name="distractions"
-                                           value="1"><br>
+                                           value="3"><br>
                                     <input class="distractions_check bottom" type="checkbox" name="distractions"
-                                           value="1">
-                                    <input class="distractions_check" type="checkbox" name="distractions" value="1">
+                                           value="4">
+                                    <input class="distractions_check" type="checkbox" name="distractions" value="5">
                                 </div>
                             </div>
                         </div>

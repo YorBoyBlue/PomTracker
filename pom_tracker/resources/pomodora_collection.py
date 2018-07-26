@@ -20,6 +20,7 @@ class PomodoraCollectionResource:
     def on_post(self, req, resp):
         """Handles POST requests"""
 
+        # Parse variables to be submitted to DB
         task = req.media.get('task', None)
         review = req.media.get('review', None)
         flags = req.media.get('flags', None)
@@ -37,15 +38,39 @@ class PomodoraCollectionResource:
                 distractions += 1
         pom_success = req.media.get('pom_success', 0)
 
+        # Store form data that came in from the user
+        form_data = {
+            'distractions': req.media.get('distractions'),
+            'pom_success': pom_success,
+            'review': review,
+            'task': task,
+            'flags': flags,
+            'time_block': req.media['time_block']
+        }
+
+        # Validate form
         try:
             PomodoraSchema().load(
                 {'task': task, 'review': review, 'flags': flags})
         except ValidationError as err:
-            message = err.messages  # => {'email': ['"foo" is not a valid email address.']}
-            data = err.valid_data
+            # User is missing 1 or more required fields
+            kdfjsd = err.messages
+            message = ''
+            for k, v in err.messages.items():
+                message += k + ' ' + v[0]
+
+            # data = err.valid_data
+            a = ''
+            data = {
+                'form_data': form_data,
+                'message': message
+            }
+
             raise falcon.HTTPBadRequest(
-                "You're missing some of the required fields.",
-                data
+                {
+                    'error': 'ValidationError',
+                    'data': data
+                }
             )
 
         else:
@@ -60,7 +85,7 @@ class PomodoraCollectionResource:
             for flag in flags:
                 pom_to_add.flags.append(PomFlagsModel(flag_type=flag))
 
-            # Try to add pom to the DB
+            # Add pom to the DB
             try:
                 req.context['session'].add(pom_to_add)
                 req.context['session'].commit()
@@ -68,14 +93,18 @@ class PomodoraCollectionResource:
                 # Pomodora already exists with that time block
                 req.context['session'].rollback()
                 # Create dict with form data to send back to the browser
-                formData = {
-                    'distractions': distractions,
-                    'pom_success': pom_success,
-                    'review': review,
-                    'task': task,
-                    'time_block': times
-                }
-                raise falcon.HTTPBadRequest(formData)
 
-            # Success! Let ajax reload the page
+                data = {
+                    'form_data': form_data,
+                    'message': 'You have already submitted a pomodora with that start time today. Pick another time block or delete the existing one and resubmit.'
+                }
+
+                raise falcon.HTTPBadRequest(
+                    {
+                        'error': 'PomExistsError',
+                        'data': data
+                    }
+                )
+
+            # Success! Let js ajax reload the page
             resp.status = falcon.HTTP_200
