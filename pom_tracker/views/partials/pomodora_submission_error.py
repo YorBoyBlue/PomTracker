@@ -5,8 +5,9 @@ from resources.flag_types import FlagTypesResource
 
 
 class PomodoraExistsResource:
-    def on_get(self, req, resp):
-        """Handles GET requests"""
+
+    def on_post(self, req, resp):
+        """Handles POST requests"""
 
         resp.content_type = 'text/html'
 
@@ -14,15 +15,17 @@ class PomodoraExistsResource:
         Requests().get(req, resp, FlagTypesResource())
         flag_types = resp.content
         dir_path = os.path.dirname(os.path.realpath(__file__))
+        form_data = req.media.get('form_data')
         pomodora_template = Template(
-            filename=dir_path + '/pomodora_exists_view.mako')
+            filename=dir_path + '/pomodora_submission_error_view.mako')
         resp.body = pomodora_template.render(
             time_blocks=req.context['time_blocks'],
             flag_types=flag_types,
-            time_block=req.params.get('time_block'),
-            flags=req.params.get('flags'),
-            task=req.params.get('task'),
-            review=req.params.get('review'),
-            distractions=req.params.get('distractions'),
-            pom_success=req.params.get('pom_success')
+            time_block=form_data.get('time_block'),
+            flags=form_data.get('flags'),
+            task=form_data.get('task'),
+            review=form_data.get('review'),
+            distractions=form_data.get('distractions'),
+            pom_success=form_data.get('pom_success'),
+            message=req.media.get('message')
         )

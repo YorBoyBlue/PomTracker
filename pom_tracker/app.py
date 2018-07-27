@@ -22,7 +22,7 @@ from resources.delete_poms import DeletePomsResource
 from resources.session import SessionResource
 from views.session_expired import SessionExpiredResource
 from views.pomodora import PomodoraResource
-from views.partials.pomodora_exists import PomodoraExistsResource
+from views.partials.pomodora_submission_error import PomodoraExistsResource
 from resources.pomodora_collection import PomodoraCollectionResource
 from resources.flag_types import FlagTypesResource
 from resources.pom_sheet_export import PomSheetExportResource
@@ -33,8 +33,7 @@ class Application:
 
     def __init__(self):
         handlers = media.Handlers({
-            # falcon.MEDIA_MSGPACK: media.MessagePackHandler(),
-            # falcon.MEDIA_JSON: media.JSONHandler(),
+            'application/json': media.JSONHandler(),
             'application/x-www-form-urlencoded': URLEncodedHandler()
         })
         self.db_middleware = DatabaseMiddleware()

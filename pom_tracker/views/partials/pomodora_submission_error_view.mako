@@ -1,9 +1,10 @@
 <form class="pom-form">
     <div class="row">
-        <div class="alert alert-warning">
-            <strong>Oops!</strong>
-            <p class="error-message"></p>
-        </div>
+        % if message:
+            <div class="alert alert-warning" style="width: 100%">
+                <strong>Oops!</strong> ${message}
+            </div>
+        % endif
         <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
             <div class="row">
                 <h2>Pomodora:</h2>

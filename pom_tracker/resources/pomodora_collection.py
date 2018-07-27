@@ -54,18 +54,13 @@ class PomodoraCollectionResource:
                 {'task': task, 'review': review, 'flags': flags})
         except ValidationError as err:
             # User is missing 1 or more required fields
-            kdfjsd = err.messages
             message = ''
             for k, v in err.messages.items():
-                message += k + ' ' + v[0]
-
-            # data = err.valid_data
-            a = ''
+                message += '<br> * ' + v[0]
             data = {
                 'form_data': form_data,
                 'message': message
             }
-
             raise falcon.HTTPBadRequest(
                 {
                     'error': 'ValidationError',
@@ -96,7 +91,7 @@ class PomodoraCollectionResource:
 
                 data = {
                     'form_data': form_data,
-                    'message': 'You have already submitted a pomodora with that start time today. Pick another time block or delete the existing one and resubmit.'
+                    'message': '<br> * You have already submitted a pomodora with that start time today. Pick another time block or delete the existing one and resubmit.'
                 }
 
                 raise falcon.HTTPBadRequest(
