@@ -22,8 +22,12 @@ from resources.delete_poms import DeletePomsResource
 from resources.session import SessionResource
 from views.session_expired import SessionExpiredResource
 from views.pomodora import PomodoraResource
-from views.partials.pomodora_submission_error import PomodoraExistsResource
+from views.partials.pomodora_exists_error import PomodoraExistsErrorResource
+from views.partials.pomodora_validation_error import \
+    PomodoraValidationErrorResource
 from resources.pomodora_collection import PomodoraCollectionResource
+from resources.pom_validation import PomodoraValidationResource
+from resources.pomodora_replace import PomodoraReplaceResource
 from resources.flag_types import FlagTypesResource
 from resources.pom_sheet_export import PomSheetExportResource
 from models.base_model import BaseModel
@@ -57,7 +61,8 @@ class Application:
         self.api.add_route('/app/home', HomeResource())
         # User routes
         self.api.add_route('/app/create', UserCreateResource())
-        self.api.add_route('/app/create_email_exists', UserCreateEmailExistsResource())
+        self.api.add_route('/app/create_email_exists',
+                           UserCreateEmailExistsResource())
         self.api.add_route('/app/login', UserLoginResource())
         self.api.add_route('/app/login_failed', UserLoginFailedResource())
         self.api.add_route('/app/session_expired', SessionExpiredResource())
@@ -67,8 +72,12 @@ class Application:
         self.api.add_route('/api/session', SessionResource())
         # Pomodora routes
         self.api.add_route('/app/pomodora', PomodoraResource())
-        self.api.add_route('/app/pom_exists', PomodoraExistsResource())
+        self.api.add_route('/app/pom_exists', PomodoraExistsErrorResource())
+        self.api.add_route('/app/pom_invalid',
+                           PomodoraValidationErrorResource())
+        self.api.add_route('/api/pom_validation', PomodoraValidationResource())
         self.api.add_route('/api/poms', PomodoraCollectionResource())
+        self.api.add_route('/api/pom_replace', PomodoraReplaceResource())
         self.api.add_route('/api/delete_poms', DeletePomsResource())
         self.api.add_route('/api/flag_types', FlagTypesResource())
         self.api.add_route('/api/pom_sheet_export', PomSheetExportResource())

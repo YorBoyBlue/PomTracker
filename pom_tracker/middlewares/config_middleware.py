@@ -28,7 +28,8 @@ class ConfigMiddleware:
             '/api/pom_sheet_export',
             '/app/export_poms',
             '/app/pom_exists',
-            '/app/logout'
+            '/app/logout',
+            '/api/pom_replace'
         ]
 
     def process_request(self, req, resp):
