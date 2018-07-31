@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='pom_tracker',
     version='1.0.0',
-    description='Used to track time and tasks using the Pomodora concept',
+    description='Used to track time and tasks using the Pomodoro concept',
     long_description=open('README').read(),
     license='LICENSE',
     author='Arin Blue',

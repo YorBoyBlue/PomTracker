@@ -4,7 +4,7 @@ from mako.template import Template
 from resources.flag_types import FlagTypesResource
 
 
-class PomodoraExistsErrorResource:
+class PomodoroValidationErrorResource:
 
     def on_post(self, req, resp):
         """Handles POST requests"""
@@ -16,9 +16,9 @@ class PomodoraExistsErrorResource:
         flag_types = resp.content
         dir_path = os.path.dirname(os.path.realpath(__file__))
         form_data = req.media.get('form_data')
-        pomodora_template = Template(
-            filename=dir_path + '/pomodora_exists_error_view.mako')
-        resp.body = pomodora_template.render(
+        pomodoro_template = Template(
+            filename=dir_path + '/pomodoro_validation_error_view.mako')
+        resp.body = pomodoro_template.render(
             time_blocks=req.context['time_blocks'],
             flag_types=flag_types,
             time_block=form_data.get('time_block'),

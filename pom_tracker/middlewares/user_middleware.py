@@ -9,7 +9,7 @@ class UserMiddleware:
     def process_request(self, req, resp):
 
         if req.path in req.context['included_paths_user']:
-            my_cookie_hash = req.cookies.get('pomodora_login_hash', None)
+            my_cookie_hash = req.cookies.get('pomodoro_login_hash', None)
             if my_cookie_hash is not None:
                 try:
                     user_session = req.context['session'].query(

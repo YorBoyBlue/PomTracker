@@ -42,13 +42,13 @@ class UserLoginResource:
                     random.choices(string.ascii_uppercase + string.digits,
                                    k=20))
                 hash_object = hashlib.md5(rand_string.encode())
-                pomodora_login_hash = hash_object.hexdigest()
+                pomodoro_login_hash = hash_object.hexdigest()
                 now = datetime.utcnow()
                 # check if user has an existing session in DB and modify it
                 try:
                     records_updated_count = req.context['session'].query(
                         SessionModel).filter_by(user_id=user.id).update(
-                        {"hash": pomodora_login_hash,
+                        {"hash": pomodoro_login_hash,
                          "modified": now
                          })
 
@@ -61,16 +61,16 @@ class UserLoginResource:
                 # create a new session in DB if one does not exist
                 except NoSessionRecordExists as e:
                     session_to_add = SessionModel(user_id=user.id,
-                                                  hash=pomodora_login_hash,
+                                                  hash=pomodoro_login_hash,
                                                   created=now, modified=now)
                     req.context['session'].add(session_to_add)
                     req.context['session'].commit()
 
-                # Send user to the pomodora page
+                # Send user to the pomodoro page
                 finally:
-                    resp.set_cookie('pomodora_login_hash', pomodora_login_hash,
+                    resp.set_cookie('pomodoro_login_hash', pomodoro_login_hash,
                                     max_age=88200, path='/')
-                    raise falcon.HTTPFound('/app/pomodora')
+                    raise falcon.HTTPFound('/app/pomodoro')
 
             else:
                 raise falcon.HTTPFound('/app/login_failed')

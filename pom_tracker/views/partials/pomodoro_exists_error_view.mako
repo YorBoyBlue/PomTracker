@@ -7,7 +7,7 @@
         % endif
         <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
             <div class="row">
-                <h2>Pomodora:</h2>
+                <h2>Pomodoro:</h2>
             </div>
             <br><br>
             <div class="row">
@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6" style="padding-right: 0">
                     <input style="width: 170px" class="btn btn-primary main-button float-right" role="button"
-                           value='Submit Pomodora' onclick="submitPom()">
+                           value='Submit Pomodoro' onclick="submitPom()">
                 </div>
             </div>
         </div>

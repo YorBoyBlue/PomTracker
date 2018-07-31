@@ -1,20 +1,12 @@
 import falcon
 import pytz
 from datetime import datetime
-from sqlalchemy.exc import IntegrityError
-from models.pomodora_model import PomodoraModel
+from error_handling.my_exceptions import NoSessionRecordExists
+from models.pomodoro_model import PomodoroModel
 from models.pom_flags_model import PomFlagsModel
 
 
-class PomodoraCollectionResource:
-    def on_get(self, req, resp):
-        """Handles GET requests"""
-
-        today = datetime.utcnow().date()
-        resp.content = req.context['session'].query(
-            PomodoraModel).filter_by(created=today,
-                                     user_id=req.context['user'].id).all()
-
+class PomodoroReplaceResource:
     def on_post(self, req, resp):
         """Handles POST requests"""
 
@@ -23,7 +15,8 @@ class PomodoraCollectionResource:
         review = req.media.get('review', None)
         flags = req.media.get('flags', None)
         times = req.media['time_block'].split('-')
-        start_time = datetime.strptime(times[0].strip(), '%I:%M%p').replace(
+        start_time = datetime.strptime(times[0].strip(),
+                                       '%I:%M%p').replace(
             tzinfo=pytz.UTC)
         end_time = datetime.strptime(times[1].strip(), '%I:%M%p').replace(
             tzinfo=pytz.UTC)
@@ -46,8 +39,8 @@ class PomodoraCollectionResource:
             'time_block': req.media['time_block']
         }
 
-        # Create pomodora model object to submit to DB
-        pom_to_add = PomodoraModel(user_id=user_id,
+        # Create pomodoro model object to submit to DB
+        pom_to_add = PomodoroModel(user_id=user_id,
                                    distractions=distractions,
                                    pom_success=pom_success,
                                    task=task,
@@ -59,18 +52,22 @@ class PomodoraCollectionResource:
 
         # Add pom to the DB
         try:
-            req.context['session'].add(pom_to_add)
+            records_updated_count = req.context['session'].query(
+                PomodoroModel).filter_by(user_id=user_id).update(
+                pom_to_add)
+            req.context['session'].update(pom_to_add)
+            if records_updated_count == 0:
+                raise NoSessionRecordExists(
+                    'No session for this user was found')
+
             req.context['session'].commit()
-        except IntegrityError as e:
-            # Pomodora already exists with that time block
-            req.context['session'].rollback()
-            # Create dict with form data to send back to the browser
+
+            # create a new session in DB if one does not exist
+        except NoSessionRecordExists as e:
             data = {
                 'form_data': form_data,
-                'message': '<br> * You have already submitted a pomodora '
-                           'with that start time today. Pick another or '
-                           'resubmit to replace the current pomodora with '
-                           'the new one.'
+                'message': '<br> * If this error message is shown I need '
+                           'to handle it properly.'
             }
 
             raise falcon.HTTPBadRequest(
@@ -80,5 +77,5 @@ class PomodoraCollectionResource:
                 }
             )
 
-        # Success! Let js ajax send user to submit the pom
+        # Success! Let js ajax reload the page
         resp.status = falcon.HTTP_200

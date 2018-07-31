@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pomodora Tracker</title>
+    <title>Pomodoro Tracker</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/user_create.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
@@ -12,14 +12,15 @@
 
 <header>
     <section>
-        <h2 class="header-title">Pomodora Time Tracker</h2>
+        <h2 class="header-title">Pomodoro Time Tracker</h2>
         <nav>
             <ul>
                 <li><a class="btn" role="button" href="/app/settings">&#9881;</a></li>
                 <li><a class="btn" role="button" href="/app/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/app/login">Login/Create</a></li>
                 <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
-                <li><a class="btn" role="button" href="/app/pomodora">Pomodora</a></li>
+                <li><a class="btn" role="button" href="/app/pomodoro_set">Display Poms</a></li>
+                <li><a class="btn" role="button" href="/app/pomodoro">Pomodoro</a></li>
                 <li><a class="btn" role="button" href="/app/home">Home</a></li>
             </ul>
         </nav>
@@ -34,7 +35,7 @@
                     <div class="col-12">
                         <h2>Export Pom Sheets:</h2>
                         <br><br>
-                        <p>You can choose a start and end date to export all pomodoras within those dates (including the
+                        <p>You can choose a start and end date to export all pomodoros within those dates (including the
                             start and end date). This will export all poms into a single file.</p>
                         <br>
                         <p>There is currently only support to export a JSON file but there will be a CSV export coming

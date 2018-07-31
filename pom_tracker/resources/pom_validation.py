@@ -1,9 +1,9 @@
 import falcon
 from marshmallow import ValidationError
-from models.pomodora_schema import PomodoraSchema
+from models.pomodoro_schema import PomodoroSchema
 
 
-class PomodoraValidationResource:
+class PomodoroValidationResource:
 
     def on_post(self, req, resp):
         """Handles POST requests"""
@@ -26,7 +26,7 @@ class PomodoraValidationResource:
 
         # Validate form
         try:
-            PomodoraSchema().load(
+            PomodoroSchema().load(
                 {'task': task, 'review': review, 'flags': flags})
         except ValidationError as err:
             # User is missing 1 or more required fields
@@ -45,4 +45,4 @@ class PomodoraValidationResource:
             )
 
         else:
-            raise falcon.HTTPFound('/api/poms')
+            raise falcon.HTTPFound('/api/poms/today')

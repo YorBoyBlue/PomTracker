@@ -18,16 +18,18 @@ from views.user_login import UserLoginResource
 from views.user_login_failed import UserLoginFailedResource
 from views.user_settings import UserSettingsResource
 from views.export_poms import ExportPomsResource
+from views.pomodoro_set import PomodoroSetResource
 from resources.delete_poms import DeletePomsResource
 from resources.session import SessionResource
 from views.session_expired import SessionExpiredResource
-from views.pomodora import PomodoraResource
-from views.partials.pomodora_exists_error import PomodoraExistsErrorResource
-from views.partials.pomodora_validation_error import \
-    PomodoraValidationErrorResource
-from resources.pomodora_collection import PomodoraCollectionResource
-from resources.pom_validation import PomodoraValidationResource
-from resources.pomodora_replace import PomodoraReplaceResource
+from views.pomodoro import PomodoroResource
+from views.partials.pomodoro_exists_error import PomodoroExistsErrorResource
+from views.partials.pomodoro_validation_error import \
+    PomodoroValidationErrorResource
+from resources.pomodoro_collection import PomodoroCollectionTodayResource
+from resources.pomodoro_collection_all import PomodoroCollectionResource
+from resources.pom_validation import PomodoroValidationResource
+from resources.pomodoro_replace import PomodoroReplaceResource
 from resources.flag_types import FlagTypesResource
 from resources.pom_sheet_export import PomSheetExportResource
 from models.base_model import BaseModel
@@ -70,14 +72,17 @@ class Application:
         self.api.add_route('/api/users', UserCollectionResource())
         # Session routes
         self.api.add_route('/api/session', SessionResource())
-        # Pomodora routes
-        self.api.add_route('/app/pomodora', PomodoraResource())
-        self.api.add_route('/app/pom_exists', PomodoraExistsErrorResource())
+        # Pomodoro routes
+        self.api.add_route('/app/pomodoro', PomodoroResource())
+        self.api.add_route('/app/pomodoro_set', PomodoroSetResource())
+        self.api.add_route('/app/pom_exists', PomodoroExistsErrorResource())
         self.api.add_route('/app/pom_invalid',
-                           PomodoraValidationErrorResource())
-        self.api.add_route('/api/pom_validation', PomodoraValidationResource())
-        self.api.add_route('/api/poms', PomodoraCollectionResource())
-        self.api.add_route('/api/pom_replace', PomodoraReplaceResource())
+                           PomodoroValidationErrorResource())
+        self.api.add_route('/api/pom_validation', PomodoroValidationResource())
+        self.api.add_route('/api/poms/today',
+                           PomodoroCollectionTodayResource())
+        self.api.add_route('/api/poms', PomodoroCollectionResource())
+        self.api.add_route('/api/pom_replace', PomodoroReplaceResource())
         self.api.add_route('/api/delete_poms', DeletePomsResource())
         self.api.add_route('/api/flag_types', FlagTypesResource())
         self.api.add_route('/api/pom_sheet_export', PomSheetExportResource())

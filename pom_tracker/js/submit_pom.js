@@ -20,7 +20,7 @@ function submitPom() {
             // Pom is valid, try to submit pom to DB
             let form_data = $('form.pom-form').serialize();
             $.ajax({
-                url: '/api/poms',
+                url: '/api/poms/today',
                 type: 'POST',
                 cache: false,
                 dataType: 'html',
@@ -28,7 +28,7 @@ function submitPom() {
                 data: form_data,
 
                 success: function (data, textStatus, jqXHR) {
-                    $('form.pom-form').replaceWith(data);
+                    location.reload();
                 },
 
                 error: function (jqXHR, textStatus, errorThrown) {

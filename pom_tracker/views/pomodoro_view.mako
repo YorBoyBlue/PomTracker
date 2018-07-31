@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pomodora Tracker</title>
+    <title>Pomodoro Tracker</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/pomodora.css">
+    <link rel="stylesheet" type="text/css" href="/css/pomodoro.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <script src="/js/jquery.js"></script>
 </head>
@@ -12,14 +12,15 @@
 
 <header>
     <section>
-        <h2 class="header-title">Pomodora Time Tracker</h2>
+        <h2 class="header-title">Pomodoro Time Tracker</h2>
         <nav>
             <ul>
                 <li><a class="btn" role="button" href="/app/settings">&#9881;</a></li>
                 <li><a class="btn" role="button" href="/app/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/app/login">Login/Create</a></li>
                 <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
-                <li><a class="btn" role="button" href="/app/pomodora">Pomodora</a></li>
+                <li><a class="btn" role="button" href="/app/pomodoro_set">Display Poms</a></li>
+                <li><a class="btn" role="button" href="/app/pomodoro">Pomodoro</a></li>
                 <li><a class="btn" role="button" href="/app/home">Home</a></li>
             </ul>
         </nav>
@@ -34,7 +35,7 @@
                     <div class="row">
                         <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
                             <div class="row">
-                                <h2>Pomodora:</h2>
+                                <h2>Pomodoro:</h2>
                             </div>
                             <br><br>
                             <div class="row">
@@ -80,7 +81,7 @@
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6" style="padding-right: 0">
                                     <input style="width: 170px" class="btn btn-primary main-button float-right" role="button"
-                                           value='Submit Pomodora' onclick="submitPom()">
+                                           value='Submit Pomodoro' onclick="submitPom()">
                                 </div>
                             </div>
                         </div>
