@@ -56,14 +56,14 @@
                 <table id="pom-table" width="100%">
                     <thead>
                     <tr>
-                        <th width="11%">Date</th>
-                        <th width="20%">Title</th>
-                        <th class="center-text" width="2%">Flags</th>
-                        <th class="center-text" width="2%">Start Time</th>
-                        <th class="center-text" width="2%">End Time</th>
-                        <th class="center-text" width="2%">Distractions</th>
-                        <th class="center-text" width="2%">Pom Success</th>
-                        <th>Description</th>
+                        <th width="11%"></th>
+                        <th width="20%"></th>
+                        <th class="center-text" width="2%"></th>
+                        <th class="center-text" width="2%"></th>
+                        <th class="center-text" width="2%"></th>
+                        <th class="center-text" width="2%"></th>
+                        <th class="center-text" width="2%"></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
