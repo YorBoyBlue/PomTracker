@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Pomodoro Tracker</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/display_poms.css">
     <link rel="stylesheet" type="text/css" href="/css/pomodoro.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -33,12 +35,15 @@
 <main class="container">
     <div class="container pom-app">
         <div class="row">
-            <div class="col-md-12">
-                <a class="btn btn-secondary" role="button">Filter</a>
-                <a class="btn btn-secondary" role="button">Filter</a>
-                <a class="btn btn-secondary" role="button">Filter</a>
-                <a class="btn btn-secondary" role="button">Filter</a>
-                <a class="btn btn-secondary" role="button">Filter</a>
+            <div id="filters" class="col-md-12">
+                <label class="switch">
+                    <input class='success_filter' type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <label class="switch">
+                    <input class='distractions_filter' type="checkbox">
+                    <span class="slider round"></span>
+                </label>
             </div>
         </div>
     </div>
@@ -49,34 +54,38 @@
             <div class="col-md-12">
                 <h1>Pomodoros</h1>
                 <table id="pom-table" width="100%">
+                    <thead>
                     <tr>
-                        <th width="2%"></th>
+                        <th width="11%">Date</th>
                         <th width="20%">Title</th>
                         <th class="center-text" width="2%">Flags</th>
                         <th class="center-text" width="2%">Start Time</th>
                         <th class="center-text" width="2%">End Time</th>
                         <th class="center-text" width="2%">Distractions</th>
                         <th class="center-text" width="2%">Pom Success</th>
-                        <th>Review</th>
+                        <th>Description</th>
                     </tr>
-                    <tr>
-                        <td class="center-text">
-                        </td>
-                        <td class="keep-format">
-                        </td>
-                        <td class="center-text">
-                        </td>
-                        <td class="center-text">
-                        </td>
-                        <td class="center-text">
-                        </td>
-                        <td class="center-text">
-                        </td>
-                        <td class="center-text">
-                        </td>
-                        <td class="keep-format">
-                        </td>
-                    </tr>
+                    </thead>
+                    <tbody>
+                        ##                         <tr>
+##                             <td class="center-text">
+##                             </td>
+##                             <td class="keep-format">
+##                             </td>
+##                             <td class="center-text">
+##                             </td>
+##                             <td class="center-text">
+##                             </td>
+##                             <td class="center-text">
+##                             </td>
+##                             <td class="center-text">
+##                             </td>
+##                             <td class="center-text">
+##                             </td>
+##                             <td class="keep-format">
+##                             </td>
+##                         </tr>
+                    </tbody>
                 </table>
                 <br>
             </div>
