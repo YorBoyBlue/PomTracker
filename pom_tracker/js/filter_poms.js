@@ -1,80 +1,5 @@
 Filter_Poms_App = function () {
 
-    let that = this;
-    let pomodoros = [];
-    let table = null;
-
-    $.ajax({
-        url: '/api/poms',
-        type: 'GET',
-        cache: false,
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (data, textStatus, jqXHR) {
-            // Runs only when a 200 OK is returned
-            // console.log('success');
-            // console.log(data);
-            let d = Object.values(data);
-            console.log(d);
-            that.pomodoros = Object.values(data);
-            console.log(that.pomodoros);
-
-            $(document).ready(function () {
-                that.table = $('#pom-table').DataTable({
-                    // data: that.pomodoros,
-                    columns: [
-                        {
-                            title: "Date"
-                        },
-                        {
-                            title: "Title"
-                        },
-                        {
-                            title: "Flags"
-                        },
-                        {
-                            title: "Start Time"
-                        },
-                        {
-                            title: "End Time"
-                        },
-                        {
-                            title: "Distractions"
-                        },
-                        {
-                            title: "Pom Success"
-                        },
-                        {
-                            title: "Description"
-                        }
-                    ]
-                });
-
-                _.each(that.pomodoros, function (value, key) {
-                    that.table.row.add([
-                        value.created,
-                        value.task,
-                        '', // TODO: Need to retrieve and add flags still
-                        value.start_time,
-                        value.end_time,
-                        value.distractions,
-                        value.pom_success,
-                        value.review
-                    ]).draw(false);
-                });
-            });
-        },
-
-        error: function (jqXHR, textStatus, errorThrown) {
-            // Runs when any error is returned
-
-            // console.log('error');
-            // console.log(jqXHR);
-            // console.log(textStatus);
-            // console.log(errorThrown);
-        }
-    });
-
     let Pomodoro = new function () {
 
         let Model = Backbone.Model.extend({
@@ -87,47 +12,144 @@ Filter_Poms_App = function () {
                 distractions: "",
                 pom_success: "",
                 description: ""
-            },
-            // The initialize function is called when an instance is created
-            initialize: function () {
-                console.log("A new pomodoro has been created.");
             }
         });
 
         let Collection = Backbone.Collection.extend({
-            model: Model
+
+            model: Model,
+
+            fetch: function () {
+
+                let self = this;
+
+                $.ajax({
+                    url: "/api/poms",
+                    type: "GET",
+                    cache: false,
+                    dataType: "json",
+                    contentType: "application/json",
+
+                    success: function (data, textStatus, jqXHR) {
+
+                        self.set(self.parse(data));
+                        self.trigger("init_table");
+                    },
+
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        // console.log(jqXHR);
+                        // console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                });
+            },
+
+            parse: function (data) {
+                dataset = [];
+                _.each(data, function (value, key) {
+                    dataset.push(
+                        {
+                            date: value.created,
+                            title: value.task,
+                            flags: "", // TODO: Need to retrieve and add flags still
+                            start_time: value.start_time,
+                            end_time: value.end_time,
+                            distractions: value.distractions,
+                            pom_success: value.pom_success,
+                            description: value.review
+                        }
+                    )
+                });
+                return dataset;
+            }
         });
 
         let View = Backbone.View.extend({
+            el: "#pom-table",
 
-            tagName: "div"
+            tagName: "table",
+
+            table: null,
+
+            initialize: function () {
+
+                this.table = this.$el.DataTable({
+                    columns: [
+                        {
+                            data: "date",
+                            title: "Date"
+                        },
+                        {
+                            data: "title",
+                            title: "Title"
+                        },
+                        {
+                            data: "flags",
+                            title: "Flags"
+                        },
+                        {
+                            data: "start_time",
+                            title: "Start Time"
+                        },
+                        {
+                            data: "end_time",
+                            title: "End Time"
+                        },
+                        {
+                            data: "distractions",
+                            title: "Distractions"
+                        },
+                        {
+                            data: "pom_success",
+                            title: "Pom Success"
+                        },
+                        {
+                            data: "description",
+                            title: "Description"
+                        }
+                    ]
+                });
+            },
+
+            populate_table: function (pomodoros) {
+                this.table.clear();
+                this.table.rows.add(pomodoros);
+                this.table.draw();
+            }
         });
 
         this.Component = Backbone.View.extend({
             initialize: function () {
                 this.model = new Model();
+                this.collection = new Collection();
                 this.view = new View();
+            },
 
-                // this.model.listenTo(this.view, 'click:clear', this.model.reset);
-                // this.model.listenTo(this.view, 'click:group', this.model.set_groups);
-                // this.model.listenTo(this.view, 'click:state', this.model.set_states);
-                // this.model.listenTo(this.view, 'click:incomplete', this.model.set_incomplete);
-                // this.model.listenTo(this.view, 'change:type', this.model.set_type);
-                // this.model.listenTo(this.view, 'change:search', this.model.set_search);
-                // this.view.listenTo(this.model, 'change', this.view.on_change_model);
-                //
-                // this.listenTo(this.model, 'change', _.partial(this.trigger, 'change', _));
-                // this.listenTo(this.view, 'click:clear', _.partial(this.trigger, 'click:clear'));
+            fetch: function () {
+                this.collection.fetch();
             }
         });
     };
 
-    let Filters = new function () {
+    let Filter = new function () {
 
         let Model = Backbone.Model.extend({
-            // The initialize function is called when an instance is created
-            initialize: function () {
-                console.log("A new pomodoro has been created.");
+
+            defaults: {
+                success_filter: false,
+                distractions_filter: false
+            },
+
+            set_success_filter: function () {
+                let value = this.get("success_filter");
+                let toggle = !value;
+                this.set("success_filter", toggle);
+            },
+
+            set_distractions_filter: function () {
+                let value = this.get("distractions_filter");
+                let toggle = !value;
+                this.set("distractions_filter", toggle);
             }
         });
 
@@ -141,24 +163,12 @@ Filter_Poms_App = function () {
                 "click .distractions_filter": "onClickDistractionsFilter"
             },
 
-            onClickSuccessFilter: function (e) {
-                // We can stop this event from being passed to any other handler in the chain
-                e.stopPropagation();
-                if (e.currentTarget.checked) {
-                    console.log("Success Filter On");
-                } else {
-                    console.log("Success Filter Off");
-                }
+            onClickSuccessFilter: function () {
+                this.trigger("filter:success");
             },
 
-            onClickDistractionsFilter: function (e) {
-                // We can stop this event from being passed to any other handler in the chain
-                e.stopPropagation();
-                if (e.currentTarget.checked) {
-                    console.log("Distractions Filter On");
-                } else {
-                    console.log("Distractions Filter Off");
-                }
+            onClickDistractionsFilter: function () {
+                this.trigger("filter:distractions");
             }
         });
 
@@ -167,24 +177,61 @@ Filter_Poms_App = function () {
                 this.model = new Model();
                 this.view = new View();
 
-                // this.model.listenTo(this.view, 'click:clear', this.model.reset);
-                // this.model.listenTo(this.view, 'click:group', this.model.set_groups);
-                // this.model.listenTo(this.view, 'click:state', this.model.set_states);
-                // this.model.listenTo(this.view, 'click:incomplete', this.model.set_incomplete);
-                // this.model.listenTo(this.view, 'change:type', this.model.set_type);
-                // this.model.listenTo(this.view, 'change:search', this.model.set_search);
-                // this.view.listenTo(this.model, 'change', this.view.on_change_model);
-                //
-                // this.listenTo(this.model, 'change', _.partial(this.trigger, 'change', _));
-                // this.listenTo(this.view, 'click:clear', _.partial(this.trigger, 'click:clear'));
+                this.model.listenTo(this.view, "filter:success", this.model.set_success_filter);
+                this.model.listenTo(this.view, "filter:distractions", this.model.set_distractions_filter);
             }
         });
     };
 
     this.Application = Backbone.View.extend({
         initialize: function () {
-            this.filters = new Filters.Component();
+            this.filters = new Filter.Component();
             this.pomodoro = new Pomodoro.Component();
+
+            this.listenTo(this.filters.model, "change", this.execute);
+            this.listenTo(this.pomodoro.collection, "init_table", this.init_table);
+
+            this.pomodoro.fetch();
+        },
+
+        init_table: function () {
+            let pomodoros = _.pluck(this.pomodoro.collection.models, "attributes");
+            console.log(pomodoros);
+            this.pomodoro.view.populate_table(pomodoros);
+        },
+
+        execute: function () {
+            let pomodoros = _.pluck(this.pomodoro.collection.models, "attributes");
+            let filters = this.filters.model.attributes;
+            pomodoros = this.apply_filters(filters, pomodoros);
+            this.pomodoro.view.populate_table(pomodoros);
+        },
+
+        apply_filters: function (filters, pomodoros) {
+
+            let filtered_pomodoros = pomodoros;
+
+            _.each(filters, function (value, key) {
+                switch (key) {
+                    case "success_filter":
+                        if (value === true) {
+                            filtered_pomodoros = _.filter(filtered_pomodoros, function (o) {
+                                console.log(o);
+                                return o.pom_success === 0;
+                            });
+                        }
+                        break;
+                    case "distractions_filter":
+                        if (value === true) {
+
+                        }
+                        break;
+                    default:
+                        console.log("ERROR: Bad Filter Name!");
+                }
+            });
+
+            return filtered_pomodoros;
         }
     });
 
