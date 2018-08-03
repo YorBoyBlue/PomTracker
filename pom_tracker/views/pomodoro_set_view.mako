@@ -35,15 +35,39 @@
 <main class="container">
     <div class="container pom-app">
         <div class="row">
-            <div id="filters" class="col-md-12">
-                <label class="switch">
-                    <input class='success_filter' type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-                <label class="switch">
-                    <input class='distractions_filter' type="checkbox">
-                    <span class="slider round"></span>
-                </label>
+            <div class="col-12">
+                <div id="filters" class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Filters</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div style="display: inline-block; top: 0">
+                                <br>
+                                <h6>Date</h6>
+                                <label class="date">
+                                    <input class='date_filter' type="date">
+                                </label>
+                                <br>
+                                <br>
+                                <h6>Unsuccessful</h6>
+                                <label class="switch">
+                                    <input class='success_filter' type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                                <br>
+                                <br>
+                                <h6>Distractions</h6>
+                                <label class="switch">
+                                    <input class='distractions_filter' type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -67,24 +91,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                        ##                         <tr>
-##                             <td class="center-text">
-##                             </td>
-##                             <td class="keep-format">
-##                             </td>
-##                             <td class="center-text">
-##                             </td>
-##                             <td class="center-text">
-##                             </td>
-##                             <td class="center-text">
-##                             </td>
-##                             <td class="center-text">
-##                             </td>
-##                             <td class="center-text">
-##                             </td>
-##                             <td class="keep-format">
-##                             </td>
-##                         </tr>
                     </tbody>
                 </table>
                 <br>

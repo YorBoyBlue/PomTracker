@@ -1,7 +1,7 @@
 import os
 from helpers.my_requests import Requests
 from mako.template import Template
-from resources.pomodoro_collection import PomodoroCollectionTodayResource
+from resources.pomodoro_collection_today import PomodoroCollectionTodayResource
 from resources.flag_types import FlagTypesResource
 
 

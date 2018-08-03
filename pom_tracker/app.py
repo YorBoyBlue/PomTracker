@@ -26,8 +26,8 @@ from views.pomodoro import PomodoroResource
 from views.partials.pomodoro_exists_error import PomodoroExistsErrorResource
 from views.partials.pomodoro_validation_error import \
     PomodoroValidationErrorResource
-from resources.pomodoro_collection import PomodoroCollectionTodayResource
-from resources.pomodoro_collection_all import PomodoroCollectionResource
+from resources.pomodoro_collection_today import PomodoroCollectionTodayResource
+from resources.pomodoro_collection import PomodoroCollectionResource
 from resources.pom_validation import PomodoroValidationResource
 from resources.pomodoro_replace import PomodoroReplaceResource
 from resources.flag_types import FlagTypesResource

@@ -1,6 +1,6 @@
 import json
 from helpers.my_requests import Requests
-from resources.pomodoro_collection import PomodoroCollectionTodayResource
+from resources.pomodoro_collection_today import PomodoroCollectionTodayResource
 from datetime import datetime, date
 
 

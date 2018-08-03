@@ -31,7 +31,7 @@ Filter_Poms_App = function () {
                     contentType: "application/json",
 
                     success: function (data, textStatus, jqXHR) {
-
+                        console.log(data);
                         self.set(self.parse(data));
                         self.trigger("init_table");
                     },
@@ -47,11 +47,15 @@ Filter_Poms_App = function () {
             parse: function (data) {
                 dataset = [];
                 _.each(data, function (value, key) {
+                    let flags = "";
+                    _.each(value.flags, function (value, key) {
+                        flags += (value + "<br>");
+                    });
                     dataset.push(
                         {
                             date: value.created,
                             title: value.task,
-                            flags: "", // TODO: Need to retrieve and add flags still
+                            flags: flags,
                             start_time: value.start_time,
                             end_time: value.end_time,
                             distractions: value.distractions,
@@ -136,8 +140,13 @@ Filter_Poms_App = function () {
         let Model = Backbone.Model.extend({
 
             defaults: {
+                date_filter: "",
                 success_filter: false,
                 distractions_filter: false
+            },
+
+            set_date_filter: function (value) {
+                this.set("date_filter", value);
             },
 
             set_success_filter: function () {
@@ -159,8 +168,13 @@ Filter_Poms_App = function () {
             tagName: "div",
 
             events: {
+                "change .date_filter": "onClickDateFilter",
                 "click .success_filter": "onClickSuccessFilter",
                 "click .distractions_filter": "onClickDistractionsFilter"
+            },
+
+            onClickDateFilter: function (e) {
+                this.trigger("filter:date", e.currentTarget.value);
             },
 
             onClickSuccessFilter: function () {
@@ -177,6 +191,7 @@ Filter_Poms_App = function () {
                 this.model = new Model();
                 this.view = new View();
 
+                this.model.listenTo(this.view, "filter:date", this.model.set_date_filter);
                 this.model.listenTo(this.view, "filter:success", this.model.set_success_filter);
                 this.model.listenTo(this.view, "filter:distractions", this.model.set_distractions_filter);
             }
@@ -213,17 +228,25 @@ Filter_Poms_App = function () {
 
             _.each(filters, function (value, key) {
                 switch (key) {
+                    case "date_filter":
+                        if (value !== "") {
+                            filtered_pomodoros = _.filter(filtered_pomodoros, function (o) {
+                                return o.date === value;
+                            });
+                        }
+                        break;
                     case "success_filter":
                         if (value === true) {
                             filtered_pomodoros = _.filter(filtered_pomodoros, function (o) {
-                                console.log(o);
                                 return o.pom_success === 0;
                             });
                         }
                         break;
                     case "distractions_filter":
                         if (value === true) {
-
+                            filtered_pomodoros = _.filter(filtered_pomodoros, function (o) {
+                                return o.distractions > 0;
+                            });
                         }
                         break;
                     default:
