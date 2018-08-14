@@ -1,12 +1,12 @@
 import json
 from helpers.my_requests import Requests
-from resources.pomodora_collection import PomodoraCollectionResource
+from resources.pomodoro_collection_today import PomodoroCollectionTodayResource
 from datetime import datetime, date
 
 
 class PomSheetExportResource:
     def on_get(self, req, resp):
-        Requests().get(req, resp, PomodoraCollectionResource())
+        Requests().get(req, resp, PomodoroCollectionTodayResource())
         todays_poms = resp.content
         data = {'poms': []}
         for row in todays_poms:

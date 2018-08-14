@@ -13,8 +13,7 @@ class URLEncodedHandler(BaseHandler):
                 qs = parse_qs(raw)
                 # I don't care what is in the dict just that I return a dict
                 for k, v in qs.items():
-                    a = k
-                    b = v
+
                     # Create list element in the dict if necessary
                     if len(v) > 1:
                         data[k.decode('utf-8')] = []

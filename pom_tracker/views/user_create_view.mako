@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pomodora Tracker</title>
+    <title>Pomodoro Tracker</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/user_create.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
@@ -12,14 +12,15 @@
 
 <header>
     <section>
-        <h2 class="header-title">Pomodora Time Tracker</h2>
+        <h2 class="header-title">Pomodoro Time Tracker</h2>
         <nav>
             <ul>
                 <li><a class="btn" role="button" href="/app/settings">&#9881;</a></li>
                 <li><a class="btn" role="button" href="/app/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/app/login">Login/Create</a></li>
                 <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
-                <li><a class="btn" role="button" href="/app/pomodora">Pomodora</a></li>
+                <li><a class="btn" role="button" href="/app/pomodoro_set">Display Poms</a></li>
+                <li><a class="btn" role="button" href="/app/pomodoro">Pomodoro</a></li>
                 <li><a class="btn" role="button" href="/app/home">Home</a></li>
             </ul>
         </nav>
@@ -39,7 +40,7 @@
                         </div>
                     % endif
                     <div class="col-12">
-                        <p>Welcome to the Pomodora Time Tracker! Time is the only non-renewable resource. Here you can
+                        <p>Welcome to the Pomodoro Time Tracker! Time is the only non-renewable resource. Here you can
                             make sure you are spending it wisely!</p>
                         <p>Create your account below and start tracking where you spend your valuable time today!</p>
                     </div>

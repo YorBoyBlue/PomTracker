@@ -18,12 +18,18 @@ from views.user_login import UserLoginResource
 from views.user_login_failed import UserLoginFailedResource
 from views.user_settings import UserSettingsResource
 from views.export_poms import ExportPomsResource
+from views.pomodoro_set import PomodoroSetResource
 from resources.delete_poms import DeletePomsResource
 from resources.session import SessionResource
 from views.session_expired import SessionExpiredResource
-from views.pomodora import PomodoraResource
-from views.pomodora_exists import PomodoraExistsResource
-from resources.pomodora_collection import PomodoraCollectionResource
+from views.pomodoro import PomodoroResource
+from views.partials.pomodoro_exists_error import PomodoroExistsErrorResource
+from views.partials.pomodoro_validation_error import \
+    PomodoroValidationErrorResource
+from resources.pomodoro_collection_today import PomodoroCollectionTodayResource
+from resources.pomodoro_collection import PomodoroCollectionResource
+from resources.pom_validation import PomodoroValidationResource
+from resources.pomodoro_replace import PomodoroReplaceResource
 from resources.flag_types import FlagTypesResource
 from resources.pom_sheet_export import PomSheetExportResource
 from models.base_model import BaseModel
@@ -33,8 +39,7 @@ class Application:
 
     def __init__(self):
         handlers = media.Handlers({
-            # falcon.MEDIA_MSGPACK: media.MessagePackHandler(),
-            # falcon.MEDIA_JSON: media.JSONHandler(),
+            'application/json': media.JSONHandler(),
             'application/x-www-form-urlencoded': URLEncodedHandler()
         })
         self.db_middleware = DatabaseMiddleware()
@@ -58,7 +63,8 @@ class Application:
         self.api.add_route('/app/home', HomeResource())
         # User routes
         self.api.add_route('/app/create', UserCreateResource())
-        self.api.add_route('/app/create_email_exists', UserCreateEmailExistsResource())
+        self.api.add_route('/app/create_email_exists',
+                           UserCreateEmailExistsResource())
         self.api.add_route('/app/login', UserLoginResource())
         self.api.add_route('/app/login_failed', UserLoginFailedResource())
         self.api.add_route('/app/session_expired', SessionExpiredResource())
@@ -66,10 +72,17 @@ class Application:
         self.api.add_route('/api/users', UserCollectionResource())
         # Session routes
         self.api.add_route('/api/session', SessionResource())
-        # Pomodora routes
-        self.api.add_route('/app/pomodora', PomodoraResource())
-        self.api.add_route('/app/pom_exists', PomodoraExistsResource())
-        self.api.add_route('/api/poms', PomodoraCollectionResource())
+        # Pomodoro routes
+        self.api.add_route('/app/pomodoro', PomodoroResource())
+        self.api.add_route('/app/pomodoro_set', PomodoroSetResource())
+        self.api.add_route('/app/pom_exists', PomodoroExistsErrorResource())
+        self.api.add_route('/app/pom_invalid',
+                           PomodoroValidationErrorResource())
+        self.api.add_route('/api/pom_validation', PomodoroValidationResource())
+        self.api.add_route('/api/poms/today',
+                           PomodoroCollectionTodayResource())
+        self.api.add_route('/api/poms', PomodoroCollectionResource())
+        self.api.add_route('/api/pom_replace', PomodoroReplaceResource())
         self.api.add_route('/api/delete_poms', DeletePomsResource())
         self.api.add_route('/api/flag_types', FlagTypesResource())
         self.api.add_route('/api/pom_sheet_export', PomSheetExportResource())
