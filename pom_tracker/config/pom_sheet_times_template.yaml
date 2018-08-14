@@ -20,6 +20,7 @@ time_blocks:
     - 3:40pm - 4:05pm
     - 4:10pm - 4:35pm
     - 4:40pm - 5:05pm # dinner after (30 mins)
+    - 5:10pm - 5:35pm
     # EVENING
     - 5:35pm - 6:00pm
     - 6:05pm - 6:30pm

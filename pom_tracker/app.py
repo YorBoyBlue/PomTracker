@@ -82,7 +82,7 @@ class Application:
         self.api.add_static_route('/assets', dir_path + '/assets')
 
     def start_app(self, forever=False):
-        httpd = make_server('localhost', 8000, self.api)
+        httpd = make_server('localhost', 1987, self.api)
 
         if forever:
             httpd.serve_forever()
