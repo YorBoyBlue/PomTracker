@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Pomodoro Tracker</title>
+    <link rel="icon" href="/assets/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/display_poms.css">
     <link rel="stylesheet" type="text/css" href="/css/pomodoro.css">
