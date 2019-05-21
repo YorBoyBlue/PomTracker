@@ -31,7 +31,7 @@ Filter_Poms_App = function () {
                     contentType: "application/json",
 
                     success: function (data, textStatus, jqXHR) {
-                        console.log(data);
+                        // console.log(data);
                         self.set(self.parse(data));
                         self.trigger("init_table");
                     },
@@ -211,7 +211,7 @@ Filter_Poms_App = function () {
 
         init_table: function () {
             let pomodoros = _.pluck(this.pomodoro.collection.models, "attributes");
-            console.log(pomodoros);
+            // console.log(this.pomodoro.collection.models);
             this.pomodoro.view.populate_table(pomodoros);
         },
 

@@ -38,7 +38,7 @@
                             <div class="alert alert-warning">
                                 <strong>Oops!</strong> We could not find a user with that email and/or password. Please
                                 double check
-                                your info or create an account if don't have one already.
+                                your info or create a new account.
                             </div>
                         % endif
                         % if session_expired:
