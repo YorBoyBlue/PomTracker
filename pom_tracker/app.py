@@ -3,7 +3,6 @@ import os
 from falcon import media
 from wsgiref.simple_server import make_server
 from error_handling.error_handler import error_handler
-from handlers.handler_urlencoded import URLEncodedHandler
 from middlewares.config_middleware import ConfigMiddleware
 from middlewares.db_middleware import DatabaseMiddleware
 from middlewares.validation_middleware import ValidationMiddleware
@@ -39,8 +38,7 @@ class Application:
 
     def __init__(self):
         handlers = media.Handlers({
-            'application/json': media.JSONHandler(),
-            'application/x-www-form-urlencoded': URLEncodedHandler()
+            'application/json': media.JSONHandler()
         })
         self.db_middleware = DatabaseMiddleware()
         self.config_middleware = ConfigMiddleware()
@@ -53,6 +51,7 @@ class Application:
             self.validation_middleware, self.negotiation_middleware
         ])
         self.api.req_options.media_handlers = handlers
+        self.api.req_options.auto_parse_form_urlencoded = True
         self.api.resp_options.media_handlers = handlers
         self.api.add_error_handler(Exception, error_handler)
         self.api.resp_options.secure_cookies_by_default = False

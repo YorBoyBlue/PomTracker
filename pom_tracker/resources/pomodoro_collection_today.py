@@ -10,7 +10,7 @@ class PomodoroCollectionTodayResource:
     def on_get(self, req, resp):
         """Handles GET requests"""
 
-        today = datetime.utcnow().date()
+        today = datetime.now().date()
         resp.content = req.context['session'].query(
             PomodoroModel).filter_by(created=today,
                                      user_id=req.context['user'].id).all()
@@ -19,31 +19,31 @@ class PomodoroCollectionTodayResource:
         """Handles POST requests"""
 
         # Parse variables to be submitted to DB
-        task = req.media.get('task', None)
-        review = req.media.get('review', None)
-        flags = req.media.get('flags', None)
-        times = req.media['time_block'].split('-')
+        task = req.get_param('task')
+        review = req.get_param('review')
+        flags = req.get_param_as_list('flags')
+        times = req.get_param('time_block').split('-')
         start_time = datetime.strptime(times[0].strip(), '%I:%M%p').replace(
             tzinfo=pytz.UTC)
         end_time = datetime.strptime(times[1].strip(), '%I:%M%p').replace(
             tzinfo=pytz.UTC)
-        today = datetime.utcnow().date()
+        today = datetime.now().date()
         user_id = req.context['user'].id
-        was_distractions = req.media.get('distractions', 0)
+        was_distractions = req.get_param('distractions', default=0)
         distractions = 0
         if was_distractions:
-            for distraction in req.media['distractions']:
+            for distraction in req.get_param_as_list('distractions'):
                 distractions += 1
-        pom_success = req.media.get('pom_success', 0)
+        pom_success = req.get_param('pom_success',  default=0)
 
         # Store form data that came in from the user
         form_data = {
-            'distractions': req.media.get('distractions'),
+            'distractions': req.get_param('distractions'),
             'pom_success': pom_success,
             'review': review,
             'task': task,
             'flags': flags,
-            'time_block': req.media['time_block']
+            'time_block': req.get_param('time_block')
         }
 
         # Create pomodoro model object to submit to DB

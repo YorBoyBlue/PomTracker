@@ -19,8 +19,8 @@ class ExportPomsResource:
     def on_post(self, req, resp):
         """Handles POST requests"""
 
-        start_date = req.media['start_date']
-        end_date = req.media['end_date']
+        start_date = req.get_param('start_date')
+        end_date = req.get_param('end_date')
 
         # Query poms within start and end dates
         poms = req.context['session'].query(

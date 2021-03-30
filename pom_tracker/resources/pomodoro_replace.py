@@ -20,7 +20,7 @@ class PomodoroReplaceResource:
             tzinfo=pytz.UTC)
         end_time = datetime.strptime(times[1].strip(), '%I:%M%p').replace(
             tzinfo=pytz.UTC)
-        today = datetime.utcnow().date()
+        today = datetime.now().date()
         user_id = req.context['user'].id
         was_distractions = req.media.get('distractions', 0)
         distractions = 0

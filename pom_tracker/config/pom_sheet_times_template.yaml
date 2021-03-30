@@ -1,6 +1,6 @@
 time_blocks:
     # EARLY MORNING
-    - 7:00am - 7:25am # 10 min break after
+    - 7:00am - 7:25am
     - 7:30am - 7:55am
     - 8:00am - 8:25am
     - 8:30am - 8:55am # 10 min break after
@@ -47,5 +47,5 @@ time_blocks:
     - 4:25am - 4:50am
     - 4:55am - 5:20am # breakfast after (30 mins)
     - 5:25am - 5:50am
-    - 5:55am - 6:20am
-    - 6:25am - 6:50am
+    - 5:55am - 6:20am # 10 min break after
+    - 6:30am - 6:55am
