@@ -40,30 +40,47 @@
                             </div>
                             <br><br>
                             <div class="row">
-                                <h5 style="padding-top: 5px; margin-right: 5px">Time Block:</h5>
-                                <select style="width: auto" class="custom-select" name="time_block">
-                                    % for time in time_blocks:
-                                        <option>${time}</option>
-                                    % endfor
-                                </select>
+                                <h5 style="padding-top: 5px; margin-right: 5px">Time Blocks:</h5>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        Select Times
+                                    </button>
+                                    <div id="time-block-dropdown" class="dropdown-menu"
+                                         aria-labelledby="dropdownMenuButton">
+                                        % for time in time_blocks:
+                                            <input name="time_block" type="checkbox"
+                                                   value="${time}">
+                                            <label class="form-check-label" for="dropdownCheck">
+                                                ${time}</label><br>
+                                        % endfor
+                                    </div>
+                                </div>
                             </div>
                             <br><br>
                             <div class="row">
                                 <div style="float: left; margin-right: 30px">
                                     <h5>Flags:</h5>
                                     % for flag in flag_types:
-                                        <input type="checkbox" name="flags" value="${flag[0]}"> ${flag[0]}  <br>
+                                        <input type="checkbox" name="flags"
+                                               value="${flag[0]}"> ${flag[0]}  <br>
                                     % endfor
                                 </div>
                                 <div class="distractions">
                                     <h5>Distractions:</h5>
-                                    <input class="distractions_check top" type="checkbox" name="distractions" value="1">
-                                    <input class="distractions_check" type="checkbox" name="distractions" value="2"><br>
-                                    <input class="distractions_check middle" type="checkbox" name="distractions"
+                                    <input class="distractions_check top" type="checkbox"
+                                           name="distractions" value="1">
+                                    <input class="distractions_check" type="checkbox"
+                                           name="distractions" value="2"><br>
+                                    <input class="distractions_check middle" type="checkbox"
+                                           name="distractions"
                                            value="3"><br>
-                                    <input class="distractions_check bottom" type="checkbox" name="distractions"
+                                    <input class="distractions_check bottom" type="checkbox"
+                                           name="distractions"
                                            value="4">
-                                    <input class="distractions_check" type="checkbox" name="distractions" value="5">
+                                    <input class="distractions_check" type="checkbox"
+                                           name="distractions" value="5">
                                 </div>
                             </div>
                         </div>
@@ -76,12 +93,17 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6" style="padding-left: 0">
-                                    <input style="margin-top: 5px; margin-right: 5px" type="checkbox" name="pom_success"
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6"
+                                     style="padding-left: 0">
+                                    <input style="margin-top: 5px; margin-right: 5px"
+                                           type="checkbox" name="pom_success"
                                            value="1"> Was this pom successful? <br>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6" style="padding-right: 0">
-                                    <input style="width: 170px" class="btn btn-primary main-button float-right" role="button"
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6"
+                                     style="padding-right: 0">
+                                    <input style="width: 170px"
+                                           class="btn btn-primary main-button float-right"
+                                           role="button"
                                            value='Submit Pomodoro' onclick="submitPom()">
                                 </div>
                             </div>
@@ -98,9 +120,11 @@
             <div class="col-md-12">
                 <form action='/api/delete_poms' method='post'>
                     <br>
-                    <a class="btn btn-success float-right main-button" href="/api/pom_sheet_export" role="button">Export
+                    <a class="btn btn-success float-right main-button" href="/api/pom_sheet_export"
+                       role="button">Export
                         Sheet</a>
-                    <input style="margin-right: 15px" class="btn btn-secondary float-right main-button" type='submit'
+                    <input style="margin-right: 15px"
+                           class="btn btn-secondary float-right main-button" type='submit'
                            role="button"
                            value='Delete Selected Poms'>
                     <h1>Todays Pom Sheet</h1>
@@ -170,7 +194,7 @@
         <span class="footer">&copy; Arin Blue 2018</span>
     </div>
 </footer>
-<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
 <script src="/js/submit_pom.js"></script>
 </body>
 </html>

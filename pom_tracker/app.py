@@ -28,7 +28,6 @@ from views.partials.pomodoro_validation_error import \
 from resources.pomodoro_collection_today import PomodoroCollectionTodayResource
 from resources.pomodoro_collection import PomodoroCollectionResource
 from resources.pom_validation import PomodoroValidationResource
-from resources.pomodoro_replace import PomodoroReplaceResource
 from resources.flag_types import FlagTypesResource
 from resources.pom_sheet_export import PomSheetExportResource
 from models.base_model import BaseModel
@@ -81,7 +80,6 @@ class Application:
         self.api.add_route('/api/poms/today',
                            PomodoroCollectionTodayResource())
         self.api.add_route('/api/poms', PomodoroCollectionResource())
-        self.api.add_route('/api/pom_replace', PomodoroReplaceResource())
         self.api.add_route('/api/delete_poms', DeletePomsResource())
         self.api.add_route('/api/flag_types', FlagTypesResource())
         self.api.add_route('/api/pom_sheet_export', PomSheetExportResource())

@@ -81,6 +81,6 @@
         <span class="footer">&copy; Arin Blue 2018</span>
     </div>
 </footer>
-<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
 </body>
 </html>

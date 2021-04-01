@@ -12,16 +12,16 @@ class PomodoroValidationResource:
         task = req.get_param('task')
         review = req.get_param('review')
         flags = req.get_param_as_list('flags')
-        pom_success = req.get_param('pom_success', default=0)
+        time_blocks = req.get_param_as_list('time_block')
 
         # Store form data that came in from the user
         form_data = {
             'distractions': req.get_param('distractions'),
-            'pom_success': pom_success,
+            'pom_success': req.get_param('pom_success', default=0),
             'review': review,
             'task': task,
             'flags': flags,
-            'time_block': req.get_param('time_block')
+            'selected_time_blocks': time_blocks
         }
 
         # Validate form
