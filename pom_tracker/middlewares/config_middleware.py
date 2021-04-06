@@ -23,12 +23,14 @@ class ConfigMiddleware:
             '/assets/'
         ]
         self.included_paths_user = [
-            '/app/pomodora',
+            '/app/pomodoro',
+            '/api/poms/today',
             '/api/poms',
             '/api/pom_sheet_export',
             '/app/export_poms',
             '/app/pom_exists',
-            '/app/logout'
+            '/app/logout',
+            '/api/pom_replace'
         ]
 
     def process_request(self, req, resp):

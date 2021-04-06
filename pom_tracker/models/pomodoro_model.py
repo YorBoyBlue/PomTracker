@@ -3,8 +3,8 @@ from sqlalchemy.orm import relationship
 from models.base_model import BaseModel
 
 
-class PomodoraModel(BaseModel):
-    __tablename__ = 'pomodora'
+class PomodoroModel(BaseModel):
+    __tablename__ = 'pomodoro'
 
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, nullable=False)
@@ -24,7 +24,7 @@ class PomodoraModel(BaseModel):
                       )
 
     def __repr__(self):
-        return "<Pomodora(id='%s', user_id='%s', task='%s', review='%s', " \
+        return "<Pomodoro(id='%s', user_id='%s', task='%s', review='%s', " \
                "flags=%s, created='%s', distractions='%s', pom_success='%s'," \
                " start_time='%s', end_time='%s')>" % (
                    self.id, self.user_id, self.task, self.review, self.flags,

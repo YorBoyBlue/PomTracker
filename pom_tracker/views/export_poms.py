@@ -1,7 +1,7 @@
 import json
 import os
 from mako.template import Template
-from models.pomodora_model import PomodoraModel
+from models.pomodoro_model import PomodoroModel
 from datetime import datetime
 
 
@@ -19,15 +19,15 @@ class ExportPomsResource:
     def on_post(self, req, resp):
         """Handles POST requests"""
 
-        start_date = req.media['start_date']
-        end_date = req.media['end_date']
+        start_date = req.get_param('start_date')
+        end_date = req.get_param('end_date')
 
         # Query poms within start and end dates
         poms = req.context['session'].query(
-            PomodoraModel).filter(PomodoraModel.created <= end_date). \
-            filter(PomodoraModel.created >= start_date).filter_by(
+            PomodoroModel).filter(PomodoroModel.created <= end_date). \
+            filter(PomodoroModel.created >= start_date).filter_by(
             user_id=req.context['user'].id).order_by(
-            PomodoraModel.created, PomodoraModel.start_time).all()
+            PomodoroModel.created, PomodoroModel.start_time).all()
 
         data = {'poms': []}
         for row in poms:

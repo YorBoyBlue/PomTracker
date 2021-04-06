@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pomodora Tracker</title>
+    <title>Pomodoro Tracker</title>
+    <link rel="icon" href="/assets/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/user_create.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
@@ -12,14 +13,15 @@
 
 <header>
     <section>
-        <h2 class="header-title">Pomodora Time Tracker</h2>
+        <h2 class="header-title">Pomodoro Time Tracker</h2>
         <nav>
             <ul>
                 <li><a class="btn" role="button" href="/app/settings">&#9881;</a></li>
                 <li><a class="btn" role="button" href="/app/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/app/login">Login/Create</a></li>
                 <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
-                <li><a class="btn" role="button" href="/app/pomodora">Pomodora</a></li>
+                <li><a class="btn" role="button" href="/app/pomodoro_set">Display Poms</a></li>
+                <li><a class="btn" role="button" href="/app/pomodoro">Pomodoro</a></li>
                 <li><a class="btn" role="button" href="/app/home">Home</a></li>
             </ul>
         </nav>
@@ -36,7 +38,7 @@
                             <div class="alert alert-warning">
                                 <strong>Oops!</strong> We could not find a user with that email and/or password. Please
                                 double check
-                                your info or create an account if don't have one already.
+                                your info or create a new account.
                             </div>
                         % endif
                         % if session_expired:
@@ -44,7 +46,7 @@
                                 <strong>Oops!</strong> Your session has expired. Please login to verify it is still you.
                             </div>
                         % endif
-                        <p>Welcome to the Pomodora Time Tracker! Time is the only non-renewable resource. Here you can
+                        <p>Welcome to the Pomodoro Time Tracker! Time is the only non-renewable resource. Here you can
                             make sure you are spending it wisely!</p>
                         <br>
                         <p>If you do not already have an account, you can create a new one by clicking the button below
@@ -90,6 +92,6 @@
         <span class="footer">&copy; Arin Blue 2018</span>
     </div>
 </footer>
-<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
 </body>
 </html>

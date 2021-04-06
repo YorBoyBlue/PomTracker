@@ -3,7 +3,6 @@ import os
 from falcon import media
 from wsgiref.simple_server import make_server
 from error_handling.error_handler import error_handler
-from handlers.handler_urlencoded import URLEncodedHandler
 from middlewares.config_middleware import ConfigMiddleware
 from middlewares.db_middleware import DatabaseMiddleware
 from middlewares.validation_middleware import ValidationMiddleware
@@ -18,12 +17,17 @@ from views.user_login import UserLoginResource
 from views.user_login_failed import UserLoginFailedResource
 from views.user_settings import UserSettingsResource
 from views.export_poms import ExportPomsResource
+from views.pomodoro_set import PomodoroSetResource
 from resources.delete_poms import DeletePomsResource
 from resources.session import SessionResource
 from views.session_expired import SessionExpiredResource
-from views.pomodora import PomodoraResource
-from views.pomodora_exists import PomodoraExistsResource
-from resources.pomodora_collection import PomodoraCollectionResource
+from views.pomodoro import PomodoroResource
+from views.partials.pomodoro_exists_error import PomodoroExistsErrorResource
+from views.partials.pomodoro_validation_error import \
+    PomodoroValidationErrorResource
+from resources.pomodoro_collection_today import PomodoroCollectionTodayResource
+from resources.pomodoro_collection import PomodoroCollectionResource
+from resources.pom_validation import PomodoroValidationResource
 from resources.flag_types import FlagTypesResource
 from resources.pom_sheet_export import PomSheetExportResource
 from models.base_model import BaseModel
@@ -33,9 +37,7 @@ class Application:
 
     def __init__(self):
         handlers = media.Handlers({
-            # falcon.MEDIA_MSGPACK: media.MessagePackHandler(),
-            # falcon.MEDIA_JSON: media.JSONHandler(),
-            'application/x-www-form-urlencoded': URLEncodedHandler()
+            'application/json': media.JSONHandler()
         })
         self.db_middleware = DatabaseMiddleware()
         self.config_middleware = ConfigMiddleware()
@@ -48,6 +50,7 @@ class Application:
             self.validation_middleware, self.negotiation_middleware
         ])
         self.api.req_options.media_handlers = handlers
+        self.api.req_options.auto_parse_form_urlencoded = True
         self.api.resp_options.media_handlers = handlers
         self.api.add_error_handler(Exception, error_handler)
         self.api.resp_options.secure_cookies_by_default = False
@@ -58,7 +61,8 @@ class Application:
         self.api.add_route('/app/home', HomeResource())
         # User routes
         self.api.add_route('/app/create', UserCreateResource())
-        self.api.add_route('/app/create_email_exists', UserCreateEmailExistsResource())
+        self.api.add_route('/app/create_email_exists',
+                           UserCreateEmailExistsResource())
         self.api.add_route('/app/login', UserLoginResource())
         self.api.add_route('/app/login_failed', UserLoginFailedResource())
         self.api.add_route('/app/session_expired', SessionExpiredResource())
@@ -66,10 +70,16 @@ class Application:
         self.api.add_route('/api/users', UserCollectionResource())
         # Session routes
         self.api.add_route('/api/session', SessionResource())
-        # Pomodora routes
-        self.api.add_route('/app/pomodora', PomodoraResource())
-        self.api.add_route('/app/pom_exists', PomodoraExistsResource())
-        self.api.add_route('/api/poms', PomodoraCollectionResource())
+        # Pomodoro routes
+        self.api.add_route('/app/pomodoro', PomodoroResource())
+        self.api.add_route('/app/pomodoro_set', PomodoroSetResource())
+        self.api.add_route('/app/pom_exists', PomodoroExistsErrorResource())
+        self.api.add_route('/app/pom_invalid',
+                           PomodoroValidationErrorResource())
+        self.api.add_route('/api/pom_validation', PomodoroValidationResource())
+        self.api.add_route('/api/poms/today',
+                           PomodoroCollectionTodayResource())
+        self.api.add_route('/api/poms', PomodoroCollectionResource())
         self.api.add_route('/api/delete_poms', DeletePomsResource())
         self.api.add_route('/api/flag_types', FlagTypesResource())
         self.api.add_route('/api/pom_sheet_export', PomSheetExportResource())
@@ -82,7 +92,7 @@ class Application:
         self.api.add_static_route('/assets', dir_path + '/assets')
 
     def start_app(self, forever=False):
-        httpd = make_server('localhost', 8000, self.api)
+        httpd = make_server('localhost', 1987, self.api)
 
         if forever:
             httpd.serve_forever()
