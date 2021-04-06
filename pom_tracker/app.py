@@ -3,7 +3,6 @@ import os
 from falcon import media
 from wsgiref.simple_server import make_server
 from error_handling.error_handler import error_handler
-from handlers.handler_urlencoded import URLEncodedHandler
 from middlewares.config_middleware import ConfigMiddleware
 from middlewares.db_middleware import DatabaseMiddleware
 from middlewares.validation_middleware import ValidationMiddleware
@@ -29,7 +28,6 @@ from views.partials.pomodoro_validation_error import \
 from resources.pomodoro_collection_today import PomodoroCollectionTodayResource
 from resources.pomodoro_collection import PomodoroCollectionResource
 from resources.pom_validation import PomodoroValidationResource
-from resources.pomodoro_replace import PomodoroReplaceResource
 from resources.flag_types import FlagTypesResource
 from resources.pom_sheet_export import PomSheetExportResource
 from models.base_model import BaseModel
@@ -39,8 +37,7 @@ class Application:
 
     def __init__(self):
         handlers = media.Handlers({
-            'application/json': media.JSONHandler(),
-            'application/x-www-form-urlencoded': URLEncodedHandler()
+            'application/json': media.JSONHandler()
         })
         self.db_middleware = DatabaseMiddleware()
         self.config_middleware = ConfigMiddleware()
@@ -53,6 +50,7 @@ class Application:
             self.validation_middleware, self.negotiation_middleware
         ])
         self.api.req_options.media_handlers = handlers
+        self.api.req_options.auto_parse_form_urlencoded = True
         self.api.resp_options.media_handlers = handlers
         self.api.add_error_handler(Exception, error_handler)
         self.api.resp_options.secure_cookies_by_default = False
@@ -82,7 +80,6 @@ class Application:
         self.api.add_route('/api/poms/today',
                            PomodoroCollectionTodayResource())
         self.api.add_route('/api/poms', PomodoroCollectionResource())
-        self.api.add_route('/api/pom_replace', PomodoroReplaceResource())
         self.api.add_route('/api/delete_poms', DeletePomsResource())
         self.api.add_route('/api/flag_types', FlagTypesResource())
         self.api.add_route('/api/pom_sheet_export', PomSheetExportResource())
@@ -95,7 +92,7 @@ class Application:
         self.api.add_static_route('/assets', dir_path + '/assets')
 
     def start_app(self, forever=False):
-        httpd = make_server('localhost', 8000, self.api)
+        httpd = make_server('localhost', 1987, self.api)
 
         if forever:
             httpd.serve_forever()

@@ -27,8 +27,9 @@ class UserLoginResource:
 
         # Validate user
         try:
+            email = req.get_param('email')
             user = req.context['session'].query(
-                UserModel).filter_by(email=req.media['email']).one()
+                UserModel).filter_by(email=email).one()
 
         # User was not found, send back to login failed end point
         except NoResultFound as e:
@@ -37,7 +38,7 @@ class UserLoginResource:
         # User email is validated. Validate password as well
         else:
             # User is validated, create or modify existing session for the user
-            if user.password == req.media['password']:
+            if user.password == req.get_param('password'):
                 rand_string = ''.join(
                     random.choices(string.ascii_uppercase + string.digits,
                                    k=20))
@@ -69,7 +70,7 @@ class UserLoginResource:
                 # Send user to the pomodoro page
                 finally:
                     resp.set_cookie('pomodoro_login_hash', pomodoro_login_hash,
-                                    max_age=88200, path='/')
+                                    max_age=79200, path='/')
                     raise falcon.HTTPFound('/app/pomodoro')
 
             else:

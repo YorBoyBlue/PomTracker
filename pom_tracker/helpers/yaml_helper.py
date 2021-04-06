@@ -1,4 +1,5 @@
 import yaml
+from yaml import safe_load
 
 
 class YamlHelper:
@@ -7,7 +8,7 @@ class YamlHelper:
 
     def loader(self, filepath):
         with open(filepath, 'r') as f:
-            data = yaml.load(f)
+            data = safe_load(f)
         return data
 
     def dump(self, filepath, data):

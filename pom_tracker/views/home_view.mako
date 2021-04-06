@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Pomodoro Tracker</title>
+    <link rel="icon" href="/assets/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/user_create.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
@@ -67,6 +68,6 @@
         <span class="footer">&copy; Arin Blue 2018</span>
     </div>
 </footer>
-<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
 </body>
 </html>

@@ -9,19 +9,19 @@ class PomodoroValidationResource:
         """Handles POST requests"""
 
         # Parse variables to be submitted to DB
-        task = req.media.get('task', None)
-        review = req.media.get('review', None)
-        flags = req.media.get('flags', None)
-        pom_success = req.media.get('pom_success', 0)
+        task = req.get_param('task')
+        review = req.get_param('review')
+        flags = req.get_param_as_list('flags')
+        time_blocks = req.get_param_as_list('time_block')
 
         # Store form data that came in from the user
         form_data = {
-            'distractions': req.media.get('distractions'),
-            'pom_success': pom_success,
+            'distractions': req.get_param('distractions'),
+            'pom_success': req.get_param('pom_success', default=0),
             'review': review,
             'task': task,
             'flags': flags,
-            'time_block': req.media['time_block']
+            'selected_time_blocks': time_blocks
         }
 
         # Validate form

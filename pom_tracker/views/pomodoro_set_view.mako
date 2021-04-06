@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Pomodoro Tracker</title>
+    <link rel="icon" href="/assets/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/display_poms.css">
     <link rel="stylesheet" type="text/css" href="/css/pomodoro.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 </head>
 <body class="my-body">
@@ -54,7 +57,7 @@
                                 <br>
                                 <h6>Unsuccessful</h6>
                                 <label class="switch">
-                                    <input class='success_filter' type="checkbox">
+                                    <input class='unsuccessful_filter' type="checkbox">
                                     <span class="slider round"></span>
                                 </label>
                                 <br>
@@ -77,6 +80,38 @@
         <div class="row pom-sheet">
             <div class="col-md-12">
                 <h1>Pomodoros</h1>
+                <div class="pagination">
+                    <ul>
+                        <li>
+                            <a id="first" class="pagination-offset-link" data-pagenum="1"
+                               href="#">First</a>
+                        </li>
+                        <li class="active">
+                            <a id="offset1" class="pagination-offset-link" data-pagenum="1"
+                               href="#">1</a>
+                        </li>
+                        <li>
+                            <a id="offset2" class="pagination-offset-link" data-pagenum="2"
+                               href="#">2</a>
+                        </li>
+                        <li>
+                            <a id="offset3" class="pagination-offset-link" data-pagenum="3"
+                               href="#">3</a>
+                        </li>
+                        <li>
+                            <a id="offset4" class="pagination-offset-link" data-pagenum="4"
+                               href="#">4</a>
+                        </li>
+                        <li>
+                            <a id="offset5" class="pagination-offset-link" data-pagenum="5"
+                               href="#">5</a>
+                        </li>
+                        <li>
+                            <a id="last" class="pagination-offset-link" data-pagenum="1" href="#">Last</a>
+                        </li>
+                    </ul>
+                    <span id="pagination-count-info"></span>
+                </div>
                 <table id="pom-table" width="100%">
                     <thead>
                     <tr>
@@ -108,10 +143,10 @@
         <span class="footer">&copy; Arin Blue 2018</span>
     </div>
 </footer>
-<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
 <script type="text/javascript" src="/js/underscore-min.js"></script>
 <script type="text/javascript" src="/js/backbone-min.js"></script>
 
-<script src="/js/filter_poms.js"></script>
+<script src="/js/pom_collection_app.js"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@ class SessionResource:
 
                 else:
                     session_modified_time = my_session.modified
-                    tdelta = datetime.timedelta(hours=24)
+                    tdelta = datetime.timedelta(hours=22)
                     now = datetime.datetime.utcnow()
                     session_expire_time = session_modified_time + tdelta
 

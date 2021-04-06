@@ -8,18 +8,18 @@ class UserCollectionResource:
     def on_get(self, req, resp):
         """Handles GET requests"""
         resp.content = req.context['session'].query(
-            UserModel).filter_by(email=req.media['email'])
+            UserModel).filter_by(email=req.get_param('email'))
 
     def on_post(self, req, resp):
         """Handles POST requests"""
 
         # Add user to the DB
-        email = req.media['email']
-        first_name = req.media['first_name']
-        middle_name = req.media.get('middle_name', None)
-        last_name = req.media['last_name']
-        display_name = req.media.get('display_name', None)
-        password = req.media['password']
+        email = req.get_param('email')
+        first_name = req.get_param('first_name')
+        middle_name = req.get_param('middle_name')
+        last_name = req.get_param('last_name')
+        display_name = req.get_param('display_name')
+        password = req.get_param('password')
         today = datetime.utcnow()
         user_to_add = UserModel(email=email,
                                 first_name=first_name, middle_name=middle_name,

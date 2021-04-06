@@ -21,7 +21,7 @@ class PomodoroExistsErrorResource:
         resp.body = pomodoro_template.render(
             time_blocks=req.context['time_blocks'],
             flag_types=flag_types,
-            time_block=form_data.get('time_block'),
+            selected_time_blocks=form_data.get('selected_time_blocks'),
             flags=form_data.get('flags'),
             task=form_data.get('task'),
             review=form_data.get('review'),

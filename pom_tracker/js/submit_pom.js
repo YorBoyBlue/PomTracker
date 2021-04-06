@@ -33,9 +33,9 @@ function submitPom() {
 
                 error: function (jqXHR, textStatus, errorThrown) {
 
-                    console.log(data);
-                    console.log(textStatus);
-                    console.log(jqXHR.responseText);
+                    // console.log(data);
+                    // console.log(textStatus);
+                    // console.log(jqXHR.responseText);
                     let error_data = $.parseJSON(jqXHR.responseText).title;
                     $.ajax({
                         url: '/app/pom_exists',
@@ -112,7 +112,7 @@ function replacePom() {
                         // console.log('success');
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        // console.log('error');
+                        console.log('error');
                     }
                 });
             }
