@@ -4,8 +4,8 @@
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery'), require('popper.js')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('./jquery'), require('popper.js')) :
+  typeof define === 'function' && define.amd ? define(['exports', './jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
 
@@ -1461,7 +1461,7 @@
       DROPLEFT: 'dropleft',
       MENURIGHT: 'dropdown-menu-right',
       MENULEFT: 'dropdown-menu-left',
-      POSITION_STATIC: 'position-static'
+      POSITION_STATIC: 'position-assets'
     };
     var Selector = {
       DATA_TOGGLE: '[data-toggle="dropdown"]',
@@ -1563,7 +1563,7 @@
             if (typeof this._config.reference.jquery !== 'undefined') {
               referenceElement = this._config.reference[0];
             }
-          } // If boundary is not `scrollParent`, then set position to `static`
+          } // If boundary is not `scrollParent`, then set position to `assets`
           // to allow the menu to "escape" the scroll parent's boundaries
           // https://github.com/twbs/bootstrap/issues/24251
 
@@ -1691,11 +1691,11 @@
             preventOverflow: {
               boundariesElement: this._config.boundary
             }
-          } // Disable Popper.js if we have a static display
+          } // Disable Popper.js if we have a assets display
 
         };
 
-        if (this._config.display === 'static') {
+        if (this._config.display === 'assets') {
           popperConfig.modifiers.applyStyle = {
             enabled: false
           };
@@ -2243,7 +2243,7 @@
               return;
             }
 
-            if (_this8._config.backdrop === 'static') {
+            if (_this8._config.backdrop === 'assets') {
               _this8._element.focus();
             } else {
               _this8.hide();
