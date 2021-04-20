@@ -3,7 +3,7 @@ from helpers.yaml_helper import YamlHelper
 
 class ConfigMiddleware:
     def __init__(self):
-        filepath = 'config/pom_sheet_times_template.yaml'
+        filepath = 'pom_tracker/config/pom_sheet_times_template.yaml'
         data = YamlHelper().loader(filepath)
         self.time_blocks = data.get('time_blocks')
         self.excluded_paths_validate = [

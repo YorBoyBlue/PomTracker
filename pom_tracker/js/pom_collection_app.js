@@ -1,3 +1,5 @@
+// noinspection JSVoidFunctionReturnValueUsed
+
 let pom_app = {};
 
 Pom_Collection_App = function () {

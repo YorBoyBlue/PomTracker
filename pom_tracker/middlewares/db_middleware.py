@@ -3,9 +3,11 @@ from sqlalchemy.orm import sessionmaker
 
 
 class DatabaseMiddleware:
+    engine: create_engine
+    session: sessionmaker
+
     def __init__(self):
         self.engine = create_engine('sqlite:///database/pom_tracker.db')
-
         self.Session = sessionmaker(bind=self.engine)
 
     def process_request(self, req, resp):
