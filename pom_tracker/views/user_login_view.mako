@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Pomodoro Tracker</title>
-    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/user_create.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
@@ -16,13 +16,13 @@
         <h2 class="header-title">Pomodoro Time Tracker</h2>
         <nav>
             <ul>
-                <li><a class="btn" role="button" href="/app/settings">&#9881;</a></li>
-                <li><a class="btn" role="button" href="/app/logout">Logout</a></li>
-                <li><a class="btn" role="button" href="/app/login">Login/Create</a></li>
+                <li><a class="btn" role="button" href="/user/settings">&#9881;</a></li>
+                <li><a class="btn" role="button" href="/user/logout">Logout</a></li>
+                <li><a class="btn" role="button" href="/user/login">Login/Create</a></li>
                 <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
                 <li><a class="btn" role="button" href="/app/pomodoro_set">Display Poms</a></li>
-                <li><a class="btn" role="button" href="/app/pomodoro">Pomodoro</a></li>
-                <li><a class="btn" role="button" href="/app/home">Home</a></li>
+                <li><a class="btn" role="button" href="/pomodoro">Pomodoro</a></li>
+                <li><a class="btn" role="button" href="/home">Home</a></li>
             </ul>
         </nav>
     </section>
@@ -55,13 +55,13 @@
                             today!</p>
 
                         <br>
-                        <a class="btn btn-success main-button" href="/app/create" role="button">Create New Account</a>
+                        <a class="btn btn-success main-button" href="/user/create" role="button">Create New Account</a>
                         <br><br><br>
 
                         <p>If you do already have an account, login below.</p>
                     </div>
                 </div>
-                <form action='/app/login' method='post' autocomplete="on">
+                <form action='/user/login' method='post' autocomplete="on">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                             <h2>Login:</h2>
@@ -83,7 +83,7 @@
         </div>
     </div>
     <div>
-        <img class="time-image mx-auto d-block" src="/assets/time.jpg">
+        <img class="time-image mx-auto d-block" src="/images/time.jpg">
     </div>
     <div></div>
 </main>

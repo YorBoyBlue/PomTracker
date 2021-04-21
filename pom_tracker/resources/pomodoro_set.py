@@ -1,4 +1,3 @@
-import os
 from mako.template import Template
 
 
@@ -8,7 +7,5 @@ class PomodoroSetResource:
 
         resp.content_type = 'text/html'
 
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        pomodoro_template = Template(
-            filename=dir_path + '/pomodoro_set_view.mako')
+        pomodoro_template = Template(filename='pom_tracker/views/pomodoro_set_view.mako')
         resp.body = pomodoro_template.render()

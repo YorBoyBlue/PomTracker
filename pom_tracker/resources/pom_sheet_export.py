@@ -1,13 +1,13 @@
 import json
-from helpers.my_requests import Requests
-from resources.pomodoro_collection_today import PomodoroCollectionTodayResource
+from controllers.pomodoro import get_todays_poms
 from datetime import datetime, date
 
 
 class PomSheetExportResource:
     def on_get(self, req, resp):
-        Requests().get(req, resp, PomodoroCollectionTodayResource())
-        todays_poms = resp.content
+
+        todays_poms = get_todays_poms(req.context['user'].id)
+
         data = {'poms': []}
         for row in todays_poms:
             pom = {

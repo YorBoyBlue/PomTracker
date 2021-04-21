@@ -4,19 +4,15 @@ from datetime import datetime
 from sqlalchemy.exc import IntegrityError
 from models.pomodoro_model import PomodoroModel
 from models.pom_flags_model import PomFlagsModel
+from database.database_manager import dbm
 
 
 class PomodoroCollectionTodayResource:
-    def on_get(self, req, resp):
-        """Handles GET requests"""
-
-        today = datetime.now().date()
-        resp.content = req.context['session'].query(
-            PomodoroModel).filter_by(created=today,
-                                     user_id=req.context['user'].id).all()
 
     def on_post(self, req, resp):
         """Handles POST requests"""
+
+        db = dbm.get_db()
 
         # Parse variables to be submitted to DB
         task = req.get_param('task')
@@ -46,29 +42,29 @@ class PomodoroCollectionTodayResource:
 
             times = time_block.split('-')
 
-            start_time = datetime.strptime(times[0].strip(), '%I:%M%p').replace(
-                tzinfo=pytz.UTC)
-            end_time = datetime.strptime(times[1].strip(), '%I:%M%p').replace(
-                tzinfo=pytz.UTC)
+            start_time = datetime.strptime(times[0].strip(), '%I:%M%p').replace(tzinfo=pytz.UTC)
+            end_time = datetime.strptime(times[1].strip(), '%I:%M%p').replace(tzinfo=pytz.UTC)
 
             # Create pomodoro model object to submit to DB
-            pom_to_add = PomodoroModel(user_id=user_id,
-                                       distractions=distractions,
-                                       pom_success=pom_success,
-                                       task=task,
-                                       review=review, created=today,
-                                       start_time=start_time.time(),
-                                       end_time=end_time.time())
+            pom_to_add = PomodoroModel(
+                user_id=user_id,
+                distractions=distractions,
+                pom_success=pom_success,
+                task=task,
+                review=review, created=today,
+                start_time=start_time.time(),
+                end_time=end_time.time()
+            )
             for flag in flags:
                 pom_to_add.flags.append(PomFlagsModel(flag_type=flag))
 
             # Add pom to the DB
             try:
-                req.context['session'].add(pom_to_add)
-                req.context['session'].commit()
+                db.add(pom_to_add)
+                db.commit()
             except IntegrityError as e:
                 # Pomodoro already exists with that time block
-                req.context['session'].rollback()
+                db.rollback()
                 # Create dict with form data to send back to the browser
                 data = {
                     'form_data': form_data,

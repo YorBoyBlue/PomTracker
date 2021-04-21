@@ -1,8 +1,8 @@
 import json
-import os
 from mako.template import Template
 from models.pomodoro_model import PomodoroModel
 from datetime import datetime
+from database.database_manager import dbm
 
 
 class ExportPomsResource:
@@ -11,19 +11,19 @@ class ExportPomsResource:
 
         resp.content_type = 'text/html'
 
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        user_login_template = Template(
-            filename=dir_path + '/export_poms_view.mako')
+        user_login_template = Template(filename='pom_tracker/views/export_poms_view.mako')
         resp.body = user_login_template.render()
 
     def on_post(self, req, resp):
         """Handles POST requests"""
 
+        db = dbm.get_db()
+
         start_date = req.get_param('start_date')
         end_date = req.get_param('end_date')
 
         # Query poms within start and end dates
-        poms = req.context['session'].query(
+        poms = db.query(
             PomodoroModel).filter(PomodoroModel.created <= end_date). \
             filter(PomodoroModel.created >= start_date).filter_by(
             user_id=req.context['user'].id).order_by(

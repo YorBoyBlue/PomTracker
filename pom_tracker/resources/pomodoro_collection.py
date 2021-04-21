@@ -1,9 +1,12 @@
 from models.pomodoro_model import PomodoroModel
+from database.database_manager import dbm
 
 
 class PomodoroCollectionResource:
     def on_get(self, req, resp):
         """Handles GET requests"""
+
+        db = dbm.get_db()
 
         limit = 20
         offset = req.get_param_as_int('offset', default=0)
@@ -11,8 +14,7 @@ class PomodoroCollectionResource:
         distractions_filter = req.get_param_as_int('distractions_filter')
         unsuccessful_filter = req.get_param_as_int('unsuccessful_filter')
 
-        query = req.context['session'].query(
-            PomodoroModel).filter_by(user_id=req.context['user'].id)
+        query = db.query(PomodoroModel).filter_by(user_id=req.context['user'].id)
 
         # Apply filters
         if date_filter:

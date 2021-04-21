@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico">
     <title>Pomodoro Tracker</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/pomodoro.css">
@@ -16,13 +16,13 @@
         <h2 class="header-title">Pomodoro Time Tracker</h2>
         <nav>
             <ul>
-                <li><a class="btn" role="button" href="/app/settings">&#9881;</a></li>
-                <li><a class="btn" role="button" href="/app/logout">Logout</a></li>
-                <li><a class="btn" role="button" href="/app/login">Login/Create</a></li>
+                <li><a class="btn" role="button" href="/user/settings">&#9881;</a></li>
+                <li><a class="btn" role="button" href="/user/logout">Logout</a></li>
+                <li><a class="btn" role="button" href="/user/login">Login/Create</a></li>
                 <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
                 <li><a class="btn" role="button" href="/app/pomodoro_set">Display Poms</a></li>
-                <li><a class="btn" role="button" href="/app/pomodoro">Pomodoro</a></li>
-                <li><a class="btn" role="button" href="/app/home">Home</a></li>
+                <li><a class="btn" role="button" href="/pomodoro">Pomodoro</a></li>
+                <li><a class="btn" role="button" href="/home">Home</a></li>
             </ul>
         </nav>
     </section>
@@ -118,9 +118,9 @@
     <div class="container pom-app">
         <div class="row pom-sheet">
             <div class="col-md-12">
-                <form action='/api/delete_poms' method='post'>
+                <form action='/app/delete_poms' method='post'>
                     <br>
-                    <a class="btn btn-success float-right main-button" href="/api/pom_sheet_export"
+                    <a class="btn btn-success float-right main-button" href="/app/pom_sheet_export"
                        role="button">Export
                         Sheet</a>
                     <input style="margin-right: 15px"
@@ -185,7 +185,7 @@
     </div>
     <div id="derp"></div>
     <div>
-        <img class="time-image mx-auto d-block" src="/assets/time.jpg">
+        <img class="time-image mx-auto d-block" src="/images/time.jpg">
     </div>
     <div></div>
 </main>

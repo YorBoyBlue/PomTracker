@@ -1,9 +1,9 @@
 from sqlalchemy import Column, Integer, Text, Date, Time, UniqueConstraint
 from sqlalchemy.orm import relationship
-from models.base_model import BaseModel
+from database.database_manager import dbm
 
 
-class PomodoroModel(BaseModel):
+class PomodoroModel(dbm.Base):
     __tablename__ = 'pomodoro'
 
     id = Column(Integer, primary_key=True)

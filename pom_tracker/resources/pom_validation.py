@@ -26,8 +26,7 @@ class PomodoroValidationResource:
 
         # Validate form
         try:
-            PomodoroSchema().load(
-                {'task': task, 'review': review, 'flags': flags})
+            PomodoroSchema().load({'task': task, 'review': review, 'flags': flags})
         except ValidationError as err:
             # User is missing 1 or more required fields
             message = ''
@@ -45,4 +44,4 @@ class PomodoroValidationResource:
             )
 
         else:
-            raise falcon.HTTPFound('/api/poms/today')
+            raise falcon.HTTPFound('/app/poms/today')

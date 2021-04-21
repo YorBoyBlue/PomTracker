@@ -28,7 +28,7 @@ Pom_Collection_App = function () {
                 let that = this;
 
                 $.ajax({
-                    url: "/api/poms",
+                    url: "/app/poms",
                     type: "GET",
                     cache: false,
                     dataType: "json",
@@ -540,7 +540,7 @@ Pom_Collection_App = function () {
             }
 
             $.ajax({
-                url: "/api/poms",
+                url: "/app/poms",
                 type: "GET",
                 data: data,
                 cache: false,

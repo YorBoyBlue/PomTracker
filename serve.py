@@ -1,4 +1,4 @@
-from pom_tracker.app import Application
+from pom_tracker.main import Application
 
 # Entry point for the application
 if __name__ == '__main__':
