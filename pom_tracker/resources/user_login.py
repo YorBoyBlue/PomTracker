@@ -18,7 +18,7 @@ class UserLoginResource:
         resp.content_type = 'text/html'
 
         user_login_template = Template(filename='pom_tracker/views/user_login_view.mako')
-        resp.body = user_login_template.render()
+        resp.text = user_login_template.render()
 
     def on_post(self, req, resp):
         """Handles POST requests"""
@@ -65,7 +65,7 @@ class UserLoginResource:
                 finally:
                     resp.set_cookie('pomodoro_login_hash', pomodoro_login_hash,
                                     max_age=79200, path='/')
-                    raise falcon.HTTPFound('/pomodoro')
+                    raise falcon.HTTPFound('/pomodoro/today')
 
             else:
                 raise falcon.HTTPFound('/user/login_failed')

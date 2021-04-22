@@ -28,7 +28,7 @@ Pom_Collection_App = function () {
                 let that = this;
 
                 $.ajax({
-                    url: "/app/poms",
+                    url: "/pomodoro/collection",
                     type: "GET",
                     cache: false,
                     dataType: "json",
@@ -540,7 +540,7 @@ Pom_Collection_App = function () {
             }
 
             $.ajax({
-                url: "/app/poms",
+                url: "/pomodoro/collection",
                 type: "GET",
                 data: data,
                 cache: false,

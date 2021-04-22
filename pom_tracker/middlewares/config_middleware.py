@@ -15,16 +15,16 @@ class ConfigMiddleware:
             '/favicon.ico'
         ]
         self.excluded_folders_validate = [
-            '/assets/'
+            '/css/',
+            '/js/',
+            '/images/'
         ]
         self.included_paths_user = [
             '/user/logout',
-            '/pomodoro',
-            '/app/poms/today',
-            '/app/poms',
-            '/app/pom_sheet_export',
-            '/app/export_poms',
-            '/app/pom_exists'
+            '/pomodoro/today',
+            '/pomodoro/collection',
+            '/pomodoro/today/export',
+            '/pomodoro/collection/export'
         ]
 
     def process_request(self, req, resp):

@@ -10,11 +10,3 @@ class FlagTypeModel(dbm.Base):
 
     def __repr__(self):
         return "<FlagTypeModel(flag_type='%s')>" % self.flag_type
-
-    @staticmethod
-    def get_flag_types():
-        pass
-        # Session = sessionmaker(bind=engine)
-        # session = Session()
-        # flags = session.query(FlagTypeModel.flag_type).all()
-        # return flags

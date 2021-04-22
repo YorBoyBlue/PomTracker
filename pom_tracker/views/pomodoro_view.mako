@@ -19,9 +19,9 @@
                 <li><a class="btn" role="button" href="/user/settings">&#9881;</a></li>
                 <li><a class="btn" role="button" href="/user/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/user/login">Login/Create</a></li>
-                <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
-                <li><a class="btn" role="button" href="/app/pomodoro_set">Display Poms</a></li>
-                <li><a class="btn" role="button" href="/pomodoro">Pomodoro</a></li>
+                <li><a class="btn" role="button" href="/pomodoro/collection/export">Export Poms</a></li>
+                <li><a class="btn" role="button" href="/pomodoro/collection">Display Poms</a></li>
+                <li><a class="btn" role="button" href="/pomodoro/today">Pomodoro</a></li>
                 <li><a class="btn" role="button" href="/home">Home</a></li>
             </ul>
         </nav>
@@ -34,6 +34,9 @@
             <div class="col-md-12">
                 <form class="pom-form">
                     <div class="row">
+                        <div id="validation-error" class="alert alert-warning"
+                             style="width: 100%; display: none;">
+                        </div>
                         <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
                             <div class="row">
                                 <h2>Pomodoro:</h2>
@@ -104,7 +107,7 @@
                                     <input style="width: 170px"
                                            class="btn btn-primary main-button float-right"
                                            role="button"
-                                           value='Submit Pomodoro' onclick="submitPom()">
+                                           value='Submit Pomodoro' type="submit">
                                 </div>
                             </div>
                         </div>
@@ -118,9 +121,9 @@
     <div class="container pom-app">
         <div class="row pom-sheet">
             <div class="col-md-12">
-                <form action='/app/delete_poms' method='post'>
+                <form action='/pomodoro/delete' method='post'>
                     <br>
-                    <a class="btn btn-success float-right main-button" href="/app/pom_sheet_export"
+                    <a class="btn btn-success float-right main-button" href="/pomodoro/today/export"
                        role="button">Export
                         Sheet</a>
                     <input style="margin-right: 15px"

@@ -8,6 +8,6 @@ class UserCreateEmailExistsResource:
         resp.content_type = 'text/html'
 
         user_create_template = Template(filename='pom_tracker/views/user_create_view.mako')
-        resp.body = user_create_template.render(
+        resp.text = user_create_template.render(
             email_exists=True
         )

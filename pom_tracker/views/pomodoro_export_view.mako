@@ -19,9 +19,9 @@
                 <li><a class="btn" role="button" href="/user/settings">&#9881;</a></li>
                 <li><a class="btn" role="button" href="/user/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/user/login">Login/Create</a></li>
-                <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
-                <li><a class="btn" role="button" href="/app/pomodoro_set">Display Poms</a></li>
-                <li><a class="btn" role="button" href="/pomodoro">Pomodoro</a></li>
+                <li><a class="btn" role="button" href="/pomodoro/collection/export">Export Poms</a></li>
+                <li><a class="btn" role="button" href="/pomodoro/collection">Display Poms</a></li>
+                <li><a class="btn" role="button" href="/pomodoro/today">Pomodoro</a></li>
                 <li><a class="btn" role="button" href="/home">Home</a></li>
             </ul>
         </nav>
@@ -44,7 +44,7 @@
                         <br><br>
                     </div>
                 </div>
-                <form action='/app/export_poms' method='post' autocomplete="on">
+                <form action='/pomodoro/collection/export' method='post' autocomplete="on">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                             <label class="date" for="start_date"><b>Start Date:</b></label>

@@ -19,9 +19,9 @@
                 <li><a class="btn" role="button" href="/user/settings">&#9881;</a></li>
                 <li><a class="btn" role="button" href="/user/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/user/login">Login/Create</a></li>
-                <li><a class="btn" role="button" href="/app/export_poms">Export Poms</a></li>
-                <li><a class="btn" role="button" href="/app/pomodoro_set">Display Poms</a></li>
-                <li><a class="btn" role="button" href="/pomodoro">Pomodoro</a></li>
+                <li><a class="btn" role="button" href="/pomodoro/collection/export">Export Poms</a></li>
+                <li><a class="btn" role="button" href="/pomodoro/collection">Display Poms</a></li>
+                <li><a class="btn" role="button" href="/pomodoro/today">Pomodoro</a></li>
                 <li><a class="btn" role="button" href="/home">Home</a></li>
             </ul>
         </nav>

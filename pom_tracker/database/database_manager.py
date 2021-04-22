@@ -14,10 +14,9 @@ class DatabaseManager:
         self.engine = create_engine(self.SQLALCHEMY_DATABASE_URL)
         self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.Base = declarative_base()
-        self.session = self.SessionLocal()
 
     def get_db(self):
-        return self.session
+        return self.SessionLocal()
 
 
 dbm = DatabaseManager()
