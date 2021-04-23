@@ -5,10 +5,10 @@ from wsgiref.simple_server import make_server
 
 from .error_handling.error_handler import error_handler
 
+from .middlewares.auth_middleware import AuthMiddleware
 from .middlewares.config_middleware import ConfigMiddleware
-from .middlewares.validation_middleware import ValidationMiddleware
-from .middlewares.negotiation_middleware import NegotiationMiddleware
 from .middlewares.user_middleware import UserMiddleware
+from .middlewares.negotiation_middleware import NegotiationMiddleware
 
 from .resources.user_logout import UserLogoutResource
 from .resources.home import HomeResource
@@ -32,18 +32,18 @@ class Application:
 
         # handlers = media.Handlers({
         #     'application/json': media.JSONHandler(),
-        #     'application/x-www-form-urlencoded': media.multipart.MultipartFormHandler()
+        #     'application/x-www-form-urlencoded': media.URLEncodedFormHandler()
         # })
+        auth_middleware = AuthMiddleware()
         config_middleware = ConfigMiddleware()
-        validation_middleware = ValidationMiddleware()
         negotiation_middleware = NegotiationMiddleware()
         user_middleware = UserMiddleware()
 
         self.app = falcon.App(middleware=[
-            config_middleware, user_middleware, validation_middleware, negotiation_middleware
+            config_middleware, user_middleware, auth_middleware, negotiation_middleware
         ])
         # self.app.req_options.media_handlers = handlers
-        self.app.req_options.auto_parse_form_urlencoded = True
+        # self.app.req_options.auto_parse_form_urlencoded = True
         # self.app.resp_options.media_handlers = handlers
         self.app.add_error_handler(Exception, error_handler)
         self.app.resp_options.secure_cookies_by_default = False

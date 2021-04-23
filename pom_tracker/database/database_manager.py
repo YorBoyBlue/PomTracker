@@ -15,8 +15,20 @@ class DatabaseManager:
         self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.Base = declarative_base()
 
-    def get_db(self):
+    # def get_db(self):
+    #     return self.SessionLocal()
+    #     # db = self.SessionLocal()
+    #     # try:
+    #     #     yield db
+    #     # finally:
+    #     #     db.close()
+
+    def __call__(self):
         return self.SessionLocal()
 
 
 dbm = DatabaseManager()
+
+# def test():
+#     with dbm() as session:
+#         session.query(sql)

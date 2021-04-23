@@ -9,7 +9,7 @@ class UserMiddleware:
 
     def process_request(self, req, resp):
 
-        db = dbm.get_db()
+        db = dbm()
 
         if req.path in req.context['included_paths_user']:
             my_cookie_hash = req.cookies.get('pomodoro_login_hash', None)

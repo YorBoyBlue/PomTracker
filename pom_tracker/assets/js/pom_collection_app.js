@@ -58,7 +58,7 @@ Pom_Collection_App = function () {
                     dataset.push(
                         {
                             date: value.created,
-                            title: value.task,
+                            title: value.title,
                             flags: flags,
                             start_time: value.start_time,
                             end_time: value.end_time,

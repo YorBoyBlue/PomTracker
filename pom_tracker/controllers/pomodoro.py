@@ -10,7 +10,7 @@ from models.pomodoro_model import PomodoroModel
 from models.pom_flags_model import PomFlagsModel
 from models.pomodoro_schema import PomodoroSchema
 
-db = dbm.get_db()
+db = dbm()
 
 
 def get_flag_types():
@@ -44,23 +44,8 @@ def get_collection(user_id, limit, offset, date_filter, distractions_filter, uns
 
     pom_rows = query.all()
 
-    # Parse flags
-    poms = []
-    for row in pom_rows:
-        flags = []
-        for flag in row.flags:
-            flags.append(flag.flag_type)
-        pom = {
-            'task': row.task,
-            'review': row.review,
-            'created': row.created.strftime('%Y-%m-%d'),
-            'distractions': row.distractions,
-            'flags': flags,
-            'pom_success': row.pom_success,
-            'start_time': row.start_time.strftime('%I:%M%p').strip('0'),
-            'end_time': row.end_time.strftime('%I:%M%p').strip('0')
-        }
-        poms.append(pom)
+    # Parse poms for collection
+    poms = parse_poms(pom_rows)
 
     return {
         'poms': poms,
@@ -117,6 +102,12 @@ def insert_poms(user_id, task, review, flags, distractions, pom_success, time_bl
         # Add pom to the DB
         db.add(pom_to_add)
 
+
+        # # Add pom to the DB
+        # with dbm() as db:
+        #     db.add(pom_to_add)
+        #     db.commit()
+
     try:
         db.commit()
     except IntegrityError as e:
@@ -138,12 +129,23 @@ def delete(ids):
 def export_collection(user_id, start_date, end_date):
     # Query poms within start and end dates
     poms = db.query(
-        PomodoroModel).filter(PomodoroModel.created <= end_date). \
-        filter(PomodoroModel.created >= start_date).filter_by(
-        user_id=user_id).order_by(
+        PomodoroModel).filter(PomodoroModel.created <= end_date).filter(
+        PomodoroModel.created >= start_date).filter_by(user_id=user_id).order_by(
         PomodoroModel.created, PomodoroModel.start_time).all()
 
-    data = {'poms': []}
+    poms = parse_poms(poms)
+    return {'poms': poms}
+
+
+def export_today(user_id):
+    todays_poms = get_today(user_id)
+
+    poms = parse_poms(todays_poms)
+    return {'poms': poms}
+
+
+def parse_poms(poms):
+    data = []
     for row in poms:
         pom = {
             'created': datetime.strftime(row.created, '%Y-%m-%d'),
@@ -157,26 +159,5 @@ def export_collection(user_id, start_date, end_date):
         }
         for flag in row.flags:
             pom['flags'].append(flag.flag_type)
-        data['poms'].append(pom)
-    return data
-
-
-def export_today(user_id):
-    todays_poms = get_today(user_id)
-
-    data = {'poms': []}
-    for row in todays_poms:
-        pom = {
-            'created': datetime.strftime(row.created, '%Y-%m-%d'),
-            'title': row.task,
-            'start_time': row.start_time.strftime('%I:%M%p'),
-            'end_time': row.end_time.strftime('%I:%M%p'),
-            'distractions': row.distractions,
-            'pom_success': row.pom_success,
-            'review': row.review,
-            'flags': []
-        }
-        for flag in row.flags:
-            pom['flags'].append(flag.flag_type)
-        data['poms'].append(pom)
+        data.append(pom)
     return data

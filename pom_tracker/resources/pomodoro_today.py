@@ -1,9 +1,10 @@
 import falcon
+from resources.resourse_base import ResourceBase
 from mako.template import Template
 from controllers.pomodoro import get_today, get_flag_types, validate, insert_poms
 
 
-class PomodoroTodayResource:
+class PomodoroTodayResource(ResourceBase):
 
     def on_get(self, req, resp):
         """Handles GET requests"""
@@ -23,15 +24,21 @@ class PomodoroTodayResource:
     def on_post(self, req, resp):
         """Handles POST requests"""
 
-        # Parse variables to be submitted to DB
-        task = req.get_param('task')
-        review = req.get_param('review')
-        flags = req.get_param_as_list('flags')
-        time_blocks = req.get_param_as_list('time_block')
+        user_id = req.context['user'].id
+        post = req.get_media()
+
+        # Parse POST variables to be submitted to DB
+        task = self.get_param(post.get('task'))
+        review = self.get_param(post.get('review'))
+        pom_success = self.get_param(post.get('pom_success'), default=0)
+        flags = self.get_param_as_list(post.get('flags'))
+        time_blocks = self.get_param_as_list(post.get('time_block'))
+        distractions = self.get_param_as_list(post.get('distractions'))
+        distractions_count = len(distractions) if distractions else 0
 
         # Validate pomodoro
         validated = validate(task, review, flags, time_blocks)
-        if not validated.get('validated', False):
+        if not validated.get('validated'):
             raise falcon.HTTPBadRequest(
                 {
                     'error': 'ValidationError',
@@ -39,21 +46,12 @@ class PomodoroTodayResource:
                 }
             )
 
-        user_id = req.context['user'].id
-        was_distractions = req.get_param('distractions', default=0)
-        distractions = 0
-        if was_distractions:
-            for distraction in req.get_param_as_list('distractions'):
-                distractions += 1
-        pom_success = req.get_param('pom_success', default=0)
-        time_blocks = req.get_param_as_list('time_block')
-
         success = insert_poms(
             user_id,
             task,
             review,
             flags,
-            distractions,
+            distractions_count,
             pom_success,
             time_blocks
         )

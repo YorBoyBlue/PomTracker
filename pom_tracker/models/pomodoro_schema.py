@@ -22,13 +22,13 @@ class PomodoroSchema(Schema):
                                           'task(s) you were working on.'
                               })
 
-    @validates('task')
-    def validate_task(self, value):
-        if not value:
-            raise ValidationError("You must provide a Title for the task you were working on.")
-
-    @validates('review')
-    def validate_review(self, value):
-        if not value:
-            raise ValidationError(
-                "You must provide a Description for the task you were working on.")
+    # @validates('task')
+    # def validate_task(self, value):
+    #     if not value:
+    #         raise ValidationError("You must provide a Title for the task you were working on.")
+    #
+    # @validates('review')
+    # def validate_review(self, value):
+    #     if not value:
+    #         raise ValidationError(
+    #             "You must provide a Description for the task you were working on.")
