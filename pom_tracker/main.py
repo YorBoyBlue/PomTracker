@@ -3,6 +3,8 @@ import falcon
 from falcon import media
 from wsgiref.simple_server import make_server
 
+# from database.database_manager import dbm
+
 from .error_handling.error_handler import error_handler
 
 from .middlewares.auth_middleware import AuthMiddleware
@@ -79,3 +81,4 @@ class Application:
 
     # def create_db(self):
     #     dbm.Base.metadata.create_all(dbm.engine)
+    #     dbm.metadata.create_all(dbm.engine)

@@ -1,4 +1,5 @@
 import falcon
+from resources.resourse_base import ResourceBase
 from controllers.user import get_user, login_user
 
 from mako.template import Template
@@ -8,7 +9,7 @@ import string
 import hashlib
 
 
-class UserLoginResource:
+class UserLoginResource(ResourceBase):
     def on_get(self, req, resp):
         """Handles GET requests"""
 
@@ -20,8 +21,10 @@ class UserLoginResource:
     def on_post(self, req, resp):
         """Handles POST requests"""
 
-        email = req.get_param('email')
-        password = req.get_param('password')
+        post = req.get_media()
+
+        email = self.get_param(post.get('email'))
+        password = self.get_param(post.get('password'))
 
         # Validate user
         try:

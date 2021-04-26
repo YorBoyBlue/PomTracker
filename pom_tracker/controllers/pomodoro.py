@@ -2,47 +2,58 @@ from datetime import datetime
 import pytz
 
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.sql import select, func
 from marshmallow import ValidationError
 from database.database_manager import dbm
 
-from models.flag_types_model import FlagTypeModel
-from models.pomodoro_model import PomodoroModel
-from models.pom_flags_model import PomFlagsModel
+from models.flag_types_model import flag_types_table
+from models.pomodoro_model import pomodoro_table
+from models.pom_flags_model import flags_table
 from models.pomodoro_schema import PomodoroSchema
-
-db = dbm()
 
 
 def get_flag_types():
-    return db.query(FlagTypeModel.flag_type).all()
+    with dbm() as conn:
+        query = select(flag_types_table.c.flag_type)
+        results = conn.execute(query).fetchall()
+    return results
 
 
 def get_today(user_id):
     today = datetime.now().date()
-    return db.query(PomodoroModel).filter_by(created=today, user_id=user_id).all()
+    with dbm() as conn:
+        query = select(pomodoro_table).where(pomodoro_table.c.user_id == user_id,
+                                             pomodoro_table.c.created == today)
+        result = conn.execute(query).fetchall()
+    return result
 
 
 def get_collection(user_id, limit, offset, date_filter, distractions_filter, unsuccessful_filter):
-    query = db.query(PomodoroModel).filter_by(user_id=user_id)
+    with dbm() as conn:
 
-    # Apply filters
-    if date_filter:
-        query = query.filter_by(created=date_filter)
-    if distractions_filter:
-        query = query.filter(PomodoroModel.distractions > 0)
-    if unsuccessful_filter:
-        query = query.filter_by(pom_success=0)
+        query = select(pomodoro_table).where(pomodoro_table.c.user_id == user_id)
 
-    # Get total count
-    total_count = query.count()
+        # Apply filters
+        if date_filter:
+            query = query.where(pomodoro_table.c.created == date_filter)
+        if distractions_filter:
+            query = query.where(pomodoro_table.c.distractions > 0)
+        if unsuccessful_filter:
+            query = query.where(pomodoro_table.c.pom_success == 0)
 
-    # Apply limit and offset
-    if limit:
-        query = query.limit(limit)
-    if offset:
-        query = query.offset(offset)
+        # Get total count
+        count = conn.execute(query)
+        total_count = count.scalar()
 
-    pom_rows = query.all()
+        # Apply limit and offset
+        if limit:
+            query = query.limit(limit)
+        if offset:
+            query = query.offset(offset)
+
+        result = conn.execute(query)
+
+        pom_rows = result.fetchall()
 
     # Parse poms for collection
     poms = parse_poms(pom_rows)
@@ -100,8 +111,8 @@ def insert_poms(user_id, task, review, flags, distractions, pom_success, time_bl
             pom_to_add.flags.append(PomFlagsModel(flag_type=flag))
 
         # Add pom to the DB
-        db.add(pom_to_add)
-
+        with dbm() as db:
+            db.add(pom_to_add)
 
         # # Add pom to the DB
         # with dbm() as db:
@@ -119,19 +130,21 @@ def insert_poms(user_id, task, review, flags, distractions, pom_success, time_bl
 
 
 def delete(ids):
-    db.query(PomodoroModel).filter(PomodoroModel.id.in_(ids)).delete(
-        synchronize_session=False)
-    db.query(PomFlagsModel).filter(PomFlagsModel.pom_id.in_(ids)).delete(
-        synchronize_session=False)
-    db.commit()
+    with dbm() as db:
+        db.query(PomodoroModel).filter(PomodoroModel.id.in_(ids)).delete(
+            synchronize_session=False)
+        db.query(PomFlagsModel).filter(PomFlagsModel.pom_id.in_(ids)).delete(
+            synchronize_session=False)
+        db.commit()
 
 
 def export_collection(user_id, start_date, end_date):
     # Query poms within start and end dates
-    poms = db.query(
-        PomodoroModel).filter(PomodoroModel.created <= end_date).filter(
-        PomodoroModel.created >= start_date).filter_by(user_id=user_id).order_by(
-        PomodoroModel.created, PomodoroModel.start_time).all()
+    with dbm() as db:
+        poms = db.query(
+            PomodoroModel).filter(PomodoroModel.created <= end_date).filter(
+            PomodoroModel.created >= start_date).filter_by(user_id=user_id).order_by(
+            PomodoroModel.created, PomodoroModel.start_time).all()
 
     poms = parse_poms(poms)
     return {'poms': poms}
