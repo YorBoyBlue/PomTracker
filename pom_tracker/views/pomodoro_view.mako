@@ -19,7 +19,8 @@
                 <li><a class="btn" role="button" href="/user/settings">&#9881;</a></li>
                 <li><a class="btn" role="button" href="/user/logout">Logout</a></li>
                 <li><a class="btn" role="button" href="/user/login">Login/Create</a></li>
-                <li><a class="btn" role="button" href="/pomodoro/collection/export">Export Poms</a></li>
+                <li><a class="btn" role="button" href="/pomodoro/collection/export">Export Poms</a>
+                </li>
                 <li><a class="btn" role="button" href="/pomodoro/collection">Display Poms</a></li>
                 <li><a class="btn" role="button" href="/pomodoro/today">Pomodoro</a></li>
                 <li><a class="btn" role="button" href="/home">Home</a></li>
@@ -123,7 +124,8 @@
             <div class="col-md-12">
                 <form action='/pomodoro/delete' method='post'>
                     <br>
-                    <a class="btn btn-success float-right main-button" href="/pomodoro/today/export"
+                    <a class="btn btn-success float-right main-button"
+                       href="/pomodoro/today/export"
                        role="button">Export
                         Sheet</a>
                     <input style="margin-right: 15px"
@@ -145,38 +147,39 @@
                         % for row in pom_rows:
                             <tr>
                                 <td class="center-text">
-                                    <input type="checkbox" name="poms_to_delete" value="${row.id}">
+                                    <input type="checkbox" name="poms_to_delete"
+                                           value="${row['id']}">
                                 </td>
                                 <td class="keep-format">
-                                    ${row.task}
+                                    ${row['task']}
                                 </td>
                                 <td class="center-text">
-                                    % if len(row.flags) > 0:
-                                        % for flag in row.flags:
-                                        ${flag.flag_type}<br>
+                                    % if len(row['flags']) > 0:
+                                        % for flag in row['flags']:
+                                        ${flag}<br>
                                         % endfor
                                     % else :
-                                        ${row.flags[0]}
+                                        ${row['flags'][0]}
                                     % endif
                                 </td>
                                 <td class="center-text">
-                                    ${row.start_time.strftime('%I:%M%p').strip('0')}
+                                    ${row['start_time'].strip('0')}
                                 </td>
                                 <td class="center-text">
-                                    ${row.end_time.strftime('%I:%M%p').strip('0')}
+                                    ${row['end_time'].strip('0')}
                                 </td>
                                 <td class="center-text">
-                                    ${row.distractions}
+                                    ${row['distractions']}
                                 </td>
                                 <td class="center-text">
-                                    % if row.pom_success == 1:
+                                    % if row['pom_success'] == 1:
                                         &#x2714;
                                     % else:
                                         &#x2718;
                                     % endif
                                 </td>
                                 <td class="keep-format">
-                                    ${row.review}
+                                    ${row['review']}
                                 </td>
                             </tr>
                         % endfor

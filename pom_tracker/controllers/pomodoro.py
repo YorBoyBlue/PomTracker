@@ -19,33 +19,52 @@ def get_flag_types():
     return results
 
 
+def get_pom_flags(pom_ids):
+    with dbm() as conn:
+        query = select(flags_table).where(flags_table.c.pom_id.in_(pom_ids))
+        flags = conn.execute(query).fetchall()
+    return flags
+
+
 def get_today(user_id):
     today = datetime.now().date()
     with dbm() as conn:
         query = select(pomodoro_table).where(pomodoro_table.c.user_id == user_id,
                                              pomodoro_table.c.created == today)
         result = conn.execute(query).fetchall()
-    return result
+
+    # Get pom ids
+    pom_ids = [row.id for row in result]
+
+    # Stitch flags
+    flags = get_pom_flags(pom_ids)
+    poms = parse_poms(result, flags)
+
+    return poms
 
 
 def get_collection(user_id, limit, offset, date_filter, distractions_filter, unsuccessful_filter):
     with dbm() as conn:
 
         query = select(pomodoro_table).where(pomodoro_table.c.user_id == user_id)
+        count_query = select(func.count()).where(pomodoro_table.c.user_id == user_id)
 
         # Apply filters
         if date_filter:
             query = query.where(pomodoro_table.c.created == date_filter)
+            count_query = query.where(pomodoro_table.c.created == date_filter)
         if distractions_filter:
             query = query.where(pomodoro_table.c.distractions > 0)
+            count_query = query.where(pomodoro_table.c.distractions > 0)
         if unsuccessful_filter:
             query = query.where(pomodoro_table.c.pom_success == 0)
+            count_query = query.where(pomodoro_table.c.pom_success == 0)
 
         # Get total count
-        count = conn.execute(query)
+        count = conn.execute(count_query)
         total_count = count.scalar()
 
-        # Apply limit and offset
+        # Apply limit and offset for results
         if limit:
             query = query.limit(limit)
         if offset:
@@ -55,8 +74,13 @@ def get_collection(user_id, limit, offset, date_filter, distractions_filter, uns
 
         pom_rows = result.fetchall()
 
+        # Get pom ids
+        pom_ids = [row.id for row in pom_rows]
+
+        flags = get_pom_flags(pom_ids)
+
     # Parse poms for collection
-    poms = parse_poms(pom_rows)
+    poms = parse_poms(pom_rows, flags)
 
     return {
         'poms': poms,
@@ -87,55 +111,54 @@ def validate(task, review, flags, time_blocks):
 
 def insert_poms(user_id, task, review, flags, distractions, pom_success, time_blocks):
     today = datetime.now().date()
+    flags_to_insert = []
 
-    # Submit pomodoros
-    for time_block in time_blocks:
+    with dbm() as conn:
 
-        times = time_block.split('-')
+        try:
+            # Submit pomodoros
+            for time_block in time_blocks:
 
-        start_time = datetime.strptime(times[0].strip(), '%I:%M%p').replace(tzinfo=pytz.UTC)
-        end_time = datetime.strptime(times[1].strip(), '%I:%M%p').replace(tzinfo=pytz.UTC)
+                times = time_block.split('-')
 
-        # Create pomodoro model object to submit to DB
-        pom_to_add = PomodoroModel(
-            user_id=user_id,
-            distractions=distractions,
-            pom_success=pom_success,
-            task=task,
-            review=review,
-            created=today,
-            start_time=start_time.time(),
-            end_time=end_time.time()
-        )
-        for flag in flags:
-            pom_to_add.flags.append(PomFlagsModel(flag_type=flag))
+                start_time = datetime.strptime(times[0].strip(), '%I:%M%p').replace(
+                    tzinfo=pytz.UTC)
+                end_time = datetime.strptime(times[1].strip(), '%I:%M%p').replace(tzinfo=pytz.UTC)
 
-        # Add pom to the DB
-        with dbm() as db:
-            db.add(pom_to_add)
+                pom_to_insert = {
+                    'user_id': user_id,
+                    'distractions': distractions,
+                    'pom_success': pom_success,
+                    'task': task,
+                    'review': review,
+                    'created': today,
+                    'start_time': start_time.time(),
+                    'end_time': end_time.time()
+                }
 
-        # # Add pom to the DB
-        # with dbm() as db:
-        #     db.add(pom_to_add)
-        #     db.commit()
+                insert_record = conn.execute(pomodoro_table.insert(), pom_to_insert)
 
-    try:
-        db.commit()
-    except IntegrityError as e:
-        # Pomodoro already exists with that time block
-        db.rollback()
-        return False
+                for flag in flags:
+                    flags_to_insert.append({
+
+                    })
+
+                conn.execute(flags_table.insert(), [])
+        except IntegrityError as e:
+            return False
 
     return True
 
 
 def delete(ids):
-    with dbm() as db:
-        db.query(PomodoroModel).filter(PomodoroModel.id.in_(ids)).delete(
-            synchronize_session=False)
-        db.query(PomFlagsModel).filter(PomFlagsModel.pom_id.in_(ids)).delete(
-            synchronize_session=False)
-        db.commit()
+    with dbm() as conn:
+        conn.execute(pomodoro_table.delete().where(pomodoro_table.c.name.in_(ids)))
+
+        # db.query(PomodoroModel).filter(PomodoroModel.id.in_(ids)).delete(
+        #     synchronize_session=False)
+        # db.query(PomFlagsModel).filter(PomFlagsModel.pom_id.in_(ids)).delete(
+        #     synchronize_session=False)
+        # db.commit()
 
 
 def export_collection(user_id, start_date, end_date):
@@ -157,20 +180,23 @@ def export_today(user_id):
     return {'poms': poms}
 
 
-def parse_poms(poms):
+def parse_poms(poms, flags):
     data = []
     for row in poms:
         pom = {
+            'id': row.id,
+            'user_id': row.user_id,
+            'task': row.task,
+            'review': row.review,
             'created': datetime.strftime(row.created, '%Y-%m-%d'),
-            'title': row.task,
-            'start_time': row.start_time.strftime('%I:%M%p'),
-            'end_time': row.end_time.strftime('%I:%M%p'),
             'distractions': row.distractions,
             'pom_success': row.pom_success,
-            'review': row.review,
+            'start_time': row.start_time.strftime('%I:%M%p'),
+            'end_time': row.end_time.strftime('%I:%M%p'),
             'flags': []
         }
-        for flag in row.flags:
-            pom['flags'].append(flag.flag_type)
+        for flag in flags:
+            if flag.pom_id == row.id:
+                pom['flags'].append(flag.flag_type)
         data.append(pom)
     return data

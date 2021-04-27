@@ -8,14 +8,14 @@ Pom_Collection_App = function () {
 
         let Model = Backbone.Model.extend({
             defaults: {
-                date: "",
                 title: "",
+                description: "",
                 flags: "",
-                start_time: "",
-                end_time: "",
                 distractions: "",
                 pom_success: "",
-                description: ""
+                start_time: "",
+                end_time: "",
+                date: ""
             }
         });
 
@@ -57,14 +57,14 @@ Pom_Collection_App = function () {
                     });
                     dataset.push(
                         {
-                            date: value.created,
-                            title: value.title,
+                            title: value.task,
+                            description: value.review,
                             flags: flags,
-                            start_time: value.start_time,
-                            end_time: value.end_time,
                             distractions: value.distractions,
                             pom_success: value.pom_success,
-                            description: value.review
+                            start_time: value.start_time,
+                            end_time: value.end_time,
+                            date: value.created
                         }
                     )
                 });
