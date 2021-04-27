@@ -1,6 +1,5 @@
 import os
 import falcon
-from falcon import media
 from wsgiref.simple_server import make_server
 
 # from database.database_manager import dbm
@@ -32,10 +31,6 @@ class Application:
 
     def __init__(self):
 
-        # handlers = media.Handlers({
-        #     'application/json': media.JSONHandler(),
-        #     'application/x-www-form-urlencoded': media.URLEncodedFormHandler()
-        # })
         auth_middleware = AuthMiddleware()
         config_middleware = ConfigMiddleware()
         negotiation_middleware = NegotiationMiddleware()
@@ -44,9 +39,6 @@ class Application:
         self.app = falcon.App(middleware=[
             config_middleware, user_middleware, auth_middleware, negotiation_middleware
         ])
-        # self.app.req_options.media_handlers = handlers
-        # self.app.req_options.auto_parse_form_urlencoded = True
-        # self.app.resp_options.media_handlers = handlers
         self.app.add_error_handler(Exception, error_handler)
         self.app.resp_options.secure_cookies_by_default = False
 

@@ -26,21 +26,14 @@ def get_pom_flags(pom_ids):
     return flags
 
 
-def get_today(user_id):
+def get_today(user_id, ):
     today = datetime.now().date()
     with dbm() as conn:
         query = select(pomodoro_table).where(pomodoro_table.c.user_id == user_id,
                                              pomodoro_table.c.created == today)
         result = conn.execute(query).fetchall()
 
-    # Get pom ids
-    pom_ids = [row.id for row in result]
-
-    # Stitch flags
-    flags = get_pom_flags(pom_ids)
-    poms = parse_poms(result, flags)
-
-    return poms
+    return result
 
 
 def get_collection(user_id, limit, offset, date_filter, distractions_filter, unsuccessful_filter):
@@ -74,13 +67,8 @@ def get_collection(user_id, limit, offset, date_filter, distractions_filter, uns
 
         pom_rows = result.fetchall()
 
-        # Get pom ids
-        pom_ids = [row.id for row in pom_rows]
-
-        flags = get_pom_flags(pom_ids)
-
     # Parse poms for collection
-    poms = parse_poms(pom_rows, flags)
+    poms = parse_poms(pom_rows)
 
     return {
         'poms': poms,
@@ -114,7 +102,7 @@ def insert_poms(user_id, task, review, flags, distractions, pom_success, time_bl
     flags_to_insert = []
 
     with dbm() as conn:
-
+        savepoint = conn.begin_nested()
         try:
             # Submit pomodoros
             for time_block in time_blocks:
@@ -140,11 +128,14 @@ def insert_poms(user_id, task, review, flags, distractions, pom_success, time_bl
 
                 for flag in flags:
                     flags_to_insert.append({
-
+                        'pom_id': insert_record.lastrowid,
+                        'flag_type': flag
                     })
 
-                conn.execute(flags_table.insert(), [])
+            conn.execute(flags_table.insert(), flags_to_insert)
+            savepoint.commit()
         except IntegrityError as e:
+            savepoint.rollback()
             return False
 
     return True
@@ -152,45 +143,44 @@ def insert_poms(user_id, task, review, flags, distractions, pom_success, time_bl
 
 def delete(ids):
     with dbm() as conn:
-        conn.execute(pomodoro_table.delete().where(pomodoro_table.c.name.in_(ids)))
-
-        # db.query(PomodoroModel).filter(PomodoroModel.id.in_(ids)).delete(
-        #     synchronize_session=False)
-        # db.query(PomFlagsModel).filter(PomFlagsModel.pom_id.in_(ids)).delete(
-        #     synchronize_session=False)
-        # db.commit()
+        conn.execute(pomodoro_table.delete().where(pomodoro_table.c.id.in_(ids)))
+        conn.execute(flags_table.delete().where(flags_table.c.pom_id.in_(ids)))
 
 
 def export_collection(user_id, start_date, end_date):
     # Query poms within start and end dates
-    with dbm() as db:
-        poms = db.query(
-            PomodoroModel).filter(PomodoroModel.created <= end_date).filter(
-            PomodoroModel.created >= start_date).filter_by(user_id=user_id).order_by(
-            PomodoroModel.created, PomodoroModel.start_time).all()
+    with dbm() as conn:
+        query = select(pomodoro_table).where(pomodoro_table.c.user_id == user_id,
+                                             pomodoro_table.c.created <= end_date,
+                                             pomodoro_table.c.created >= start_date).order_by(
+            pomodoro_table.c.created, pomodoro_table.c.start_time)
+        result = conn.execute(query).fetchall()
 
-    poms = parse_poms(poms)
+    poms = parse_poms(result, add_metadata=False)
+
     return {'poms': poms}
 
 
 def export_today(user_id):
     todays_poms = get_today(user_id)
-
-    poms = parse_poms(todays_poms)
+    poms = parse_poms(todays_poms, add_metadata=False)
     return {'poms': poms}
 
 
-def parse_poms(poms, flags):
+def parse_poms(poms, add_metadata=True):
     data = []
+
+    # Get flags
+    pom_ids = [row.id for row in poms]
+    flags = get_pom_flags(pom_ids)
+
     for row in poms:
         pom = {
-            'id': row.id,
-            'user_id': row.user_id,
             'task': row.task,
             'review': row.review,
-            'created': datetime.strftime(row.created, '%Y-%m-%d'),
             'distractions': row.distractions,
             'pom_success': row.pom_success,
+            'created': datetime.strftime(row.created, '%Y-%m-%d'),
             'start_time': row.start_time.strftime('%I:%M%p'),
             'end_time': row.end_time.strftime('%I:%M%p'),
             'flags': []
@@ -198,5 +188,10 @@ def parse_poms(poms, flags):
         for flag in flags:
             if flag.pom_id == row.id:
                 pom['flags'].append(flag.flag_type)
+
+        if add_metadata:
+            pom['id'] = row.id
+            pom['user_id'] = row.user_id
+
         data.append(pom)
     return data

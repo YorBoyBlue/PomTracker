@@ -23,6 +23,7 @@ class UserLoginResource(ResourceBase):
 
         post = req.get_media()
 
+        # Parse POST variables
         email = self.get_param(post.get('email'))
         password = self.get_param(post.get('password'))
 

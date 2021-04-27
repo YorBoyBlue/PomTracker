@@ -1,7 +1,7 @@
 import falcon
 from resources.resourse_base import ResourceBase
 from mako.template import Template
-from controllers.pomodoro import get_today, get_flag_types, validate, insert_poms
+from controllers.pomodoro import get_today, get_flag_types, validate, insert_poms, parse_poms
 
 
 class PomodoroTodayResource(ResourceBase):
@@ -12,12 +12,13 @@ class PomodoroTodayResource(ResourceBase):
         resp.content_type = 'text/html'
 
         todays_poms = get_today(req.context['user'].id)
+        poms = parse_poms(todays_poms)
         flag_types = get_flag_types()
 
         pomodoro_template = Template(filename='pom_tracker/views/pomodoro_view.mako')
         resp.text = pomodoro_template.render(
             time_blocks=req.context['time_blocks'],
-            pom_rows=todays_poms,
+            pom_rows=poms,
             flag_types=flag_types
         )
 
@@ -27,7 +28,7 @@ class PomodoroTodayResource(ResourceBase):
         user_id = req.context['user'].id
         post = req.get_media()
 
-        # Parse POST variables to be submitted to DB
+        # Parse POST variables
         task = self.get_param(post.get('task'))
         review = self.get_param(post.get('review'))
         pom_success = self.get_param(post.get('pom_success'), default=0)

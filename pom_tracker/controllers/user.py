@@ -21,17 +21,17 @@ def create_user(email, first_name, middle_name, last_name, display_name, passwor
     today = datetime.utcnow()
 
     with dbm() as conn:
-        query = session_table.insert().values(
-            email=email,
-            first_name=first_name,
-            middle_name=middle_name,
-            last_name=last_name,
-            display_name=display_name,
-            password=password,
-            created=today,
-            modified=today
-        )
         try:
+            query = user_table.insert().values(
+                email=email,
+                first_name=first_name,
+                middle_name=middle_name,
+                last_name=last_name,
+                display_name=display_name,
+                password=password,
+                created=today,
+                modified=today
+            )
             conn.execute(query)
         except IntegrityError as e:
             return False
@@ -54,7 +54,8 @@ def login_user(user_id, pomodoro_login_hash):
 
         # Create a new session in DB if one does not exist
         except NoSessionRecordExists as e:
-            query = session_table.insert().values(hash=pomodoro_login_hash, modified=now)
+            query = session_table.insert().values(user_id=user_id, hash=pomodoro_login_hash,
+                                                  modified=now, created=now)
             conn.execute(query)
 
 

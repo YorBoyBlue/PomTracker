@@ -1,9 +1,10 @@
+from resources.resourse_base import ResourceBase
 from mako.template import Template
 import json
 from controllers.pomodoro import export_collection
 
 
-class PomodoroCollectionExportResource:
+class PomodoroCollectionExportResource(ResourceBase):
     def on_get(self, req, resp):
         """Handles GET requests"""
 
@@ -15,14 +16,16 @@ class PomodoroCollectionExportResource:
     def on_post(self, req, resp):
         """Handles POST requests"""
 
+        post = req.get_media()
         user_id = req.context['user'].id
-        start_date = req.get_param('start_date')
-        end_date = req.get_param('end_date')
+
+        # Parse POST variables
+        start_date = self.get_param(post.get('start_date'))
+        end_date = self.get_param(post.get('end_date'))
 
         data = export_collection(user_id, start_date, end_date)
 
-        filename = str(start_date) + '-' + str(
-            end_date) + '_Arin_Pom_Sheets.json'
+        filename = str(start_date) + '_to_' + str(end_date) + '_Arin_Poms.json'
         resp.text = json.dumps(data, indent=2)
         resp.downloadable_as = filename
         resp.content_type = 'application/octet-stream'
