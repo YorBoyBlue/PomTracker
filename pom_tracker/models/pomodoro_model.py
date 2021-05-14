@@ -1,6 +1,6 @@
 from sqlalchemy import Table, Column, Integer, Text, Date, Time, UniqueConstraint
 # from sqlalchemy.orm import relationship
-from database.database_manager import dbm
+from ..database.database_manager import dbm
 
 pomodoro_table = Table('pomodoro', dbm.metadata,
                        Column('id', Integer, primary_key=True),

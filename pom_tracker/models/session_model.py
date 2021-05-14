@@ -1,5 +1,5 @@
 from sqlalchemy import Table, Column, Integer, Text, DateTime
-from database.database_manager import dbm
+from ..database.database_manager import dbm
 
 session_table = Table('session', dbm.metadata,
                       Column('id', Integer, primary_key=True),

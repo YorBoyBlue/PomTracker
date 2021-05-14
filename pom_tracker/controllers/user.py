@@ -1,11 +1,11 @@
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql import select
-from error_handling.my_exceptions import NoSessionRecordExists
-from database.database_manager import dbm
+from ..error_handling.my_exceptions import NoSessionRecordExists
+from ..database.database_manager import dbm
 from datetime import datetime
 
-from models.user_model import user_table
-from models.session_model import session_table
+from ..models.user_model import user_table
+from ..models.session_model import session_table
 
 
 def get_user(email):

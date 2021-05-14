@@ -1,7 +1,7 @@
 import falcon
-from resources.resourse_base import ResourceBase
+from ..resources.resourse_base import ResourceBase
 from mako.template import Template
-from controllers.user import create_user
+from ..controllers.user import create_user
 
 
 class UserCreateResource(ResourceBase):

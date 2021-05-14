@@ -3,8 +3,8 @@ import datetime
 import re
 from sqlalchemy.sql import select
 from sqlalchemy.orm.exc import NoResultFound
-from models.session_model import session_table
-from database.database_manager import dbm
+from ..models.session_model import session_table
+from ..database.database_manager import dbm
 
 
 class AuthMiddleware:

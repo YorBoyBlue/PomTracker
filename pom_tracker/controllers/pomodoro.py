@@ -4,12 +4,12 @@ import pytz
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql import select, func
 from marshmallow import ValidationError
-from database.database_manager import dbm
+from ..database.database_manager import dbm
 
-from models.flag_types_model import flag_types_table
-from models.pomodoro_model import pomodoro_table
-from models.pom_flags_model import flags_table
-from models.pomodoro_schema import PomodoroSchema
+from ..models.flag_types_model import flag_types_table
+from ..models.pomodoro_model import pomodoro_table
+from ..models.pom_flags_model import flags_table
+from ..models.pomodoro_schema import PomodoroSchema
 
 
 def get_flag_types():

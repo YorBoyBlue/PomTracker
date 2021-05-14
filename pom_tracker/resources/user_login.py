@@ -1,6 +1,6 @@
 import falcon
-from resources.resourse_base import ResourceBase
-from controllers.user import get_user, login_user
+from ..resources.resourse_base import ResourceBase
+from ..controllers.user import get_user, login_user
 
 from mako.template import Template
 from sqlalchemy.orm.exc import NoResultFound

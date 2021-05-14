@@ -1,9 +1,9 @@
 import falcon
 from sqlalchemy.sql import select
 from sqlalchemy.orm.exc import NoResultFound
-from models.user_model import user_table
-from models.session_model import session_table
-from database.database_manager import dbm
+from ..models.user_model import user_table
+from ..models.session_model import session_table
+from ..database.database_manager import dbm
 
 
 class UserMiddleware:

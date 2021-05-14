@@ -1,6 +1,6 @@
 import falcon
-from resources.resourse_base import ResourceBase
-from controllers.pomodoro import delete
+from ..resources.resourse_base import ResourceBase
+from ..controllers.pomodoro import delete
 
 
 class PomodoroDeleteResource(ResourceBase):

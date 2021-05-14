@@ -1,5 +1,5 @@
 import json
-from controllers.pomodoro import export_today
+from ..controllers.pomodoro import export_today
 from datetime import date
 
 

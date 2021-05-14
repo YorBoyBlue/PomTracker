@@ -1,5 +1,5 @@
 import falcon
-from controllers.user import logout_user
+from ..controllers.user import logout_user
 
 
 class UserLogoutResource:

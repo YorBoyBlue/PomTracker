@@ -1,7 +1,7 @@
 import falcon
-from resources.resourse_base import ResourceBase
+from ..resources.resourse_base import ResourceBase
 from mako.template import Template
-from controllers.pomodoro import get_today, get_flag_types, validate, insert_poms, parse_poms
+from ..controllers.pomodoro import get_today, get_flag_types, validate, insert_poms, parse_poms
 
 
 class PomodoroTodayResource(ResourceBase):

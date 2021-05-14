@@ -1,5 +1,5 @@
 from mako.template import Template
-from controllers.pomodoro import get_collection
+from ..controllers.pomodoro import get_collection
 
 
 class PomodoroCollectionResource:

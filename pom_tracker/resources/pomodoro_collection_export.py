@@ -1,7 +1,7 @@
-from resources.resourse_base import ResourceBase
+from ..resources.resourse_base import ResourceBase
 from mako.template import Template
 import json
-from controllers.pomodoro import export_collection
+from ..controllers.pomodoro import export_collection
 
 
 class PomodoroCollectionExportResource(ResourceBase):
