@@ -1,4 +1,4 @@
-Mako==1.1.4
+Mako==1.2.2
 MarkupSafe==1.1.1
 PyYAML==5.4.1
 SQLAlchemy==1.4.3
